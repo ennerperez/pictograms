@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$description$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://raw.githubusercontent.com/ennerperez/pictograms/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/ennerperez/pictograms</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/ennerperez/pictograms/master/.editoricon.png</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Fonts based pictograms for .NET</description>
+    <summary />
+    <releaseNotes />
+    <language>en</language>
+    <copyright>$copyright$</copyright>
+    <tags>Pictograms Fonts FontAwesome Foundation</tags>
+    <dependencies />
+  </metadata>
+  <files />
+</package>

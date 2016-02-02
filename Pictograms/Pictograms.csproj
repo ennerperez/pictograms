@@ -69,6 +69,9 @@
     <None Include="Fonts\fontawesome-webfont.ttf" />
     <None Include="Fonts\general_foundicons.ttf" />
     <None Include="Fonts\linearicons-free.ttf" />
+    <None Include="Package.nuspec">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.files\Microsoft.Framework.props" Condition="Exists('$(SolutionDir)\.files\Microsoft.Framework.props')" />
