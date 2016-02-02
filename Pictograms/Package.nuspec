@@ -3,14 +3,14 @@
   <metadata>
     <id>$id$</id>
     <version>$version$</version>
-    <title>$description$</title>
+    <title>Pictograms.NET</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
     <licenseUrl>https://raw.githubusercontent.com/ennerperez/pictograms/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/ennerperez/pictograms</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/ennerperez/pictograms/master/.editoricon.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <description>Fonts based pictograms for .NET</description>
+    <description>$description$</description>
     <summary />
     <releaseNotes />
     <language>en</language>
