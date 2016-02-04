@@ -20,6 +20,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".files", ".files", "{5D1381
 		.files\Microsoft.Framework.props = .files\Microsoft.Framework.props
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pictograms.Samples", "Pictograms.Samples\Pictograms.Samples.csproj", "{2CC5AE36-31D8-4F7E-9BF0-729090B8DE28}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +32,10 @@ Global
 		{0D9E79A0-DBCF-42A6-B0A8-6234F3AAE253}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D9E79A0-DBCF-42A6-B0A8-6234F3AAE253}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D9E79A0-DBCF-42A6-B0A8-6234F3AAE253}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CC5AE36-31D8-4F7E-9BF0-729090B8DE28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CC5AE36-31D8-4F7E-9BF0-729090B8DE28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CC5AE36-31D8-4F7E-9BF0-729090B8DE28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CC5AE36-31D8-4F7E-9BF0-729090B8DE28}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
