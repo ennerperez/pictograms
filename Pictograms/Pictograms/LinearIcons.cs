@@ -20,7 +20,7 @@ namespace System.Drawing.Pictograms
         /// <summary>
         /// Initializes the <see cref="Icon" /> class by loading the font from resources upon first use.
         /// </summary>
-        private LinearIcons() : base()
+        private LinearIcons() : base(Properties.Resources.LinearIcons)
         {
         }
 
@@ -32,6 +32,33 @@ namespace System.Drawing.Pictograms
                     instance = new LinearIcons();
                 return instance;
             }
+        }
+
+        #endregion
+
+        #region Statics
+
+        public static Image GetImage(IconType type, int size, Brush brush)
+        {
+            return LinearIcons.Instance.GetImage((int)type, size, brush);
+        }
+        public static Image GetImage(IconType type, int size, Color color)
+        {
+            return LinearIcons.Instance.GetImage((int)type, size, color);
+        }
+        public static Image GetImage(IconType type, int size)
+        {
+            return LinearIcons.Instance.GetImage((int)type, size);
+        }
+
+        public static string GetText(IconType type)
+        {
+            return char.ConvertFromUtf32((int)type);
+        }
+
+        public static new Font GetFont(float size, GraphicsUnit units = GraphicsUnit.Point)
+        {
+            return new Font(LinearIcons.Instance.fonts.Families[0], size, units);
         }
 
         #endregion

@@ -12,18 +12,21 @@ namespace System.Drawing
 
         public Pictogram()
         {
-            using (var font = System.Reflection.Assembly.GetExecutingAssembly().GetManifestResourceStream(this.GetType().Name))
-            {
-                byte[] buffer = new byte[font.Length];
-                font.Read(buffer, 0, (int)font.Length);
-                InitializeFont(buffer);
-            }
+        }
+
+        public Pictogram(byte[] font) : this()
+        {
+            InitializeFont(font);
+        }
+
+        public Pictogram(string fontFile) : this(System.IO.File.ReadAllBytes(fontFile))
+        {
         }
 
         /// <summary>
         /// Store the icon font in a static variable to reuse between icons
         /// </summary>
-        internal readonly PrivateFontCollection Fonts = new PrivateFontCollection();
+        internal readonly PrivateFontCollection fonts = new PrivateFontCollection();
 
         /// <summary>
         /// Store the icon font in a static variable to reuse between icons
@@ -32,7 +35,7 @@ namespace System.Drawing
         {
             get
             {
-                return Fonts.Families[0];
+                return fonts.Families[0];
             }
             private set
             {
@@ -55,7 +58,7 @@ namespace System.Drawing
                 Marshal.Copy(fontData, 0, fontBuffer, fontData.Length);
 
                 uint dummy = 0;
-                Fonts.AddMemoryFont(fontBuffer, fontData.Length);
+                fonts.AddMemoryFont(fontBuffer, fontData.Length);
                 Pictogram.AddFontMemResourceEx((IntPtr)fontBuffer, (uint)fontData.Length, IntPtr.Zero, ref dummy);
 
             }
@@ -66,7 +69,7 @@ namespace System.Drawing
 
         }
 
-#region Methods
+        #region Methods
 
         /// <summary>
         /// Sets a new font with correct size for the allocated space.
@@ -77,16 +80,6 @@ namespace System.Drawing
             var Width = (int)g.VisibleClipBounds.Width;
             var Height = (int)g.VisibleClipBounds.Height;
             iconFont = GetAdjustedFont(g, IconChar, Width, Height, 4, true);
-        }
-
-        /// <summary>
-        /// Returns a font instance using the resource icon font.
-        /// </summary>
-        /// <param name="size">The size of the font in points.</param>
-        /// <returns>A new System.Drawing.Font instance</returns>
-        private Font GetIconFont(float size)
-        {
-            return new Font(Fonts.Families[0], size, GraphicsUnit.Point);
         }
 
         /// <summary>
@@ -103,7 +96,7 @@ namespace System.Drawing
         {
             for (double adjustedSize = maxFontSize; adjustedSize >= minFontSize; adjustedSize = adjustedSize - 0.5)
             {
-                Font testFont = GetIconFont((float)adjustedSize);
+                Font testFont = GetFont((float)adjustedSize);
                 // Test the string with the new size
                 SizeF adjustedSizeNew = g.MeasureString(graphicString, testFont);
                 if (containerWidth > Convert.ToInt32(adjustedSizeNew.Width))
@@ -112,16 +105,16 @@ namespace System.Drawing
                 }
             }
 
-            return GetIconFont(smallestOnFail ? minFontSize : maxFontSize);
+            return GetFont(smallestOnFail ? minFontSize : maxFontSize);
         }
 
+        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
+        internal static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont,
+        IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
 
-        public Image GetIcon(int type, int size, Color color)
-        {
-            return GetIcon(type, size, new SolidBrush(color));
-        }
+        #endregion
 
-        public Image GetIcon(int type, int size, Brush brush)
+        public Image GetImage(int type, int size, Brush brush)
         {
             System.Drawing.Bitmap result = new System.Drawing.Bitmap(size, size);
             string IconChar = char.ConvertFromUtf32((int)type);
@@ -152,12 +145,24 @@ namespace System.Drawing
 
             return result;
         }
+        public Image GetImage(int type, int size, Color color)
+        {
+            return GetImage(type, size, new SolidBrush(color));
+        }
+        public Image GetImage(int type, int size)
+        {
+            return GetImage(type, size, SystemColors.ControlText);
+        }
 
-#endregion
+        public string GetText(int type)
+        {
+            return char.ConvertFromUtf32((int)type);
+        }
 
-        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
-        internal static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont,
-          IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
-
+        public Font GetFont(float size, GraphicsUnit units = GraphicsUnit.Point)
+        {
+            return new Font(fonts.Families[0], size, units);
+        }
+                
     }
 }

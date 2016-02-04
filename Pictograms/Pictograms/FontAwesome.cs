@@ -21,7 +21,7 @@ namespace System.Drawing.Pictograms
         /// <summary>
         /// Initializes the <see cref="Icon" /> class by loading the font from resources upon first use.
         /// </summary>
-        private FontAwesome() : base()
+        private FontAwesome() : base(Properties.Resources.FontAwesome)
         {
         }
 
@@ -33,6 +33,33 @@ namespace System.Drawing.Pictograms
                     instance = new FontAwesome();
                 return instance;
             }
+        }
+
+        #endregion
+
+        #region Statics
+
+        public static Image GetImage(IconType type, int size, Brush brush)
+        {
+            return FontAwesome.Instance.GetImage((int)type, size, brush);
+        }
+        public static Image GetImage(IconType type, int size, Color color)
+        {
+            return FontAwesome.Instance.GetImage((int)type, size, color);
+        }
+        public static Image GetImage(IconType type, int size)
+        {
+            return FontAwesome.Instance.GetImage((int)type, size);
+        }
+
+        public static string GetText(IconType type)
+        {
+            return char.ConvertFromUtf32((int)type);
+        }
+
+        public static new Font GetFont(float size, GraphicsUnit units = GraphicsUnit.Point)
+        {
+            return new Font(FontAwesome.Instance.fonts.Families[0], size, units);
         }
 
         #endregion
