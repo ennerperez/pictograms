@@ -18,17 +18,20 @@ namespace System.Drawing.Pictograms.Samples
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            button1.Image = FontAwesome.GetImage(FontAwesome.IconType.Windows, (int)button1.Font.Size);
-            button2.Image = Foundation.GetImage(Foundation.IconType.Calendar, (int)button2.Font.Size);
-            button3.Image = LinearIcons.GetImage(LinearIcons.IconType.smile, (int)button3.Font.Size);
+            button11.Image = FontAwesome.GetImage(FontAwesome.IconType.Windows, (int)button11.Font.Size);
+            button12.Image = Foundation.GetImage(Foundation.IconType.Calendar, (int)button12.Font.Size);
+            button13.Image = LinearIcons.GetImage(LinearIcons.IconType.smile, (int)button13.Font.Size);
+            button14.Image = MaterialDesign.GetImage(MaterialDesign.IconType.android, (int)button14.Font.Size);
 
-            button4.Text= FontAwesome.GetText(FontAwesome.IconType.Windows);
-            button5.Text = Foundation.GetText(Foundation.IconType.Calendar);
-            button6.Text = LinearIcons.GetText(LinearIcons.IconType.smile);
+            button21.Text= FontAwesome.GetText(FontAwesome.IconType.Windows);
+            button22.Text = Foundation.GetText(Foundation.IconType.Calendar);
+            button23.Text = LinearIcons.GetText(LinearIcons.IconType.smile);
+            button24.Text = MaterialDesign.GetText(MaterialDesign.IconType.android);
 
-            button4.Font = FontAwesome.GetFont(button4.Font.Size);
-            button5.Font = Foundation.GetFont(button5.Font.Size);
-            button6.Font = LinearIcons.GetFont(button6.Font.Size);
+            button21.Font = FontAwesome.GetFont(button21.Font.Size);
+            button22.Font = Foundation.GetFont(button22.Font.Size);
+            button23.Font = LinearIcons.GetFont(button23.Font.Size);
+            button24.Font = MaterialDesign.GetFont(button24.Font.Size);
 
         }
     }

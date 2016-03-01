@@ -89,5 +89,15 @@ namespace System.Properties {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] MaterialDesign {
+            get {
+                object obj = ResourceManager.GetObject("MaterialDesign", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

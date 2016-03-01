@@ -50,6 +50,7 @@
     <Compile Include="Pictograms\FontAwesome.cs" />
     <Compile Include="Pictograms\LinearIcons.cs" />
     <Compile Include="Pictograms\Foundation.cs" />
+    <Compile Include="Pictograms\MaterialDesign.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -77,6 +78,7 @@
     <None Include="Fonts\fontawesome-webfont.ttf" />
     <None Include="Fonts\general_foundicons.ttf" />
     <None Include="Fonts\linearicons-free.ttf" />
+    <None Include="Fonts\MaterialIcons-Regular.ttf" />
     <None Include="Package.nuspec">
       <SubType>Designer</SubType>
     </None>
