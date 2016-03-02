@@ -5,6 +5,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * Version: major version.minor version.build number.revision
 * Order: Changed - Fixed - Added - Removed
 
+## [1.0.0.3] - 2016-03-02
+### Changed
+- FontAwesome IconTypes Normalization
+- Foundation IconTypes Normalization
+- LinearIcons IconTypes Normalization
+
 ## [1.0.0.2] - 2016-02-29
 ### Added
 - Material Design v2.2.0
@@ -21,5 +27,5 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.0.0.0] - 2016-02-02
 ### Added
 - FontAwesome v4.5.0
-- Foundation Icons - General v1.0.0 2012 (Foundation v6.0.0)
+- Foundation Icons v3.0.0 (Foundation v6.0.0)
 - LinearIcons v1.0.0

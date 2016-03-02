@@ -76,7 +76,7 @@
       <Link>README.md</Link>
     </None>
     <None Include="Fonts\fontawesome-webfont.ttf" />
-    <None Include="Fonts\general_foundicons.ttf" />
+    <None Include="Fonts\foundation-icons.ttf" />
     <None Include="Fonts\linearicons-free.ttf" />
     <None Include="Fonts\MaterialIcons-Regular.ttf" />
     <None Include="Package.nuspec">
