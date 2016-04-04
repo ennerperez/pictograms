@@ -4,6 +4,7 @@
 Introducing fonts based pictograms for .NET solutions
 
 [![Build status](https://ci.appveyor.com/api/projects/status/kt6j6amgiphh8f04?svg=true)](https://ci.appveyor.com/project/ennerperez/pictograms)
+[![NuGet](http://img.shields.io/nuget/v/System.Drawing.Pictograms.svg)](https://www.nuget.org/packages/System.Drawing.Pictograms/)
 
 ---------------------------------------
 
