@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
-  <metadata>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
+  <metadata minClientVersion="2.8.1">
     <id>$id$</id>
     <version>$version$</version>
-    <title>Pictograms</title>
+    <title>$id$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
     <licenseUrl>https://raw.githubusercontent.com/ennerperez/pictograms/master/LICENSE</licenseUrl>
@@ -11,10 +11,10 @@
     <iconUrl>https://raw.githubusercontent.com/ennerperez/pictograms/master/.editoricon.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>$description$</description>
-    <summary />
+    <summary>$description$</summary>
     <releaseNotes />
-    <language>en</language>
     <copyright>$copyright$</copyright>
+    <language>en</language>
     <tags>Pictograms Fonts FontAwesome Foundation Material Design</tags>
     <dependencies />
   </metadata>

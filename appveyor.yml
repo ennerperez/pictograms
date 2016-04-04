@@ -1,0 +1,22 @@
+version: 1.0.{build}.0
+skip_non_tags: true
+assembly_info:
+  patch: true
+  file: '**\AssemblyInfo.*'
+  assembly_version: '{version}'
+  assembly_file_version: '{version}'
+  assembly_informational_version: '{version}'
+nuget:
+  account_feed: true
+build:
+  parallel: true
+  verbosity: normal
+artifacts:
+- path: '**\*.nupkg'
+  name: nupkg
+deploy:
+- provider: GitHub
+  auth_token:
+    secure: UKi94d2MuFkTQQi/a/fCIk77vNm1Iqi90f7PkeJKs8HVvCuGGhxlqNKKblKL6iL+
+  artifact: nupkg
+  force_update: true
