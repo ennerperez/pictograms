@@ -10,13 +10,14 @@ Introducing fonts based pictograms for .NET solutions
 See the [changelog](CHANGELOG.md) for changes.
 
 ## Featuring
-- FontAwesome v4.5.0
-- Foundation Icons - General v1.0.0 2012 (Foundation v6.0.0)
-- Foundation Icons v3.0.0
-- LinearIcons v1.0.0
-- Material Design v2.2.0
+- [FontAwesome](http://fortawesome.github.io/Font-Awesome/)
+- [Foundation](http://foundation.zurb.com/)
+- [LinearIcons](https://linearicons.com/free)
+- [Material Design](http://www.google.com/design/spec/style/icons.html#icons-system-icons)
 
 ## Roadmap
+- [ ] [Ionicons](http://ionicons.com/)
+- [ ] [IcoMoon](https://icomoon.io/)
 - [ ] Windows Forms Extensions
 
 ## Implementing in your application
