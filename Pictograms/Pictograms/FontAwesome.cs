@@ -65,10 +65,39 @@ namespace System.Drawing.Pictograms
         #endregion
 
         /// <summary>
-        /// Version 4.5.0
+        /// Version 4.6.1
         /// </summary>
         public enum IconType : int
         {
+            // 4.6.1 ->
+            gitlab = 0xf296,
+            wpbeginner = 0xf297,
+            wpforms = 0xf298,
+            envira = 0xf299,
+            universal_access = 0xf29a,
+            wheelchair_alt = 0xf29b,
+            question_circle_o = 0xf29c,
+            blind = 0xf29d,
+            audio_description = 0xf29e,
+            volume_control_phone = 0xf2a0,
+            braille = 0xf2a1,
+            assistive_listening_systems = 0xf2a2,
+            asl_interpreting = 0xf2a3,
+            american_sign_language_interpreting = asl_interpreting,
+            deafness = 0xf2a4,
+            hard_of_hearing = deafness,
+            deaf = deafness,
+            glide = 0xf2a5,
+            glide_g = 0xf2a6,
+            signing = 0xf2a7,
+            sign_language = signing,
+            low_vision = 0xf2a8,
+            viadeo = 0xf2a9,
+            viadeo_square = 0xf2aa,
+            snapchat = 0xf2ab,
+            snapchat_ghost = 0xf2ac,
+            snapchat_square = 0xf2ad,
+            // 4.6.1 <-
             glass = 0xf000,
             music = 0xf001,
             search = 0xf002,
