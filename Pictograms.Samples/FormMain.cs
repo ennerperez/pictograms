@@ -18,12 +18,12 @@ namespace System.Drawing.Pictograms.Samples
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            button11.Image = FontAwesome.GetImage(FontAwesome.IconType.windows, (int)button11.Font.Size);
+            button11.Image = FontAwesome.GetImage(FontAwesome.IconType.gitlab, (int)button11.Font.Size);
             button12.Image = Foundation.GetImage(Foundation.IconType.calendar, (int)button12.Font.Size);
             button13.Image = LinearIcons.GetImage(LinearIcons.IconType.smile, (int)button13.Font.Size);
             button14.Image = MaterialDesign.GetImage(MaterialDesign.IconType.android, (int)button14.Font.Size);
 
-            button21.Text= FontAwesome.GetText(FontAwesome.IconType.windows);
+            button21.Text= FontAwesome.GetText(FontAwesome.IconType.gitlab);
             button22.Text = Foundation.GetText(Foundation.IconType.calendar);
             button23.Text = LinearIcons.GetText(LinearIcons.IconType.smile);
             button24.Text = MaterialDesign.GetText(MaterialDesign.IconType.android);
