@@ -21,7 +21,7 @@ namespace System.Drawing.Pictograms
         /// <summary>
         /// Initializes the <see cref="Icon" /> class by loading the font from resources upon first use.
         /// </summary>
-        private FontAwesome() : base(Properties.Resources.FontAwesome)
+        private FontAwesome() : base(Properties.Resources.fontawesome_webfont)
         {
         }
 

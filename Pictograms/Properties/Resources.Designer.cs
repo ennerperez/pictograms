@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace System.Properties {
+namespace System.Drawing.Pictograms.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace System.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("System.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("System.Drawing.Pictograms.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,9 +63,9 @@ namespace System.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Byte[].
         /// </summary>
-        internal static byte[] FontAwesome {
+        internal static byte[] fontawesome_webfont {
             get {
-                object obj = ResourceManager.GetObject("FontAwesome", resourceCulture);
+                object obj = ResourceManager.GetObject("fontawesome_webfont", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace System.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Byte[].
         /// </summary>
-        internal static byte[] Foundation {
+        internal static byte[] foundation_icons {
             get {
-                object obj = ResourceManager.GetObject("Foundation", resourceCulture);
+                object obj = ResourceManager.GetObject("foundation_icons", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace System.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Byte[].
         /// </summary>
-        internal static byte[] LinearIcons {
+        internal static byte[] linearicons_free {
             get {
-                object obj = ResourceManager.GetObject("LinearIcons", resourceCulture);
+                object obj = ResourceManager.GetObject("linearicons_free", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace System.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Byte[].
         /// </summary>
-        internal static byte[] MaterialDesign {
+        internal static byte[] MaterialIcons_Regular {
             get {
-                object obj = ResourceManager.GetObject("MaterialDesign", resourceCulture);
+                object obj = ResourceManager.GetObject("MaterialIcons_Regular", resourceCulture);
                 return ((byte[])(obj));
             }
         }
