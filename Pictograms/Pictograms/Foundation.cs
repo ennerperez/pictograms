@@ -20,7 +20,7 @@ namespace System.Drawing.Pictograms
         /// <summary>
         /// Initializes the <see cref="Icon" /> class by loading the font from resources upon first use.
         /// </summary>
-        private Foundation() : base(Properties.Resources.Foundation)
+        private Foundation() : base(Properties.Resources.foundation_icons)
         {
         }
 

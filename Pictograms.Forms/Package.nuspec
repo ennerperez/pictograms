@@ -10,13 +10,15 @@
     <projectUrl>https://github.com/ennerperez/pictograms</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/ennerperez/pictograms/master/.editoricon.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <description>Introducing fonts based pictograms for .NET solutions</description>
+    <description>Introducing fonts based pictograms for .NET Windows Forms projects</description>
     <summary />
     <releaseNotes />
     <copyright>$copyright$</copyright>
     <language>en</language>
-    <tags>Pictograms Fonts Icons Design</tags>
-    <dependencies />
+    <tags>Pictograms Fonts Icons Design Windows Forms</tags>
+    <dependencies>
+      <dependency id="System.Drawing.Pictograms" version="1.1" />
+    </dependencies>
   </metadata>
   <files />
 </package>

@@ -19,7 +19,8 @@ See the [changelog](CHANGELOG.md) for changes.
 ## Roadmap
 - [ ] [Ionicons](http://ionicons.com/)
 - [ ] [IcoMoon](https://icomoon.io/)
-- [ ] Windows Forms Extensions
+- [x] Windows Forms Extensions
+- [ ] Windows Forms Components
 
 ## Implementing in your application
 
