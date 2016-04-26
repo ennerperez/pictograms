@@ -9,6 +9,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Fixed
 - Build bug
 
+### Added
+- Windows Forms Extensions
+
 ## [1.0.12] - 2016-04-22
 ### Changed
 - FontAwesome 4.6.1
