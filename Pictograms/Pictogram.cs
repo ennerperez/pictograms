@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Text;
+﻿using System.Drawing.Text;
 using System.Runtime.InteropServices;
-using System.Text;
 
 namespace System.Drawing
 {
-    public class Pictogram
+    public class Pictogram : IDisposable
     {
 
         public Pictogram()
@@ -19,8 +15,9 @@ namespace System.Drawing
             InitializeFont(font);
         }
 
-        public Pictogram(string fontFile) : this(System.IO.File.ReadAllBytes(fontFile))
+        public Pictogram(string fontFile) : this()
         {
+            InitializeFont(IO.File.ReadAllBytes(fontFile));
         }
 
         /// <summary>
@@ -59,7 +56,7 @@ namespace System.Drawing
 
                 uint dummy = 0;
                 fonts.AddMemoryFont(fontBuffer, fontData.Length);
-                Pictogram.AddFontMemResourceEx((IntPtr)fontBuffer, (uint)fontData.Length, IntPtr.Zero, ref dummy);
+                NativeMethods.AddFontMemResourceEx((IntPtr)fontBuffer, (uint)fontData.Length, IntPtr.Zero, ref dummy);
 
             }
             catch (Exception ex)
@@ -108,12 +105,8 @@ namespace System.Drawing
             return GetFont(smallestOnFail ? minFontSize : maxFontSize);
         }
 
-        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
-        internal static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont,
-        IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
-
         #endregion
-
+        
         public Image GetImage(int type, int size, Brush brush)
         {
             System.Drawing.Bitmap result = new System.Drawing.Bitmap(size, size);
@@ -163,6 +156,43 @@ namespace System.Drawing
         {
             return new Font(fonts.Families[0], size, units);
         }
-                
+
+        #region IDisposable Support
+        private bool disposedValue = false; // Para detectar llamadas redundantes
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    // TODO: elimine el estado administrado (objetos administrados).
+                    fonts.Dispose();
+                }
+
+                // TODO: libere los recursos no administrados (objetos no administrados) y reemplace el siguiente finalizador.
+                // TODO: configure los campos grandes en nulos.
+
+                disposedValue = true;
+            }
+        }
+
+        // TODO: reemplace un finalizador solo si el anterior Dispose(bool disposing) tiene código para liberar los recursos no administrados.
+        // ~Pictogram() {
+        //   // No cambie este código. Coloque el código de limpieza en el anterior Dispose(colocación de bool).
+        //   Dispose(false);
+        // }
+
+        // Este código se agrega para implementar correctamente el patrón descartable.
+        public void Dispose()
+        {
+            // No cambie este código. Coloque el código de limpieza en el anterior Dispose(colocación de bool).
+            Dispose(true);
+            // TODO: quite la marca de comentario de la siguiente línea si el finalizador se ha reemplazado antes.
+            // GC.SuppressFinalize(this);
+        }
+        #endregion
+
+
     }
 }

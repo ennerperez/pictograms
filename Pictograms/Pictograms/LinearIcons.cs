@@ -20,7 +20,7 @@ namespace System.Drawing.Pictograms
         /// <summary>
         /// Initializes the <see cref="Icon" /> class by loading the font from resources upon first use.
         /// </summary>
-        private LinearIcons() : base(Properties.Resources.LinearIcons)
+        private LinearIcons() : base(Properties.Resources.linearicons_free)
         {
         }
 

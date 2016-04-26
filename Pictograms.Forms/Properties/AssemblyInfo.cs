@@ -8,15 +8,15 @@ using System.Runtime.InteropServices;
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
 
-[assembly: AssemblyTitle("Pictograms")]
-[assembly: AssemblyDescription("Fonts based pictograms for .NET")]
+[assembly: AssemblyTitle("Pictograms Forms")]
+[assembly: AssemblyDescription("Fonts based pictograms for .NET (WinForms)")]
 #if DEBUG
 [assembly: AssemblyConfiguration("Debug")]
 #else
 [assembly: AssemblyConfiguration("Release")]
 #endif
 [assembly: AssemblyCompany("Enner Pérez")]
-[assembly: AssemblyProduct("Pictograms")]
+[assembly: AssemblyProduct("Pictograms Forms")]
 [assembly: AssemblyCopyright("© Enner Pérez. All rights reserved.")]
 [assembly: AssemblyTrademark("© Enner Pérez")]
 
@@ -27,7 +27,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(true)]
 
 // El siguiente GUID sirve como id. de typelib si este proyecto se expone a COM.
-[assembly: Guid("0d9e79a0-dbcf-42a6-b0a8-6234f3aae253")]
+[assembly: Guid("45872aa9-7722-49b4-864d-b03f11ab5b3f")]
 
 // La información de versión de un ensamblado consta de los cuatro valores siguientes:
 //
@@ -40,6 +40,6 @@ using System.Runtime.InteropServices;
 // mediante el carácter '*', como se muestra a continuación:
 // [assembly: AssemblyVersion("1.0.*")]
 
-[assembly: AssemblyVersion("1.1.0.0")]
-[assembly: AssemblyFileVersion("1.1.0")]
-//[assembly: AssemblyInformationalVersion("1.1.0-master")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0")]
+//[assembly: AssemblyInformationalVersion("1.0.0-master")]

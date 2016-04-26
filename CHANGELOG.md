@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.14] - 2016-04-26
+### Changed
+- NETFX40 Base migrated
+
+### Fixed
+- Build bug
+
 ## [1.0.12] - 2016-04-22
 ### Changed
 - FontAwesome 4.6.1
