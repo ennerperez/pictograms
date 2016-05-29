@@ -15,8 +15,6 @@ namespace System.Drawing.Pictograms
 
         #region Singleton
 
-        private static MaterialDesign instance;
-
         /// <summary>
         /// Initializes the <see cref="Icon" /> class by loading the font from resources upon first use.
         /// </summary>
@@ -30,11 +28,15 @@ namespace System.Drawing.Pictograms
             {
                 if (instance == null)
                     instance = new MaterialDesign();
-                return instance;
+                return (MaterialDesign)instance;
             }
         }
 
         #endregion
+
+        public MaterialDesign(bool @default) : this()
+        {
+        }
 
         #region Statics
 

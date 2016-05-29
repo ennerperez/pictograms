@@ -1,6 +1,7 @@
 ![logo](https://raw.githubusercontent.com/ennerperez/pictograms/master/.editoricon.png)
 
 # Pictograms
+
 Introducing fonts based pictograms for .NET solutions
 
 [![Build status](https://ci.appveyor.com/api/projects/status/kt6j6amgiphh8f04?svg=true)](https://ci.appveyor.com/project/ennerperez/pictograms)
@@ -22,11 +23,27 @@ See the [changelog](CHANGELOG.md) for changes.
 - [x] Windows Forms Extensions
 - [ ] Windows Forms Components
 
-## Implementing in your application
+## Table of contents
+
+* [Implementing](#implementing)
+* [Bugs and feature requests](#bugs-and-feature-requests)
+* [Documentation](#documentation)
+* [License](#license)
+
+### Implementing
 
 **Add the library to your project**
 
 Add the [NuGet Package](https://www.nuget.org/packages/System.Drawing.Pictograms/). Right click on your project and click 'Manage NuGet Packages...'. Search for 'Pictograms' and click on install. Once installed the library will be included in your project references. (Or install it through the package manager console: PM> Install-Package System.Drawing.Pictograms)
 
-## License
-[The MIT License (MIT)](LICENSE)
+### Bugs and feature requests
+
+Have a bug or a feature request? Please first search for existing and closed issues. If your problem or idea is not addressed yet, [please open a new issue](https://github.com/ennerperez/System.Drawing.Pictograms/issues/new).
+
+### Documentation
+
+No more documentation required for now.
+
+### License
+
+Code released under [The MIT License](LICENSE)

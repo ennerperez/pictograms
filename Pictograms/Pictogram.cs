@@ -6,6 +6,13 @@ namespace System.Drawing
     public class Pictogram : IDisposable
     {
 
+        internal static Pictogram instance;
+
+        public static T GetInstance<T>() where T: Pictogram
+        {
+            return (T)instance;
+        }
+
         public Pictogram()
         {
         }

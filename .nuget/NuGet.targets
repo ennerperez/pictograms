@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+***********************************************************************************************
+  <Import Project="$(SolutionDir).nuget\NuGet.targets" Condition="Exists('$(SolutionDir).nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir).nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir).nuget\NuGet.targets'))" />
+  </Target>
+***********************************************************************************************
+-->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">$(MSBuildProjectDirectory)\..\</SolutionDir>
@@ -13,7 +24,11 @@
     <RequireRestoreConsent Condition=" '$(RequireRestoreConsent)' != 'false' ">true</RequireRestoreConsent>
 
     <!-- Download NuGet.exe if it does not already exist -->
-    <DownloadNuGetExe Condition=" '$(DownloadNuGetExe)' == '' ">false</DownloadNuGetExe>
+    <DownloadNuGetExe Condition=" '$(DownloadNuGetExe)' == '' ">true</DownloadNuGetExe>
+
+    <!-- Exclude files in BuildPackage command -->
+    <ExcludeFiles Condition="'$(BuildPackage)' "></ExcludeFiles>
+
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(PackageSources)' == '' ">
@@ -36,14 +51,21 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackagesProjectConfig Condition=" '$(OS)' == 'Windows_NT'">$(MSBuildProjectDirectory)\packages.$(MSBuildProjectName.Replace(' ', '_')).config</PackagesProjectConfig>
-    <PackagesProjectConfig Condition=" '$(OS)' != 'Windows_NT'">$(MSBuildProjectDirectory)\packages.$(MSBuildProjectName).config</PackagesProjectConfig>
+    <PackagesProjectConfig>packages.$(MSBuildProjectName.Replace(' ', '_')).config</PackagesProjectConfig>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <PackagesConfig Condition="Exists('$(MSBuildProjectDirectory)\packages.config')">$(MSBuildProjectDirectory)\packages.config</PackagesConfig>
-    <PackagesConfig Condition="Exists('$(PackagesProjectConfig)')">$(PackagesProjectConfig)</PackagesConfig>
-  </PropertyGroup>
+  <Choose>
+    <When Condition="Exists('$(PackagesProjectConfig)')">
+      <PropertyGroup>
+        <PackagesConfig>$(PackagesProjectConfig)</PackagesConfig>
+      </PropertyGroup>
+    </When>
+    <When Condition="Exists('packages.config')">
+      <PropertyGroup>
+        <PackagesConfig>packages.config</PackagesConfig>
+      </PropertyGroup>
+    </When>
+  </Choose>
 
   <PropertyGroup>
     <!-- NuGet command -->
@@ -51,7 +73,7 @@
     <PackageSources Condition=" $(PackageSources) == '' ">@(PackageSource)</PackageSources>
 
     <NuGetCommand Condition=" '$(OS)' == 'Windows_NT'">"$(NuGetExePath)"</NuGetCommand>
-    <NuGetCommand Condition=" '$(OS)' != 'Windows_NT' ">mono --runtime=v4.0.30319 "$(NuGetExePath)"</NuGetCommand>
+    <NuGetCommand Condition=" '$(OS)' != 'Windows_NT' ">mono --runtime=v4.0.30319 $(NuGetExePath)</NuGetCommand>
 
     <PackageOutputDir Condition="$(PackageOutputDir) == ''">$(TargetDir.Trim('\\'))</PackageOutputDir>
 
@@ -63,7 +85,8 @@
 
     <!-- Commands -->
     <RestoreCommand>$(NuGetCommand) install "$(PackagesConfig)" -source "$(PackageSources)"  $(NonInteractiveSwitch) $(RequireConsentSwitch) -solutionDir $(PaddedSolutionDir)</RestoreCommand>
-    <BuildCommand>$(NuGetCommand) pack "$(ProjectPath)" -Properties "Configuration=$(Configuration);Platform=$(Platform)" $(NonInteractiveSwitch) -OutputDirectory "$(PackageOutputDir)"</BuildCommand>
+    <ExcludeArgs Condition="'$(ExcludeFiles)' != ''">-Exclude $(ExcludeFiles)</ExcludeArgs>
+    <BuildCommand>$(NuGetCommand) pack "$(ProjectPath)" $(ExcludeArgs) -Properties "Configuration=$(Configuration);Platform=$(Platform)" $(NonInteractiveSwitch) -OutputDirectory "$(PackageOutputDir)"</BuildCommand>
 
     <!-- We need to ensure packages are restored prior to assembly resolve -->
     <BuildDependsOn Condition="$(RestorePackages) == 'true'">
@@ -78,7 +101,7 @@
     </BuildDependsOn>
   </PropertyGroup>
 
-  <Target Name="CheckPrerequisites">
+  <Target Name="CheckPrerequisites" Condition=" '$(OS)' == 'Windows_NT'">
     <!-- Raise an error if we're unable to locate nuget.exe  -->
     <Error Condition="'$(DownloadNuGetExe)' != 'true' AND !Exists('$(NuGetExePath)')" Text="Unable to locate '$(NuGetExePath)'" />
     <!--
@@ -102,9 +125,9 @@
           Condition="'$(OS)' == 'Windows_NT' And Exists('$(PackagesConfig)')" />
   </Target>
 
-  <Target Name="BuildPackage" DependsOnTargets="CheckPrerequisites" Condition="Exists('$(ProjectDir)Package.nuspec') AND $(ConfigurationName) == 'Release'">
+  <Target Name="BuildPackage" DependsOnTargets="CheckPrerequisites" Condition="Exists('$(ProjectDir)Package.nuspec') AND $(ConfigurationName) == 'Release' ">
     <Exec Command="$(BuildCommand)"
-          Condition=" '$(OS)' != 'Windows_NT' " />
+  Condition=" '$(OS)' != 'Windows_NT' " />
 
     <Exec Command="$(BuildCommand)"
           LogStandardErrorAsError="true"

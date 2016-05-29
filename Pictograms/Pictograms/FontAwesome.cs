@@ -16,8 +16,6 @@ namespace System.Drawing.Pictograms
 
         #region Singleton
 
-        private static FontAwesome instance;
-
         /// <summary>
         /// Initializes the <see cref="Icon" /> class by loading the font from resources upon first use.
         /// </summary>
@@ -31,11 +29,15 @@ namespace System.Drawing.Pictograms
             {
                 if (instance == null)
                     instance = new FontAwesome();
-                return instance;
+                return (FontAwesome)instance;
             }
         }
 
         #endregion
+
+        public FontAwesome(bool @default) : this()
+        {
+        }
 
         #region Statics
 
