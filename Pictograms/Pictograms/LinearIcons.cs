@@ -15,8 +15,6 @@ namespace System.Drawing.Pictograms
 
         #region Singleton
 
-        private static LinearIcons instance;
-
         /// <summary>
         /// Initializes the <see cref="Icon" /> class by loading the font from resources upon first use.
         /// </summary>
@@ -30,11 +28,15 @@ namespace System.Drawing.Pictograms
             {
                 if (instance == null)
                     instance = new LinearIcons();
-                return instance;
+                return (LinearIcons)instance;
             }
         }
 
         #endregion
+
+        public LinearIcons(bool @default) : this()
+        {
+        }
 
         #region Statics
 

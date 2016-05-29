@@ -2,7 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [1.0.14] - 2016-04-26
+## [1.0.15] - [2016-05-28]
+### Fixed
+- Generics extensions
+
+## [1.0.14] - [2016-04-26]
 ### Changed
 - NETFX40 Base migrated
 
@@ -12,14 +16,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Windows Forms Extensions
 
-## [1.0.12] - 2016-04-22
+## [1.0.12] - [2016-04-22]
 ### Changed
 - FontAwesome 4.6.1
 
 ### Removed
 - Sample project
 
-## [1.0.1] - 2016-04-04
+## [1.0.1] - [2016-04-04]
 ### Changed
 - Following [SemVer](http://semver.org) properly with AppVeyor.
 - Solution build process
@@ -27,7 +31,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - AppVeyor integration
 
-## [1.0.0] - 2016-03-02
+## [1.0.0] - [2016-03-02]
 ### Added
 - Fonts resources loader
 - Custom font loader

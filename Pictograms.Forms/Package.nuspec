@@ -11,7 +11,7 @@
     <iconUrl>https://raw.githubusercontent.com/ennerperez/pictograms/master/.editoricon.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Introducing fonts based pictograms for .NET Windows Forms projects</description>
-    <summary />
+    <summary>$description$</summary>
     <releaseNotes />
     <copyright>$copyright$</copyright>
     <language>en</language>

@@ -14,34 +14,34 @@ namespace System.Windows.Forms.Pictograms
 
         public static void SetImage<T>(this Control @this, object type, int size = 0, Color? color = null, Brush brush = null) where T : Pictogram
         {
-            var instance = Activator.CreateInstance<T>();
+            T instance = (T)Activator.CreateInstance(typeof(T), true);
             SetImage(@this, instance, type, size, color, brush);
         }
         public static void SetText<T>(this Control @this, object type, float size = 0) where T : Pictogram
         {
-            var instance = Activator.CreateInstance<T>();
+            T instance = (T)Activator.CreateInstance(typeof(T), true);
             SetText(@this, instance, type, size);
         }
 
         public static void SetImage<T>(this Component @this, object type, int size = 0, Color? color = null, Brush brush = null) where T : Pictogram
         {
-            var instance = Activator.CreateInstance<T>();
+            T instance = (T)Activator.CreateInstance(typeof(T), true);
             SetImage(@this, instance, type, size, color, brush);
         }
         public static void SetText<T>(this Component @this, object type, float size = 0) where T : Pictogram
         {
-            var instance = Activator.CreateInstance<T>();
+            T instance = (T)Activator.CreateInstance(typeof(T), true);
             SetText(@this, instance, type, size);
         }
 
         public static void SetIcon<T>(this NotifyIcon @this, object type, int size = 0, Color? color = null, Brush brush = null) where T : Pictogram
         {
-            var instance = Activator.CreateInstance<T>();
+            T instance = (T)Activator.CreateInstance(typeof(T), true);
             SetIcon(@this, instance, type, size, color, brush);
         }
         public static void SetIcon<T>(this ImageList @this, object type, int size = 0, Color? color = null, Brush brush = null) where T : Pictogram
         {
-            var instance = Activator.CreateInstance<T>();
+            T instance = (T)Activator.CreateInstance(typeof(T), true);
             SetIcon(@this, instance, type, size, color, brush);
         }
 
