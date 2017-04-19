@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
-
-namespace System.Drawing.Pictograms
+﻿namespace System.Drawing.Pictograms
 {
-
     /// <summary>
     /// Foundation Icons
     /// <see cref="http://zurb.com/playground/foundation-icon-fonts-3"/>
     /// </summary>
     public class Foundation : Pictogram
     {
-
         #region Singleton
 
         /// <summary>
@@ -32,7 +25,7 @@ namespace System.Drawing.Pictograms
             }
         }
 
-        #endregion
+        #endregion Singleton
 
         public Foundation(bool @default) : this()
         {
@@ -44,10 +37,12 @@ namespace System.Drawing.Pictograms
         {
             return Foundation.Instance.GetImage((int)type, size, brush);
         }
+
         public static Image GetImage(IconType type, int size, Color color)
         {
             return Foundation.Instance.GetImage((int)type, size, color);
         }
+
         public static Image GetImage(IconType type, int size)
         {
             return Foundation.Instance.GetImage((int)type, size);
@@ -63,14 +58,13 @@ namespace System.Drawing.Pictograms
             return new Font(Foundation.Instance.fonts.Families[0], size, units);
         }
 
-        #endregion
+        #endregion Statics
 
         /// <summary>
         /// Version 3.0.0
         /// </summary>
         public enum IconType : int
         {
-
             address_book = 0xf100,
             alert = 0xf101,
             align_center = 0xf102,
@@ -355,6 +349,5 @@ namespace System.Drawing.Pictograms
             zoom_in = 0xf219,
             zoom_out = 0xf21a
         }
-
     }
 }

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Drawing;
-using System.Drawing.Text;
-using System.ComponentModel;
-using System.Runtime.InteropServices;
-
-namespace System.Drawing.Pictograms
+﻿namespace System.Drawing.Pictograms
 {
     /// <summary>
     /// Font Awesome
@@ -13,7 +6,6 @@ namespace System.Drawing.Pictograms
     /// </summary>
     public class FontAwesome : Pictogram
     {
-
         #region Singleton
 
         /// <summary>
@@ -33,7 +25,7 @@ namespace System.Drawing.Pictograms
             }
         }
 
-        #endregion
+        #endregion Singleton
 
         public FontAwesome(bool @default) : this()
         {
@@ -45,10 +37,12 @@ namespace System.Drawing.Pictograms
         {
             return FontAwesome.Instance.GetImage((int)type, size, brush);
         }
+
         public static Image GetImage(IconType type, int size, Color color)
         {
             return FontAwesome.Instance.GetImage((int)type, size, color);
         }
+
         public static Image GetImage(IconType type, int size)
         {
             return FontAwesome.Instance.GetImage((int)type, size);
@@ -64,7 +58,7 @@ namespace System.Drawing.Pictograms
             return new Font(FontAwesome.Instance.fonts.Families[0], size, units);
         }
 
-        #endregion
+        #endregion Statics
 
         /// <summary>
         /// Version 4.6.1
@@ -73,6 +67,7 @@ namespace System.Drawing.Pictograms
         {
             // 4.6.1 ->
             gitlab = 0xf296,
+
             wpbeginner = 0xf297,
             wpforms = 0xf298,
             envira = 0xf299,
@@ -99,8 +94,10 @@ namespace System.Drawing.Pictograms
             snapchat = 0xf2ab,
             snapchat_ghost = 0xf2ac,
             snapchat_square = 0xf2ad,
+
             // 4.6.1 <-
             glass = 0xf000,
+
             music = 0xf001,
             search = 0xf002,
             envelope_o = 0xf003,
@@ -795,6 +792,5 @@ namespace System.Drawing.Pictograms
             bluetooth_b = 0xf294,
             percent = 0xf295
         }
-
     }
 }

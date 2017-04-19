@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
-
-namespace System.Drawing.Pictograms
+﻿namespace System.Drawing.Pictograms
 {
-
     /// <summary>
     /// LinearIcons
     /// <see cref="https://linearicons.com/free"/>
-    /// </summary>   
+    /// </summary>
     public class LinearIcons : Pictogram
     {
-
         #region Singleton
 
         /// <summary>
@@ -32,7 +25,7 @@ namespace System.Drawing.Pictograms
             }
         }
 
-        #endregion
+        #endregion Singleton
 
         public LinearIcons(bool @default) : this()
         {
@@ -44,10 +37,12 @@ namespace System.Drawing.Pictograms
         {
             return LinearIcons.Instance.GetImage((int)type, size, brush);
         }
+
         public static Image GetImage(IconType type, int size, Color color)
         {
             return LinearIcons.Instance.GetImage((int)type, size, color);
         }
+
         public static Image GetImage(IconType type, int size)
         {
             return LinearIcons.Instance.GetImage((int)type, size);
@@ -63,7 +58,7 @@ namespace System.Drawing.Pictograms
             return new Font(LinearIcons.Instance.fonts.Families[0], size, units);
         }
 
-        #endregion
+        #endregion Statics
 
         /// <summary>
         /// Version 1.0.0
@@ -241,6 +236,5 @@ namespace System.Drawing.Pictograms
             pointer_down = 0xe8a8,
             pointer_left = 0xe8a9
         }
-
     }
 }

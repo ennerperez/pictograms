@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
-
-namespace System.Drawing.Pictograms
+﻿namespace System.Drawing.Pictograms
 {
-
     /// <summary>
     /// LinearIcons
     /// <see cref="http://www.google.com/design/spec/style/icons.html#icons-system-icons"/>
-    /// </summary>   
+    /// </summary>
     public class MaterialDesign : Pictogram
     {
-
         #region Singleton
 
         /// <summary>
@@ -32,7 +25,7 @@ namespace System.Drawing.Pictograms
             }
         }
 
-        #endregion
+        #endregion Singleton
 
         public MaterialDesign(bool @default) : this()
         {
@@ -44,10 +37,12 @@ namespace System.Drawing.Pictograms
         {
             return MaterialDesign.Instance.GetImage((int)type, size, brush);
         }
+
         public static Image GetImage(IconType type, int size, Color color)
         {
             return MaterialDesign.Instance.GetImage((int)type, size, color);
         }
+
         public static Image GetImage(IconType type, int size)
         {
             return MaterialDesign.Instance.GetImage((int)type, size);
@@ -63,7 +58,7 @@ namespace System.Drawing.Pictograms
             return new Font(MaterialDesign.Instance.fonts.Families[0], size, units);
         }
 
-        #endregion
+        #endregion Statics
 
         /// <summary>
         /// Version 2.2.0
@@ -1003,6 +998,5 @@ namespace System.Drawing.Pictograms
             zoom_out = 0xe900,
             zoom_out_map = 0xe56b
         }
-
     }
 }
