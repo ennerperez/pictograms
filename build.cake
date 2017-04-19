@@ -10,6 +10,7 @@ var solutions = new Dictionary<string, string> {
 var packages = new Dictionary<string, string> {
  	{ "./Pictograms/Pictograms.csproj", "Any" },
 	{ "./Pictograms.Forms/Pictograms.Forms.csproj", "Any" },
+	{ "./Pictograms.Xamarin.Forms/Package.nuspec", "Any" },
 };
 
 var BuildAction = new Action<Dictionary<string, string>> (solutions =>

@@ -1,4 +1,9 @@
-﻿namespace System.Drawing.Pictograms
+﻿#if !PORTABLE
+namespace System.Drawing.Pictograms
+#else
+
+namespace Xamarin.Forms.Pictograms
+#endif
 {
     /// <summary>
     /// Font Awesome
@@ -11,7 +16,12 @@
         /// <summary>
         /// Initializes the <see cref="Icon" /> class by loading the font from resources upon first use.
         /// </summary>
+#if !PORTABLE
         private FontAwesome() : base(Properties.Resources.fontawesome_webfont)
+#else
+
+        private FontAwesome() : base()
+#endif
         {
         }
 
@@ -31,8 +41,20 @@
         {
         }
 
+        public const string Typeface = "fontawesome-webfont";
+
+#if PORTABLE
+
+        public override string GetFontFace()
+        {
+            return FontAwesome.Typeface;
+        }
+
+#endif
+
         #region Statics
 
+#if !PORTABLE
         public static Image GetImage(IconType type, int size, Brush brush)
         {
             return FontAwesome.Instance.GetImage((int)type, size, brush);
@@ -47,16 +69,19 @@
         {
             return FontAwesome.Instance.GetImage((int)type, size);
         }
+#endif
 
         public static string GetText(IconType type)
         {
             return char.ConvertFromUtf32((int)type);
         }
 
+#if !PORTABLE
         public static new Font GetFont(float size, GraphicsUnit units = GraphicsUnit.Point)
         {
             return new Font(FontAwesome.Instance.fonts.Families[0], size, units);
         }
+#endif
 
         #endregion Statics
 

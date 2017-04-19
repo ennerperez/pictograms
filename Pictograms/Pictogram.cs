@@ -1,7 +1,16 @@
-﻿using System.Drawing.Text;
+﻿#if !PORTABLE
+using System.Drawing.Text;
+#endif
+
+using System;
 using System.Runtime.InteropServices;
 
+#if !PORTABLE
 namespace System.Drawing
+#else
+
+namespace Xamarin.Forms
+#endif
 {
     public class Pictogram : IDisposable
     {
@@ -15,6 +24,8 @@ namespace System.Drawing
         public Pictogram()
         {
         }
+
+#if !PORTABLE
 
         public Pictogram(byte[] font) : this()
         {
@@ -152,15 +163,30 @@ namespace System.Drawing
             return GetImage(type, size, SystemColors.ControlText);
         }
 
+#endif
+
         public string GetText(int type)
         {
             return char.ConvertFromUtf32((int)type);
         }
 
+#if PORTABLE
+
+        public virtual string GetFontFace()
+        {
+            return "";
+        }
+
+#endif
+
+#if !PORTABLE
+
         public Font GetFont(float size, GraphicsUnit units = GraphicsUnit.Point)
         {
             return new Font(fonts.Families[0], size, units);
         }
+
+#endif
 
         #region IDisposable Support
 
@@ -173,7 +199,9 @@ namespace System.Drawing
                 if (disposing)
                 {
                     // TODO: elimine el estado administrado (objetos administrados).
+#if !PORTABLE
                     fonts.Dispose();
+#endif
                 }
 
                 // TODO: libere los recursos no administrados (objetos no administrados) y reemplace el siguiente finalizador.
