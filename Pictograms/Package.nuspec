@@ -1,21 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
   <metadata minClientVersion="2.8.1">
-    <id>System.Drawing.Pictograms</id>
+    <id>$id$</id>
     <version>$version$</version>
-    <title>Pictograms</title>
-    <authors>Enner Pérez</authors>
-    <owners>Enner Pérez</owners>
+    <title>$description$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
     <licenseUrl>https://raw.githubusercontent.com/ennerperez/pictograms/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/ennerperez/pictograms</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/ennerperez/pictograms/master/.editoricon.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Introducing fonts based pictograms for .NET solutions</description>
-    <releaseNotes>
-      See: https://github.com/ennerperez/pictograms/blob/master/CHANGELOG.md
-    </releaseNotes>
-    <summary>Fonts based pictograms for .NET</summary>
-    <copyright>Copyright © Enner Pérez</copyright>
+    <summary>$description$</summary>
+    <releaseNotes />
+    <copyright>$copyright$</copyright>
     <language>en</language>
     <tags>Pictograms Fonts Icons Design</tags>
     <dependencies />

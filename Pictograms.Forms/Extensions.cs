@@ -1,10 +1,15 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
+using System.Linq;
+using System.Text;
 
 namespace System.Windows.Forms.Pictograms
 {
     public static class Extensions
     {
+
         #region Generics<T>
 
         public static void SetImage<T>(this Control @this, object type, int size = 0, Color? color = null, Brush brush = null) where T : Pictogram
@@ -12,7 +17,6 @@ namespace System.Windows.Forms.Pictograms
             T instance = (T)Activator.CreateInstance(typeof(T), true);
             SetImage(@this, instance, type, size, color, brush);
         }
-
         public static void SetText<T>(this Control @this, object type, float size = 0) where T : Pictogram
         {
             T instance = (T)Activator.CreateInstance(typeof(T), true);
@@ -24,7 +28,6 @@ namespace System.Windows.Forms.Pictograms
             T instance = (T)Activator.CreateInstance(typeof(T), true);
             SetImage(@this, instance, type, size, color, brush);
         }
-
         public static void SetText<T>(this Component @this, object type, float size = 0) where T : Pictogram
         {
             T instance = (T)Activator.CreateInstance(typeof(T), true);
@@ -36,14 +39,13 @@ namespace System.Windows.Forms.Pictograms
             T instance = (T)Activator.CreateInstance(typeof(T), true);
             SetIcon(@this, instance, type, size, color, brush);
         }
-
         public static void SetIcon<T>(this ImageList @this, object type, int size = 0, Color? color = null, Brush brush = null) where T : Pictogram
         {
             T instance = (T)Activator.CreateInstance(typeof(T), true);
             SetIcon(@this, instance, type, size, color, brush);
         }
 
-        #endregion Generics<T>
+        #endregion
 
         public static void SetImage(this Control @this, Pictogram pictogram, object type, int size = 0, Color? color = null, Brush brush = null)
         {
@@ -67,7 +69,6 @@ namespace System.Windows.Forms.Pictograms
             if (typeof(GroupBox).IsAssignableFrom(@this.GetType()))
                 (@this as GroupBox).BackgroundImage = image;
         }
-
         public static void SetText(this Control @this, Pictogram pictogram, object type, float size = 0)
         {
             if (size == 0)
@@ -85,6 +86,7 @@ namespace System.Windows.Forms.Pictograms
 
         public static void SetImage(this Component @this, Pictogram pictogram, object type, int size = 0, Color? color = null, Brush brush = null)
         {
+
             if (typeof(ToolStripItem).IsAssignableFrom(@this.GetType()))
             {
                 if (size == 0)
@@ -102,6 +104,7 @@ namespace System.Windows.Forms.Pictograms
             }
             else if (typeof(NotifyIcon).IsAssignableFrom(@this.GetType()))
             {
+
                 if (color == null)
                     color = SystemColors.ControlText;
 
@@ -130,11 +133,14 @@ namespace System.Windows.Forms.Pictograms
                 var image = pictogram.GetImage((int)type, size, brush);
 
                 (@this as ImageList).Images.Add(image);
-            }
-        }
 
+            }
+
+
+        }
         public static void SetText(this Component @this, Pictogram pictogram, object type, float size = 0)
         {
+
             if (typeof(ToolStripItem).IsAssignableFrom(@this.GetType()))
             {
                 if (size == 0)
@@ -156,10 +162,11 @@ namespace System.Windows.Forms.Pictograms
                 size = 16;
 
             SetImage(@this, pictogram, type, size, color, brush);
-        }
 
+        }
         public static void SetIcon(this ImageList @this, Pictogram pictogram, object type, int size = 0, Color? color = null, Brush brush = null)
         {
+
             if (color == null)
                 color = SystemColors.ControlText;
 
@@ -175,6 +182,8 @@ namespace System.Windows.Forms.Pictograms
             var icon = Icon.FromHandle(hIcon);
 
             @this.Images.Add(icon);
+
         }
+        
     }
 }

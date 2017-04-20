@@ -1,17 +1,26 @@
 ﻿using System;
 using System.Reflection;
+using System.Resources;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-// General Information about an assembly is controlled through the following
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
 [assembly: AssemblyTitle("Pictograms Forms")]
+[assembly: AssemblyDescription("Fonts based pictograms for .NET (WinForms)")]
+#if DEBUG
+[assembly: AssemblyConfiguration("DEBUG")]
+#else
+[assembly: AssemblyConfiguration("RELEASE")]
+#endif
+[assembly: AssemblyCompany("Enner Pérez")]
 [assembly: AssemblyProduct("Pictograms Forms")]
+[assembly: AssemblyCopyright("Copyright © Enner Pérez")]
+[assembly: AssemblyTrademark("Pictograms Forms")]
 
-// Setting ComVisible to false makes the types in this assembly not visible
-// to COM components.  If you need to access a type in this assembly from
-// COM, set the ComVisible attribute to true on that type.
-[assembly: ComVisible(false)]
+[assembly: ComVisible(true)]
 
-// The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("45872AA9-7722-49B4-864D-B03F11AB5B3F")]
+
+[assembly: AssemblyVersion("1.0.*")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: NeutralResourcesLanguage("en")]
+

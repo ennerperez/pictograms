@@ -22,7 +22,6 @@ See the [changelog](CHANGELOG.md) for changes.
 - [ ] [IcoMoon](https://icomoon.io/)
 - [x] Windows Forms Extensions
 - [ ] Windows Forms Components
-- [x] Xamarin Forms Components
 
 ## Table of contents
 

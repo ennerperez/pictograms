@@ -1,10 +1,11 @@
-﻿#if !PORTABLE
+﻿using System;
+using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Text;
+using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 namespace System.Drawing.Pictograms
-#else
-
-namespace Xamarin.Forms.Pictograms
-#endif
 {
     /// <summary>
     /// Font Awesome
@@ -12,18 +13,13 @@ namespace Xamarin.Forms.Pictograms
     /// </summary>
     public class FontAwesome : Pictogram
     {
+
         #region Singleton
 
         /// <summary>
         /// Initializes the <see cref="Icon" /> class by loading the font from resources upon first use.
         /// </summary>
-#if !PORTABLE
-
         private FontAwesome() : base(Properties.Resources.fontawesome_webfont)
-#else
-
-        private FontAwesome() : base()
-#endif
         {
         }
 
@@ -37,59 +33,38 @@ namespace Xamarin.Forms.Pictograms
             }
         }
 
-        #endregion Singleton
+        #endregion
 
         public FontAwesome(bool @default) : this()
         {
         }
 
-        public const string Typeface = "fontawesome-webfont";
-
-#if PORTABLE
-
-        public override string GetFontFace()
-        {
-            return FontAwesome.Typeface;
-        }
-
-#endif
-
         #region Statics
-
-#if !PORTABLE
 
         public static Image GetImage(IconType type, int size, Brush brush)
         {
             return FontAwesome.Instance.GetImage((int)type, size, brush);
         }
-
         public static Image GetImage(IconType type, int size, Color color)
         {
             return FontAwesome.Instance.GetImage((int)type, size, color);
         }
-
         public static Image GetImage(IconType type, int size)
         {
             return FontAwesome.Instance.GetImage((int)type, size);
         }
-
-#endif
 
         public static string GetText(IconType type)
         {
             return char.ConvertFromUtf32((int)type);
         }
 
-#if !PORTABLE
-
         public static new Font GetFont(float size, GraphicsUnit units = GraphicsUnit.Point)
         {
             return new Font(FontAwesome.Instance.fonts.Families[0], size, units);
         }
 
-#endif
-
-        #endregion Statics
+        #endregion
 
         /// <summary>
         /// Version 4.6.1
@@ -98,7 +73,6 @@ namespace Xamarin.Forms.Pictograms
         {
             // 4.6.1 ->
             gitlab = 0xf296,
-
             wpbeginner = 0xf297,
             wpforms = 0xf298,
             envira = 0xf299,
@@ -125,10 +99,8 @@ namespace Xamarin.Forms.Pictograms
             snapchat = 0xf2ab,
             snapchat_ghost = 0xf2ac,
             snapchat_square = 0xf2ad,
-
             // 4.6.1 <-
             glass = 0xf000,
-
             music = 0xf001,
             search = 0xf002,
             envelope_o = 0xf003,
@@ -823,5 +795,6 @@ namespace Xamarin.Forms.Pictograms
             bluetooth_b = 0xf294,
             percent = 0xf295
         }
+
     }
 }
