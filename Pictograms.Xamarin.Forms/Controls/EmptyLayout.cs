@@ -1,5 +1,4 @@
 ﻿using System;
-using Xamarin.Forms.Pictograms;
 
 namespace Xamarin.Forms.Pictograms
 {

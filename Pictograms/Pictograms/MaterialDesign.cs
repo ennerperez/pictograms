@@ -1,4 +1,5 @@
 ﻿#if !PORTABLE
+
 namespace System.Drawing.Pictograms
 #else
 
@@ -17,6 +18,7 @@ namespace Xamarin.Forms.Pictograms
         /// Initializes the <see cref="Icon" /> class by loading the font from resources upon first use.
         /// </summary>
 #if !PORTABLE
+
         private MaterialDesign() : base(Properties.Resources.MaterialIcons_Regular)
 #else
 
@@ -55,6 +57,7 @@ namespace Xamarin.Forms.Pictograms
         #region Statics
 
 #if !PORTABLE
+
         public static Image GetImage(IconType type, int size, Brush brush)
         {
             return MaterialDesign.Instance.GetImage((int)type, size, brush);
@@ -69,6 +72,7 @@ namespace Xamarin.Forms.Pictograms
         {
             return MaterialDesign.Instance.GetImage((int)type, size);
         }
+
 #endif
 
         public static string GetText(IconType type)
@@ -77,10 +81,12 @@ namespace Xamarin.Forms.Pictograms
         }
 
 #if !PORTABLE
+
         public static new Font GetFont(float size, GraphicsUnit units = GraphicsUnit.Point)
         {
             return new Font(MaterialDesign.Instance.fonts.Families[0], size, units);
         }
+
 #endif
 
         #endregion Statics

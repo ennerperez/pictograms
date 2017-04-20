@@ -1,11 +1,14 @@
 ﻿#if !PORTABLE
+
 using System.Drawing.Text;
+
 #endif
 
 using System;
 using System.Runtime.InteropServices;
 
 #if !PORTABLE
+
 namespace System.Drawing
 #else
 

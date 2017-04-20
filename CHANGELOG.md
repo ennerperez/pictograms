@@ -2,6 +2,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.1.16] - [2017-04-20]
+### Added
+- Xamarin Forms Implementation
+
+### Changed
+- Unified version
+
 ## [1.0.15] - [2016-05-28]
 ### Fixed
 - Generics extensions
