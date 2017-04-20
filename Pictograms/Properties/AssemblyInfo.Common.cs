@@ -8,7 +8,7 @@ using System.Resources;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Enner Pérez")]
 [assembly: AssemblyCopyright("Copyright © Enner Pérez")]
-[assembly: AssemblyTrademark("Pictograms")]
+[assembly: AssemblyTrademark("Enner Pérez")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en")]
 
