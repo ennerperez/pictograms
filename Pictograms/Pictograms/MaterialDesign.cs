@@ -1,24 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
+﻿#if !PORTABLE
 
 namespace System.Drawing.Pictograms
-{
+#else
 
+namespace Xamarin.Forms.Pictograms
+#endif
+{
     /// <summary>
     /// LinearIcons
     /// <see cref="http://www.google.com/design/spec/style/icons.html#icons-system-icons"/>
-    /// </summary>   
+    /// </summary>
     public class MaterialDesign : Pictogram
     {
-
         #region Singleton
 
         /// <summary>
         /// Initializes the <see cref="Icon" /> class by loading the font from resources upon first use.
         /// </summary>
+#if !PORTABLE
+
         private MaterialDesign() : base(Properties.Resources.MaterialIcons_Regular)
+#else
+
+        private MaterialDesign() : base()
+#endif
         {
         }
 
@@ -32,38 +37,59 @@ namespace System.Drawing.Pictograms
             }
         }
 
-        #endregion
+        #endregion Singleton
 
         public MaterialDesign(bool @default) : this()
         {
         }
 
+        public const string Typeface = "MaterialIcons-Regular";
+
+#if PORTABLE
+
+        public override string GetFontFace()
+        {
+            return MaterialDesign.Typeface;
+        }
+
+#endif
+
         #region Statics
+
+#if !PORTABLE
 
         public static Image GetImage(IconType type, int size, Brush brush)
         {
             return MaterialDesign.Instance.GetImage((int)type, size, brush);
         }
+
         public static Image GetImage(IconType type, int size, Color color)
         {
             return MaterialDesign.Instance.GetImage((int)type, size, color);
         }
+
         public static Image GetImage(IconType type, int size)
         {
             return MaterialDesign.Instance.GetImage((int)type, size);
         }
+
+#endif
 
         public static string GetText(IconType type)
         {
             return char.ConvertFromUtf32((int)type);
         }
 
+#if !PORTABLE
+
         public static new Font GetFont(float size, GraphicsUnit units = GraphicsUnit.Point)
         {
             return new Font(MaterialDesign.Instance.fonts.Families[0], size, units);
         }
 
-        #endregion
+#endif
+
+        #endregion Statics
 
         /// <summary>
         /// Version 2.2.0
@@ -1003,6 +1029,5 @@ namespace System.Drawing.Pictograms
             zoom_out = 0xe900,
             zoom_out_map = 0xe56b
         }
-
     }
 }

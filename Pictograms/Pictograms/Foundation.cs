@@ -1,24 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
+﻿#if !PORTABLE
 
 namespace System.Drawing.Pictograms
-{
+#else
 
+namespace Xamarin.Forms.Pictograms
+#endif
+{
     /// <summary>
     /// Foundation Icons
     /// <see cref="http://zurb.com/playground/foundation-icon-fonts-3"/>
     /// </summary>
     public class Foundation : Pictogram
     {
-
         #region Singleton
 
         /// <summary>
         /// Initializes the <see cref="Icon" /> class by loading the font from resources upon first use.
         /// </summary>
+#if !PORTABLE
+
         private Foundation() : base(Properties.Resources.foundation_icons)
+#else
+
+        private Foundation() : base()
+#endif
         {
         }
 
@@ -32,45 +37,65 @@ namespace System.Drawing.Pictograms
             }
         }
 
-        #endregion
+        #endregion Singleton
 
         public Foundation(bool @default) : this()
         {
         }
 
+        public const string Typeface = "foundation-icons";
+
+#if PORTABLE
+
+        public override string GetFontFace()
+        {
+            return Foundation.Typeface;
+        }
+
+#endif
+
         #region Statics
+
+#if !PORTABLE
 
         public static Image GetImage(IconType type, int size, Brush brush)
         {
             return Foundation.Instance.GetImage((int)type, size, brush);
         }
+
         public static Image GetImage(IconType type, int size, Color color)
         {
             return Foundation.Instance.GetImage((int)type, size, color);
         }
+
         public static Image GetImage(IconType type, int size)
         {
             return Foundation.Instance.GetImage((int)type, size);
         }
+
+#endif
 
         public static string GetText(IconType type)
         {
             return char.ConvertFromUtf32((int)type);
         }
 
+#if !PORTABLE
+
         public static new Font GetFont(float size, GraphicsUnit units = GraphicsUnit.Point)
         {
             return new Font(Foundation.Instance.fonts.Families[0], size, units);
         }
 
-        #endregion
+#endif
+
+        #endregion Statics
 
         /// <summary>
         /// Version 3.0.0
         /// </summary>
         public enum IconType : int
         {
-
             address_book = 0xf100,
             alert = 0xf101,
             align_center = 0xf102,
@@ -355,6 +380,5 @@ namespace System.Drawing.Pictograms
             zoom_in = 0xf219,
             zoom_out = 0xf21a
         }
-
     }
 }

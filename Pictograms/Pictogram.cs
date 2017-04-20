@@ -1,14 +1,25 @@
-﻿using System.Drawing.Text;
+﻿#if !PORTABLE
+
+using System.Drawing.Text;
+
+#endif
+
+using System;
 using System.Runtime.InteropServices;
 
+#if !PORTABLE
+
 namespace System.Drawing
+#else
+
+namespace Xamarin.Forms
+#endif
 {
     public class Pictogram : IDisposable
     {
-
         internal static Pictogram instance;
 
-        public static T GetInstance<T>() where T: Pictogram
+        public static T GetInstance<T>() where T : Pictogram
         {
             return (T)instance;
         }
@@ -16,6 +27,8 @@ namespace System.Drawing
         public Pictogram()
         {
         }
+
+#if !PORTABLE
 
         public Pictogram(byte[] font) : this()
         {
@@ -64,13 +77,11 @@ namespace System.Drawing
                 uint dummy = 0;
                 fonts.AddMemoryFont(fontBuffer, fontData.Length);
                 NativeMethods.AddFontMemResourceEx((IntPtr)fontBuffer, (uint)fontData.Length, IntPtr.Zero, ref dummy);
-
             }
             catch (Exception ex)
             {
                 throw new FormatException("Invalid font data", ex);
             }
-
         }
 
         #region Methods
@@ -112,8 +123,8 @@ namespace System.Drawing
             return GetFont(smallestOnFail ? minFontSize : maxFontSize);
         }
 
-        #endregion
-        
+        #endregion Methods
+
         public Image GetImage(int type, int size, Brush brush)
         {
             System.Drawing.Bitmap result = new System.Drawing.Bitmap(size, size);
@@ -140,31 +151,48 @@ namespace System.Drawing
 
                 // Draw string to screen.
                 graphics.DrawString(IconChar, iconFont, brush, new PointF(left, top));
-
             }
 
             return result;
         }
+
         public Image GetImage(int type, int size, Color color)
         {
             return GetImage(type, size, new SolidBrush(color));
         }
+
         public Image GetImage(int type, int size)
         {
             return GetImage(type, size, SystemColors.ControlText);
         }
+
+#endif
 
         public string GetText(int type)
         {
             return char.ConvertFromUtf32((int)type);
         }
 
+#if PORTABLE
+
+        public virtual string GetFontFace()
+        {
+            return "";
+        }
+
+#endif
+
+#if !PORTABLE
+
         public Font GetFont(float size, GraphicsUnit units = GraphicsUnit.Point)
         {
             return new Font(fonts.Families[0], size, units);
         }
 
+#endif
+
         #region IDisposable Support
+
         private bool disposedValue = false; // Para detectar llamadas redundantes
 
         protected virtual void Dispose(bool disposing)
@@ -174,7 +202,9 @@ namespace System.Drawing
                 if (disposing)
                 {
                     // TODO: elimine el estado administrado (objetos administrados).
+#if !PORTABLE
                     fonts.Dispose();
+#endif
                 }
 
                 // TODO: libere los recursos no administrados (objetos no administrados) y reemplace el siguiente finalizador.
@@ -198,8 +228,7 @@ namespace System.Drawing
             // TODO: quite la marca de comentario de la siguiente línea si el finalizador se ha reemplazado antes.
             // GC.SuppressFinalize(this);
         }
-        #endregion
 
-
+        #endregion IDisposable Support
     }
 }

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
   <metadata minClientVersion="2.8.1">
-    <id>System.Drawing.Pictograms</id>
+    <id>Xamarin.Forms.Pictograms</id>
     <version>$version$</version>
     <title>Pictograms</title>
     <authors>Enner Pérez</authors>
@@ -10,15 +10,31 @@
     <projectUrl>https://github.com/ennerperez/pictograms</projectUrl>
     <iconUrl>https://raw.githubusercontent.com/ennerperez/pictograms/master/.editoricon.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <description>Introducing fonts based pictograms for .NET solutions</description>
+    <description>Introducing fonts based pictograms for Xamarin Forms</description>
     <releaseNotes>
       See: https://github.com/ennerperez/pictograms/blob/master/CHANGELOG.md
     </releaseNotes>
-    <summary>Fonts based pictograms for .NET</summary>
+    <summary>Fonts based pictograms for Xamarin Forms</summary>
     <copyright>Copyright © Enner Pérez</copyright>
     <language>en</language>
     <tags>Pictograms Fonts Icons Design</tags>
-    <dependencies />
+    <dependencies>
+      <group targetFramework="monoandroid70">
+        <dependency id="Xamarin.Forms" version="2.3" />
+      </group>
+      <group targetFramework="xamarinios10">
+        <dependency id="Xamarin.Forms" version="2.3" />
+      </group>
+    </dependencies>
   </metadata>
-  <files />
+  <files>
+    <file src="Pictograms.Xamarin.Forms\Readme.txt" target="Readme.txt" />
+
+    <!--Core-->
+    <file src="Pictograms.Xamarin.Forms\bin\Release\Xamarin.Forms.Pictograms.*" target="lib\portable-net45+wp80+win8+wpa81" />
+
+    <!--Xamarin.Android-->
+    <file src="Pictograms.Xamarin.Android\bin\Release\Xamarin.Android.Pictograms.*" target="lib\MonoAndroid10" />
+
+  </files>
 </package>
