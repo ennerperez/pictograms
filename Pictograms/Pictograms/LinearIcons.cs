@@ -27,8 +27,6 @@ namespace Xamarin.Forms.Pictograms
         {
         }
 
-        internal static LinearIcons instance;
-
         public static LinearIcons Instance
         {
             get

@@ -6,10 +6,6 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Xamarin Forms Implementation
 
-### Fixed
-- GetInstance() bug
-- Singleton bug
-
 ### Changed
 - Unified version
 

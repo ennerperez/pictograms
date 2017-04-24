@@ -27,8 +27,6 @@ namespace Xamarin.Forms.Pictograms
         {
         }
 
-        internal static Foundation instance;
-
         public static Foundation Instance
         {
             get

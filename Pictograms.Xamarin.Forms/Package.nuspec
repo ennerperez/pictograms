@@ -28,13 +28,13 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="src\Pictograms.Xamarin.Forms\Readme.txt" target="Readme.txt" />
+    <file src="Pictograms.Xamarin.Forms\Readme.txt" target="Readme.txt" />
 
     <!--Core-->
-    <file src="src\Pictograms.Xamarin.Forms\bin\Release\Xamarin.Forms.Pictograms.*" target="lib\portable-net45+wp80+win8+wpa81" />
+    <file src="Pictograms.Xamarin.Forms\bin\Release\Xamarin.Forms.Pictograms.*" target="lib\portable-net45+wp80+win8+wpa81" />
 
     <!--Xamarin.Android-->
-    <file src="src\Pictograms.Xamarin.Android\bin\Release\Xamarin.Android.Pictograms.*" target="lib\MonoAndroid10" />
+    <file src="Pictograms.Xamarin.Android\bin\Release\Xamarin.Android.Pictograms.*" target="lib\MonoAndroid10" />
 
   </files>
 </package>

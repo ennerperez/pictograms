@@ -1,16 +1,16 @@
 #addin "Cake.FileHelpers"
 
 var TARGET = Argument ("target", Argument ("t", "Default"));
-var version = EnvironmentVariable ("APPVEYOR_BUILD_VERSION") ?? Argument("version", "1.1.0");
+var version = EnvironmentVariable ("APPVEYOR_BUILD_VERSION") ?? Argument("version", "1.0.0");
 
 var solutions = new Dictionary<string, string> {
- 	{ "./src/Pictograms.sln", "Any" },
+ 	{ "./Pictograms.sln", "Any" },
 };
 
 var packages = new Dictionary<string, string> {
- 	{ "./src/Pictograms/Pictograms.csproj", "Any" },
-	{ "./src/Pictograms.Forms/Pictograms.Forms.csproj", "Any" },
-	{ "./src/Pictograms.Xamarin.Forms/Package.nuspec", "Any" },
+ 	{ "./Pictograms/Pictograms.csproj", "Any" },
+	{ "./Pictograms.Forms/Pictograms.Forms.csproj", "Any" },
+	{ "./Pictograms.Xamarin.Forms/Package.nuspec", "Any" },
 };
 
 var BuildAction = new Action<Dictionary<string, string>> (solutions =>

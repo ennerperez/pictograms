@@ -5,7 +5,6 @@ using System.Drawing.Text;
 #endif
 
 using System;
-using System.Reflection;
 using System.Runtime.InteropServices;
 
 #if !PORTABLE
@@ -18,17 +17,15 @@ namespace Xamarin.Forms
 {
     public class Pictogram : IDisposable
     {
-        public Pictogram()
+        internal static Pictogram instance;
+
+        public static T GetInstance<T>() where T : Pictogram
         {
+            return (T)instance;
         }
 
-        public static T GetInstance<T>()
+        public Pictogram()
         {
-#if !PORTABLE
-            return (T)typeof(T).GetProperty("Instance", BindingFlags.Public | BindingFlags.Static).GetValue(null, null);
-#else
-            return (T)typeof(T).GetRuntimeProperty("Instance").GetValue(null);
-#endif
         }
 
 #if !PORTABLE
@@ -87,7 +84,7 @@ namespace Xamarin.Forms
             }
         }
 
-#region Methods
+        #region Methods
 
         /// <summary>
         /// Sets a new font with correct size for the allocated space.
@@ -126,9 +123,9 @@ namespace Xamarin.Forms
             return GetFont(smallestOnFail ? minFontSize : maxFontSize);
         }
 
-#endregion Methods
+        #endregion Methods
 
-        public virtual Image GetImage(int type, int size, Brush brush)
+        public Image GetImage(int type, int size, Brush brush)
         {
             System.Drawing.Bitmap result = new System.Drawing.Bitmap(size, size);
             string IconChar = char.ConvertFromUtf32((int)type);
@@ -159,19 +156,19 @@ namespace Xamarin.Forms
             return result;
         }
 
-        public virtual Image GetImage(int type, int size, Color color)
+        public Image GetImage(int type, int size, Color color)
         {
             return GetImage(type, size, new SolidBrush(color));
         }
 
-        public virtual Image GetImage(int type, int size)
+        public Image GetImage(int type, int size)
         {
             return GetImage(type, size, SystemColors.ControlText);
         }
 
 #endif
 
-        public virtual string GetText(int type)
+        public string GetText(int type)
         {
             return char.ConvertFromUtf32((int)type);
         }
@@ -187,14 +184,14 @@ namespace Xamarin.Forms
 
 #if !PORTABLE
 
-        public virtual Font GetFont(float size, GraphicsUnit units = GraphicsUnit.Point)
+        public Font GetFont(float size, GraphicsUnit units = GraphicsUnit.Point)
         {
             return new Font(fonts.Families[0], size, units);
         }
 
 #endif
 
-#region IDisposable Support
+        #region IDisposable Support
 
         private bool disposedValue = false; // Para detectar llamadas redundantes
 
@@ -232,6 +229,6 @@ namespace Xamarin.Forms
             // GC.SuppressFinalize(this);
         }
 
-#endregion IDisposable Support
+        #endregion IDisposable Support
     }
 }
