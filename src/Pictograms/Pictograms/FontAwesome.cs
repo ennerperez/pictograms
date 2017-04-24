@@ -27,6 +27,8 @@ namespace Xamarin.Forms.Pictograms
         {
         }
 
+        internal static FontAwesome instance;
+
         public static FontAwesome Instance
         {
             get

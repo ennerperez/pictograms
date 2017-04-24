@@ -27,6 +27,8 @@ namespace Xamarin.Forms.Pictograms
         {
         }
 
+        internal static MaterialDesign instance;
+
         public static MaterialDesign Instance
         {
             get
