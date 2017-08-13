@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pictograms.Forms", "Pictograms.Forms\Pictograms.Forms.csproj", "{45872AA9-7722-49B4-864D-B03F11AB5B3F}"
 EndProject
@@ -11,11 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		..\.gitattributes = ..\.gitattributes
 		..\.gitignore = ..\.gitignore
-		..\appveyor.yml = ..\appveyor.yml
-		..\bootstrapper.ps1 = ..\bootstrapper.ps1
-		..\build.cake = ..\build.cake
 		..\CHANGELOG.md = ..\CHANGELOG.md
-		..\install-android-sdk.ps1 = ..\install-android-sdk.ps1
 		..\LICENSE = ..\LICENSE
 		..\README.md = ..\README.md
 	EndProjectSection

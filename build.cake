@@ -1,103 +1,114 @@
-#addin "Cake.FileHelpers"
+//////////////////////////////////////////////////////////////////////
+// ARGUMENTS
+//////////////////////////////////////////////////////////////////////
 
-var TARGET = Argument ("target", Argument ("t", "Default"));
+var target = Argument("target", "Default");
+var configuration = Argument("configuration", "Release");
 var version = EnvironmentVariable ("APPVEYOR_BUILD_VERSION") ?? Argument("version", "1.1.0");
 
+//////////////////////////////////////////////////////////////////////
+// PREPARATION
+//////////////////////////////////////////////////////////////////////
+
+// Define solutions.
 var solutions = new Dictionary<string, string> {
  	{ "./src/Pictograms.sln", "Any" },
 };
 
-var packages = new Dictionary<string, string> {
- 	{ "./src/Pictograms/Pictograms.csproj", "Any" },
-	{ "./src/Pictograms.Forms/Pictograms.Forms.csproj", "Any" },
-	{ "./src/Pictograms.Xamarin.Forms/Package.nuspec", "Any" },
-};
+// Define AssemblyInfo source.
+var assemblyInfoVersion = ParseAssemblyInfo("./src/Pictograms/Properties/AssemblyInfo.Common.cs");
+var assemblyInfoCommon = assemblyInfoVersion;
 
-var BuildAction = new Action<Dictionary<string, string>> (solutions =>
+// Define version.
+var elapsedSpan = new TimeSpan(DateTime.Now.Ticks - new DateTime(2001, 1, 1).Ticks);
+var assemblyVersion = assemblyInfoVersion.AssemblyVersion.Replace("*", elapsedSpan.Ticks.ToString().Substring(4, 4));
+var version = EnvironmentVariable ("APPVEYOR_BUILD_VERSION") ?? Argument("version", assemblyVersion);
+
+// Define directories.
+var outputDirectory = "build/" + configuration;
+var buildDir = Directory("../" + outputDirectory);
+
+//////////////////////////////////////////////////////////////////////
+// TASKS
+//////////////////////////////////////////////////////////////////////
+
+Task("Clean")
+    .Does(() =>
 {
-
-	foreach (var sln in solutions) 
-    {
-
-		// If the platform is Any build regardless
-		//  If the platform is Win and we are running on windows build
-		//  If the platform is Mac and we are running on Mac, build
-		if ((sln.Value == "Any")
-				|| (sln.Value == "Win" && IsRunningOnWindows ())
-				|| (sln.Value == "Mac" && IsRunningOnUnix ())) 
-        {
-			
-			// Bit of a hack to use nuget3 to restore packages for project.json
-			if (IsRunningOnWindows ()) 
-            {
-				
-				Information ("RunningOn: {0}", "Windows");
-
-				NuGetRestore (sln.Key, new NuGetRestoreSettings
-                {
-					ToolPath = "./tools/nuget3.exe"
-				});
-
-				// Windows Phone / Universal projects require not using the amd64 msbuild
-				MSBuild (sln.Key, c => 
-                { 
-					c.Configuration = "Release";
-					c.MSBuildPlatform = Cake.Common.Tools.MSBuild.MSBuildPlatform.x86;
-				});
-			} 
-            else 
-            {
-                // Mac is easy ;)
-				NuGetRestore (sln.Key);
-
-				DotNetBuild (sln.Key, c => c.Configuration = "Release");
-			}
-		}
-	}
-});
-
-Task("Solutions").Does(()=>
-{
-    BuildAction(solutions);
-});
-
-Task ("NuGet")
-	.IsDependentOn ("Solutions")
-	.Does (() =>
-{
-    if(!DirectoryExists("./build/nuget/"))
-        CreateDirectory("./build/nuget");
-
-	var nuGetPackSettings = new NuGetPackSettings
-	{
-		Version = version,
-		IncludeReferencedProjects = true,
-		Verbosity = NuGetVerbosity.Detailed,
-		OutputDirectory = "./build/nuget/",
-		BasePath = "./",
-		ToolPath = "./tools/nuget3.exe"
-	};
-        
-	foreach (var proj in packages) 
-    {
-		NuGetPack(proj.Key, nuGetPackSettings);
-	}
-
-});
-
-//Build the component, which build samples, nugets, and solutions
-Task ("Default").IsDependentOn("NuGet");
-
-
-Task ("Clean").Does (() => 
-{
-	CleanDirectory ("./component/tools/");
-
-	CleanDirectories ("./build/");
-
+    CleanDirectory(buildDir);
 	CleanDirectories ("./**/bin");
 	CleanDirectories ("./**/obj");
 });
 
+Task("Restore-NuGet-Packages")
+    .IsDependentOn("Clean")
+    .Does(() =>
+{
+    NuGetRestore(solution);
+});
 
-RunTarget (TARGET);
+Task("Build")
+    .IsDependentOn("Restore-NuGet-Packages")
+    .Does(() =>
+{
+	foreach (var sln in solutions) {
+		if(IsRunningOnWindows())
+		{
+			var settings = new MSBuildSettings()
+			.WithProperty("PackageVersion", version)
+			.WithProperty("BuildSymbolsPackage", "false");
+			settings.SetConfiguration(configuration);
+			// Use MSBuild
+			MSBuild(solution, settings);
+		}
+		else
+		{
+			var settings = new XBuildSettings()
+			.WithProperty("PackageVersion", version)
+			.WithProperty("BuildSymbolsPackage", "false");
+			settings.SetConfiguration(configuration);
+			// Use XBuild
+			XBuild(solution, settings);
+		}
+	}
+});
+
+Task("Build-NuGet-Packages")
+    .IsDependentOn("Build")
+    .Does(() =>
+    {
+	   foreach (var folder in new System.IO.FileInfo(solution).Directory.GetDirectories())
+		  foreach (var file in folder.GetFiles("*.nuspec"))
+		  {
+			 var assemblyInfo = ParseAssemblyInfo(folder + "/Properties/AssemblyInfo.cs");
+			 var nuGetPackSettings = new NuGetPackSettings()
+			 {
+			 OutputDirectory = outputDirectory,
+			 IncludeReferencedProjects = false,
+			 Id = assemblyInfo.Title.Replace(" ", "."),
+			 Title = assemblyInfo.Title,
+			 Version = version,
+			 Authors = new [] {assemblyInfoCommon.Company},
+			 Summary = assemblyInfo.Description,
+			 Copyright = assemblyInfoCommon.Copyright,
+			 Properties = new Dictionary<string, string>()
+				{
+				    { "Configuration", configuration }
+				}
+			 };   
+			 NuGetPack(file.FullName, nuGetPackSettings);
+		  }
+    });
+
+//////////////////////////////////////////////////////////////////////
+// TASK TARGETS
+//////////////////////////////////////////////////////////////////////
+
+Task("Default")
+	.IsDependentOn("Build-NuGet-Packages");
+
+//////////////////////////////////////////////////////////////////////
+// EXECUTION
+//////////////////////////////////////////////////////////////////////
+
+RunTarget(target);
