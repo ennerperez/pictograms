@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{EB819A36-ED6B-4031-947C-D7AD3A6991A7}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>PictogramSample.WinForms</RootNamespace>
-    <AssemblyName>PictogramSample.WinForms</AssemblyName>
+    <RootNamespace>Pictogram.Samples.WinForms</RootNamespace>
+    <AssemblyName>Pictogram.Samples.WinForms</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -68,6 +68,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

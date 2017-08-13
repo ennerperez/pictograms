@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace PictogramSample.WinForms
+namespace Pictogram.Samples.WinForms
 {
     internal static class Program
     {

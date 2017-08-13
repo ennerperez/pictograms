@@ -5,7 +5,7 @@ using System.Drawing.Pictograms;
 using System.Windows.Forms;
 using System.Windows.Forms.Pictograms;
 
-namespace PictogramSample.WinForms
+namespace Pictogram.Samples.WinForms
 {
     public partial class FormMain : Form
     {
@@ -83,7 +83,7 @@ namespace PictogramSample.WinForms
 
         private IList<string> fonts;
         private IList<string> icons;
-        private Pictogram instance;
+        private System.Drawing.Pictogram instance;
 
         private void listViewItems_SelectedIndexChanged(object sender, EventArgs e)
         {

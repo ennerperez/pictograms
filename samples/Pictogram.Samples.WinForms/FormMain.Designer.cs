@@ -1,4 +1,4 @@
-﻿namespace PictogramSample.WinForms
+﻿namespace Pictogram.Samples.WinForms
 {
     partial class FormMain
     {
@@ -62,11 +62,13 @@
             // 
             // comboBoxFont
             // 
+            this.comboBoxFont.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxFont.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxFont.FormattingEnabled = true;
             this.comboBoxFont.Location = new System.Drawing.Point(15, 25);
             this.comboBoxFont.Name = "comboBoxFont";
-            this.comboBoxFont.Size = new System.Drawing.Size(200, 21);
+            this.comboBoxFont.Size = new System.Drawing.Size(389, 21);
             this.comboBoxFont.TabIndex = 1;
             this.comboBoxFont.SelectedIndexChanged += new System.EventHandler(this.comboBoxFont_SelectedIndexChanged);
             // 
