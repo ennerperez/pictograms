@@ -22,5 +22,7 @@
       <dependency id="System.Drawing.Pictograms" version="1.1" />
     </dependencies>
   </metadata>
-  <files />
+  <files>
+    <file src="..\Pictograms.Forms\bin\release\System.Windows.Forms.Pictograms.dll" target="lib\net40\System.Windows.Forms.Pictograms.dll" />
+  </files>
 </package>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Pictograms;
@@ -20,15 +21,12 @@ namespace Pictogram.Samples.WinForms
 
         private void FormMain_Shown(object sender, EventArgs e)
         {
-            fonts = new[]
-            {
-                string.Empty,
-                FontAwesome.Typeface,
-                Foundation.Typeface,
-                LinearIcons.Typeface,
-                MaterialDesign.Typeface,
-            };
 
+            var fontsTypes = System.Reflection.Assembly.GetAssembly(typeof(System.Drawing.Pictogram)).GetTypes()
+                .Where(t => t.BaseType == typeof(System.Drawing.Pictogram)).Select(t => Activator.CreateInstance(t, true));
+
+            fonts = new List<string> { string.Empty };
+            (fonts as List<string>).AddRange(fontsTypes.Select(m => (m as System.Drawing.Pictogram).FontFamily.Name).ToArray());
             comboBoxFont.DataSource = fonts;
         }
 
@@ -103,13 +101,13 @@ namespace Pictogram.Samples.WinForms
                 textBoxValue.Text = ((int)icon).ToString();
 
                 pictureBoxPreview.Image = instance.GetImage((int)icon, pictureBoxPreview.Width);
-                button1.SetImage(instance, icon, 24);
-                button2.SetText(instance, icon);
+                buttonLiveDemo2.SetImage(instance, icon, 24);
+                buttonLiveDemo1.SetText(instance, icon);
 
-                toolStripButton1.SetImage(instance, icon);
-                toolStripDropDownButton1.SetImage(instance, icon);
-                option1ToolStripMenuItem.SetImage(instance, icon);
-                option2ToolStripMenuItem.SetImage(instance, icon);
+                toolStripButtonLiveDemo.SetImage(instance, icon);
+                toolStripDropDownButtonLiveDemo.SetImage(instance, icon);
+                toolStripMenuItemLiveDemoOption1.SetImage(instance, icon);
+                toolStripMenuItemLiveDemoOption2.SetImage(instance, icon);
             }
             else
                 clear();
@@ -119,13 +117,14 @@ namespace Pictogram.Samples.WinForms
             textBoxValue.Text = string.Empty;
 
             pictureBoxPreview.Image = null;
-            button1.Image = null;
-            button2.Text = button2.Name;
+            buttonLiveDemo2.Image = null;
+            buttonLiveDemo1.Text = buttonLiveDemo1.Name;
 
-            toolStripButton1.Image = null;
-            toolStripDropDownButton1.Image = null;
-            option1ToolStripMenuItem.Image = null;
-            option2ToolStripMenuItem.Image = null;
+            toolStripButtonLiveDemo.Image = null;
+            toolStripDropDownButtonLiveDemo.Image = null;
+            toolStripMenuItemLiveDemoOption1.Image = null;
+            toolStripMenuItemLiveDemoOption2.Image = null;
         }
+
     }
 }

@@ -30,25 +30,24 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.labelFont = new System.Windows.Forms.Label();
             this.comboBoxFont = new System.Windows.Forms.ComboBox();
             this.pictureBoxPreview = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.option1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.option2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonLiveDemo2 = new System.Windows.Forms.Button();
+            this.buttonLiveDemo1 = new System.Windows.Forms.Button();
+            this.panelLiveDemo = new System.Windows.Forms.Panel();
+            this.toolStripLiveDemo = new System.Windows.Forms.ToolStrip();
+            this.toolStripButtonLiveDemo = new System.Windows.Forms.ToolStripButton();
+            this.toolStripDropDownButtonLiveDemo = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolStripMenuItemLiveDemoOption1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemLiveDemoOption2 = new System.Windows.Forms.ToolStripMenuItem();
             this.imageListIcons = new System.Windows.Forms.ImageList(this.components);
             this.listViewItems = new System.Windows.Forms.ListView();
             this.labelInformation = new System.Windows.Forms.Label();
             this.textBoxValue = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).BeginInit();
-            this.panel1.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
+            this.panelLiveDemo.SuspendLayout();
+            this.toolStripLiveDemo.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelFont
@@ -82,81 +81,81 @@
             this.pictureBoxPreview.TabIndex = 10;
             this.pictureBoxPreview.TabStop = false;
             // 
-            // button1
+            // buttonLiveDemo2
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(12, 28);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(106, 33);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonLiveDemo2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonLiveDemo2.Location = new System.Drawing.Point(12, 28);
+            this.buttonLiveDemo2.Name = "buttonLiveDemo2";
+            this.buttonLiveDemo2.Size = new System.Drawing.Size(106, 33);
+            this.buttonLiveDemo2.TabIndex = 1;
+            this.buttonLiveDemo2.Text = "button1";
+            this.buttonLiveDemo2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.buttonLiveDemo2.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // buttonLiveDemo1
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(12, 67);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(106, 33);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.buttonLiveDemo1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonLiveDemo1.Location = new System.Drawing.Point(12, 67);
+            this.buttonLiveDemo1.Name = "buttonLiveDemo1";
+            this.buttonLiveDemo1.Size = new System.Drawing.Size(106, 33);
+            this.buttonLiveDemo1.TabIndex = 2;
+            this.buttonLiveDemo1.Text = "button2";
+            this.buttonLiveDemo1.UseVisualStyleBackColor = true;
             // 
-            // panel1
+            // panelLiveDemo
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.toolStrip1);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Location = new System.Drawing.Point(410, 185);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(128, 128);
-            this.panel1.TabIndex = 15;
+            this.panelLiveDemo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelLiveDemo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelLiveDemo.Controls.Add(this.buttonLiveDemo1);
+            this.panelLiveDemo.Controls.Add(this.toolStripLiveDemo);
+            this.panelLiveDemo.Controls.Add(this.buttonLiveDemo2);
+            this.panelLiveDemo.Location = new System.Drawing.Point(410, 185);
+            this.panelLiveDemo.Name = "panelLiveDemo";
+            this.panelLiveDemo.Size = new System.Drawing.Size(128, 128);
+            this.panelLiveDemo.TabIndex = 15;
             // 
-            // toolStrip1
+            // toolStripLiveDemo
             // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButton1,
-            this.toolStripDropDownButton1});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(126, 25);
-            this.toolStrip1.TabIndex = 0;
-            this.toolStrip1.Text = "toolStrip1";
+            this.toolStripLiveDemo.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButtonLiveDemo,
+            this.toolStripDropDownButtonLiveDemo});
+            this.toolStripLiveDemo.Location = new System.Drawing.Point(0, 0);
+            this.toolStripLiveDemo.Name = "toolStripLiveDemo";
+            this.toolStripLiveDemo.Size = new System.Drawing.Size(126, 25);
+            this.toolStripLiveDemo.TabIndex = 0;
+            this.toolStripLiveDemo.Text = "toolStrip1";
             // 
-            // toolStripButton1
+            // toolStripButtonLiveDemo
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButtonLiveDemo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonLiveDemo.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonLiveDemo.Image")));
+            this.toolStripButtonLiveDemo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonLiveDemo.Name = "toolStripButtonLiveDemo";
+            this.toolStripButtonLiveDemo.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonLiveDemo.Text = "toolStripButton1";
             // 
-            // toolStripDropDownButton1
+            // toolStripDropDownButtonLiveDemo
             // 
-            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.option1ToolStripMenuItem,
-            this.option2ToolStripMenuItem});
-            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(78, 22);
-            this.toolStripDropDownButton1.Text = "Options";
+            this.toolStripDropDownButtonLiveDemo.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemLiveDemoOption1,
+            this.toolStripMenuItemLiveDemoOption2});
+            this.toolStripDropDownButtonLiveDemo.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButtonLiveDemo.Image")));
+            this.toolStripDropDownButtonLiveDemo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButtonLiveDemo.Name = "toolStripDropDownButtonLiveDemo";
+            this.toolStripDropDownButtonLiveDemo.Size = new System.Drawing.Size(78, 22);
+            this.toolStripDropDownButtonLiveDemo.Text = "Options";
             // 
-            // option1ToolStripMenuItem
+            // toolStripMenuItemLiveDemoOption1
             // 
-            this.option1ToolStripMenuItem.Name = "option1ToolStripMenuItem";
-            this.option1ToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
-            this.option1ToolStripMenuItem.Text = "Option 1";
+            this.toolStripMenuItemLiveDemoOption1.Name = "toolStripMenuItemLiveDemoOption1";
+            this.toolStripMenuItemLiveDemoOption1.Size = new System.Drawing.Size(123, 22);
+            this.toolStripMenuItemLiveDemoOption1.Text = "Option 1";
             // 
-            // option2ToolStripMenuItem
+            // toolStripMenuItemLiveDemoOption2
             // 
-            this.option2ToolStripMenuItem.Name = "option2ToolStripMenuItem";
-            this.option2ToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
-            this.option2ToolStripMenuItem.Text = "Option  2";
+            this.toolStripMenuItemLiveDemoOption2.Name = "toolStripMenuItemLiveDemoOption2";
+            this.toolStripMenuItemLiveDemoOption2.Size = new System.Drawing.Size(123, 22);
+            this.toolStripMenuItemLiveDemoOption2.Text = "Option  2";
             // 
             // imageListIcons
             // 
@@ -203,7 +202,7 @@
             this.ClientSize = new System.Drawing.Size(550, 328);
             this.Controls.Add(this.textBoxValue);
             this.Controls.Add(this.listViewItems);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelLiveDemo);
             this.Controls.Add(this.pictureBoxPreview);
             this.Controls.Add(this.comboBoxFont);
             this.Controls.Add(this.labelInformation);
@@ -214,28 +213,27 @@
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.Shown += new System.EventHandler(this.FormMain_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.panelLiveDemo.ResumeLayout(false);
+            this.panelLiveDemo.PerformLayout();
+            this.toolStripLiveDemo.ResumeLayout(false);
+            this.toolStripLiveDemo.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Label labelFont;
         private System.Windows.Forms.ComboBox comboBoxFont;
         private System.Windows.Forms.PictureBox pictureBoxPreview;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
-        private System.Windows.Forms.ToolStripMenuItem option1ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem option2ToolStripMenuItem;
+        private System.Windows.Forms.Button buttonLiveDemo2;
+        private System.Windows.Forms.Button buttonLiveDemo1;
+        private System.Windows.Forms.Panel panelLiveDemo;
+        private System.Windows.Forms.ToolStrip toolStripLiveDemo;
+        private System.Windows.Forms.ToolStripButton toolStripButtonLiveDemo;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButtonLiveDemo;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemLiveDemoOption1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemLiveDemoOption2;
         public System.Windows.Forms.ImageList imageListIcons;
         public System.Windows.Forms.ListView listViewItems;
         private System.Windows.Forms.Label labelInformation;

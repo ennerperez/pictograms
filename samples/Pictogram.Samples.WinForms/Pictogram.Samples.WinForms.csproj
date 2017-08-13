@@ -33,11 +33,11 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing.Pictograms, Version=1.1.6322.42756, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Windows.Forms.Pictograms.1.1.0\lib\net40\System.Drawing.Pictograms.dll</HintPath>
+    <Reference Include="System.Drawing.Pictograms">
+      <HintPath>..\..\src\Pictograms\bin\Release\System.Drawing.Pictograms.dll</HintPath>
     </Reference>
-    <Reference Include="System.Windows.Forms.Pictograms, Version=1.1.6322.42754, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Windows.Forms.Pictograms.1.1.0\lib\net40\System.Windows.Forms.Pictograms.dll</HintPath>
+    <Reference Include="System.Windows.Forms.Pictograms">
+      <HintPath>..\..\src\Pictograms.Forms\bin\Release\System.Windows.Forms.Pictograms.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -70,7 +70,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

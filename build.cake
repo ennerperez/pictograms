@@ -4,7 +4,6 @@
 
 var target = Argument("target", "Default");
 var configuration = Argument("configuration", "Release");
-var version = EnvironmentVariable ("APPVEYOR_BUILD_VERSION") ?? Argument("version", "1.1.0");
 
 //////////////////////////////////////////////////////////////////////
 // PREPARATION
@@ -36,76 +35,84 @@ Task("Clean")
     .Does(() =>
 {
     CleanDirectory(buildDir);
-	CleanDirectories ("./**/bin");
-	CleanDirectories ("./**/obj");
+    CleanDirectories("./**/bin");
+    CleanDirectories("./**/obj");
 });
 
 Task("Restore-NuGet-Packages")
     .IsDependentOn("Clean")
     .Does(() =>
 {
-    NuGetRestore(solution);
+    foreach (var solution in solutions)
+    {
+        NuGetRestore(solution.Key);
+    }
 });
 
 Task("Build")
     .IsDependentOn("Restore-NuGet-Packages")
     .Does(() =>
 {
-	foreach (var sln in solutions) {
-		if(IsRunningOnWindows())
-		{
-			var settings = new MSBuildSettings()
-			.WithProperty("PackageVersion", version)
-			.WithProperty("BuildSymbolsPackage", "false");
-			settings.SetConfiguration(configuration);
-			// Use MSBuild
-			MSBuild(solution, settings);
-		}
-		else
-		{
-			var settings = new XBuildSettings()
-			.WithProperty("PackageVersion", version)
-			.WithProperty("BuildSymbolsPackage", "false");
-			settings.SetConfiguration(configuration);
-			// Use XBuild
-			XBuild(solution, settings);
-		}
-	}
+    foreach (var solution in solutions)
+    {
+        if (IsRunningOnWindows())
+        {
+            var settings = new MSBuildSettings()
+            .WithProperty("PackageVersion", version)
+            .WithProperty("BuildSymbolsPackage", "false");
+            settings.SetConfiguration(configuration);
+            // Use MSBuild
+            MSBuild(solution.Key, settings);
+        }
+        else
+        {
+            var settings = new XBuildSettings()
+            .WithProperty("PackageVersion", version)
+            .WithProperty("BuildSymbolsPackage", "false");
+            settings.SetConfiguration(configuration);
+            // Use XBuild
+            XBuild(solution.Key, settings);
+        }
+    }
 });
 
 Task("Build-NuGet-Packages")
     .IsDependentOn("Build")
     .Does(() =>
     {
-	   foreach (var folder in new System.IO.FileInfo(solution).Directory.GetDirectories())
-		  foreach (var file in folder.GetFiles("*.nuspec"))
-		  {
-			 var assemblyInfo = ParseAssemblyInfo(folder + "/Properties/AssemblyInfo.cs");
-			 var nuGetPackSettings = new NuGetPackSettings()
-			 {
-			 OutputDirectory = outputDirectory,
-			 IncludeReferencedProjects = false,
-			 Id = assemblyInfo.Title.Replace(" ", "."),
-			 Title = assemblyInfo.Title,
-			 Version = version,
-			 Authors = new [] {assemblyInfoCommon.Company},
-			 Summary = assemblyInfo.Description,
-			 Copyright = assemblyInfoCommon.Copyright,
-			 Properties = new Dictionary<string, string>()
-				{
-				    { "Configuration", configuration }
-				}
-			 };   
-			 NuGetPack(file.FullName, nuGetPackSettings);
-		  }
-    });
+    foreach (var solution in solutions)
+    {
+        foreach (var folder in new System.IO.FileInfo(solution.Key).Directory.GetDirectories())
+        {
+            foreach (var file in folder.GetFiles("*.nuspec"))
+            {
+				var path = file.Directory;
+                var assemblyInfo = ParseAssemblyInfo(path + "/Properties/AssemblyInfo.cs");
+                var nuGetPackSettings = new NuGetPackSettings()
+                {
+                    OutputDirectory = outputDirectory,
+                    IncludeReferencedProjects = false,
+                    Id = assemblyInfo.Title.Replace(" ", "."),
+                    Title = assemblyInfo.Title,
+                    Version = version,
+                    Authors = new[] { assemblyInfoCommon.Company },
+                    Summary = assemblyInfo.Description,
+                    Copyright = assemblyInfoCommon.Copyright,
+                    Properties = new Dictionary<string, string>()
+                    {{ "Configuration", configuration }}
+                };
+                NuGetPack(file.FullName, nuGetPackSettings);
+            }
+        }
+    }
+});
 
 //////////////////////////////////////////////////////////////////////
 // TASK TARGETS
 //////////////////////////////////////////////////////////////////////
 
 Task("Default")
-	.IsDependentOn("Build-NuGet-Packages");
+    .IsDependentOn("Build-NuGet-Packages");
 
 //////////////////////////////////////////////////////////////////////
 // EXECUTION

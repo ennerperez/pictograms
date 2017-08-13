@@ -20,5 +20,7 @@
     <tags>Pictograms Fonts Icons Design</tags>
     <dependencies />
   </metadata>
-  <files />
+  <files>
+    <file src="..\Pictograms\bin\release\System.Drawing.Pictograms.dll" target="lib\net40\System.Drawing.Pictograms.dll" />
+  </files>
 </package>
