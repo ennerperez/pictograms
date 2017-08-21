@@ -41,6 +41,8 @@ namespace Xamarin.Forms.Pictograms
 
         #endregion Singleton
 
+        public static new string URL { get { return "http://zurb.com/playground/uploads/upload/upload/288/foundation-icons.zip"; } }
+
         public Foundation(bool @default) : this()
         {
         }

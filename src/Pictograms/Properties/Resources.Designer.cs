@@ -83,6 +83,16 @@ namespace System.Drawing.Pictograms.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Byte[].
         /// </summary>
+        internal static byte[] ionicons {
+            get {
+                object obj = ResourceManager.GetObject("ionicons", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
         internal static byte[] linearicons_free {
             get {
                 object obj = ResourceManager.GetObject("linearicons_free", resourceCulture);
@@ -93,9 +103,9 @@ namespace System.Drawing.Pictograms.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Byte[].
         /// </summary>
-        internal static byte[] MaterialIcons_Regular {
+        internal static byte[] materialicons_regular {
             get {
-                object obj = ResourceManager.GetObject("MaterialIcons_Regular", resourceCulture);
+                object obj = ResourceManager.GetObject("materialicons_regular", resourceCulture);
                 return ((byte[])(obj));
             }
         }

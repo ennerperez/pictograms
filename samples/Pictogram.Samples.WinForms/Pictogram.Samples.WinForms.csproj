@@ -34,10 +34,10 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing.Pictograms">
-      <HintPath>..\..\src\Pictograms\bin\Release\System.Drawing.Pictograms.dll</HintPath>
+      <HintPath>..\..\src\Pictograms\bin\$(Configuration)\System.Drawing.Pictograms.dll</HintPath>
     </Reference>
     <Reference Include="System.Windows.Forms.Pictograms">
-      <HintPath>..\..\src\Pictograms.Forms\bin\Release\System.Windows.Forms.Pictograms.dll</HintPath>
+      <HintPath>..\..\src\Pictograms.Forms\bin\$(Configuration)\System.Windows.Forms.Pictograms.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />

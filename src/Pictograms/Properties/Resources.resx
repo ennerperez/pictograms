@@ -127,7 +127,10 @@
   <data name="linearicons_free" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Fonts\linearicons-free.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="MaterialIcons_Regular" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="materialicons_regular" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Fonts\MaterialIcons-Regular.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ionicons" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\fonts\ionicons.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

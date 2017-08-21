@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [1.2.20] - [UNRELEASED]
 ### Added
+- FontAwesome 4.0.7
+- IonIcons 2.0.1
+- Downloadable fonts
 - Xamarin Forms Implementation
 
 ### Fixed

@@ -41,6 +41,8 @@ namespace Xamarin.Forms.Pictograms
 
         #endregion Singleton
 
+        public static new string URL { get { return "https://cdn.linearicons.com/free/1.0.0/Linearicons-Free-v1.0.0.zip"; } }
+
         public LinearIcons(bool @default) : this()
         {
         }
@@ -267,7 +269,7 @@ namespace Xamarin.Forms.Pictograms
             pointer_up = 0xe8a6,
             pointer_right = 0xe8a7,
             pointer_down = 0xe8a8,
-            pointer_left = 0xe8a9
+            pointer_left = 0xe8a9,
         }
     }
 }

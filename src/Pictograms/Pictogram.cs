@@ -7,6 +7,7 @@ using System.Drawing.Text;
 using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.ComponentModel;
 
 #if !PORTABLE
 
@@ -31,7 +32,36 @@ namespace Xamarin.Forms
 #endif
         }
 
+        public static string URL { get; set; }
+
 #if !PORTABLE
+
+        public static Action DownloadCompleted { get; private set; }
+
+        public static void Download<T>()
+        {
+            if (string.IsNullOrEmpty(URL))
+                throw new InvalidOperationException("Can't download font without an valid URL.");
+
+            var fontCacheFolder = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "fonts");
+            if (!System.IO.Directory.Exists(fontCacheFolder))
+                System.IO.Directory.CreateDirectory(fontCacheFolder);
+
+            var fileName = System.IO.Path.Combine(fontCacheFolder, typeof(T).Name);
+
+            using (var wc = new System.Net.WebClient())
+            {
+                wc.DownloadFileCompleted += wc_DownloadFileCompleted;
+                wc.DownloadFile(URL, fileName);
+            }
+
+        }
+
+        private static void wc_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            if (DownloadCompleted != null)
+                DownloadCompleted.Invoke();
+        }
 
         public Pictogram(byte[] font) : this()
         {
@@ -87,7 +117,7 @@ namespace Xamarin.Forms
             }
         }
 
-#region Methods
+        #region Methods
 
         /// <summary>
         /// Sets a new font with correct size for the allocated space.
@@ -126,7 +156,7 @@ namespace Xamarin.Forms
             return GetFont(smallestOnFail ? minFontSize : maxFontSize);
         }
 
-#endregion Methods
+        #endregion Methods
 
         public virtual Image GetImage(int type, int size, Brush brush)
         {
@@ -194,7 +224,7 @@ namespace Xamarin.Forms
 
 #endif
 
-#region IDisposable Support
+        #region IDisposable Support
 
         private bool disposedValue = false; // Para detectar llamadas redundantes
 
@@ -232,6 +262,6 @@ namespace Xamarin.Forms
             // GC.SuppressFinalize(this);
         }
 
-#endregion IDisposable Support
+        #endregion IDisposable Support
     }
 }

@@ -19,7 +19,7 @@ namespace Xamarin.Forms.Pictograms
         /// </summary>
 #if !PORTABLE
 
-        private MaterialDesign() : base(Properties.Resources.MaterialIcons_Regular)
+        private MaterialDesign() : base(Properties.Resources.materialicons_regular)
 #else
 
         private MaterialDesign() : base()
@@ -40,6 +40,8 @@ namespace Xamarin.Forms.Pictograms
         }
 
         #endregion Singleton
+
+        public static new string URL { get { return "https://raw.githubusercontent.com/google/material-design-icons/master/iconfont/MaterialIcons-Regular.ttf"; } }
 
         public MaterialDesign(bool @default) : this()
         {

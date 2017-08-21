@@ -8,7 +8,7 @@
     <owners>Enner Pérez</owners>
     <licenseUrl>https://raw.githubusercontent.com/ennerperez/pictograms/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/ennerperez/pictograms</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/ennerperez/pictograms/master/.editoricon.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/ennerperez/pictograms/master/src/.editoricon.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Introducing fonts based pictograms for .NET Windows Forms projects</description>
     <releaseNotes>
