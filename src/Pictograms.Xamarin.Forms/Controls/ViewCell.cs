@@ -44,7 +44,7 @@ namespace Xamarin.Forms.Pictograms
             //
             // fontIcon
             //
-            fontIcon = new Icon(Pictogram.GetFontFace())
+            fontIcon = new Icon(Pictogram.GetTypeface())
             {
                 FontSize = Helpers.Common.GetNamedSize(NamedSize.Default) * 2,
                 HorizontalOptions = LayoutOptions.Start,
@@ -424,7 +424,7 @@ namespace Xamarin.Forms.Pictograms
         }
 
         public static readonly BindableProperty ChevronFontFaceProperty =
-            BindableProperty.Create("ChevronFontFace", typeof(string), typeof(ChevronViewCell<T, TC>), FontAwesome.Typeface, propertyChanged: OnChevronFontFaceChanged);
+            BindableProperty.Create("ChevronFontFace", typeof(string), typeof(ChevronViewCell<T, TC>), Pictogram.GetTypeface<FontAwesome>(), propertyChanged: OnChevronFontFaceChanged);
 
         public static readonly BindableProperty ChevronColorProperty =
             BindableProperty.Create("ChevronColor", typeof(Color), typeof(ChevronViewCell<T, TC>), Color.Default, propertyChanged: OnChevronColorChanged);
@@ -464,7 +464,7 @@ namespace Xamarin.Forms.Pictograms
         private void InitializeComponent()
         {
             // chevron
-            chevron = new Icon(ChevronPictogram.GetFontFace(), ChevronStyle)
+            chevron = new Icon(ChevronPictogram.GetTypeface(), ChevronStyle)
             {
                 TextColor = ChevronColor,
                 HorizontalTextAlignment = TextAlignment.End,

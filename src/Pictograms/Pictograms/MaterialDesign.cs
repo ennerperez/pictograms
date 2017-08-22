@@ -1,8 +1,8 @@
 ﻿#if !PORTABLE
-
+using System.Drawing.Pictograms.Attributes;
 namespace System.Drawing.Pictograms
 #else
-
+using Xamarin.Forms.Pictograms.Attributes;
 namespace Xamarin.Forms.Pictograms
 #endif
 {
@@ -10,6 +10,7 @@ namespace Xamarin.Forms.Pictograms
     /// LinearIcons
     /// <see cref="http://www.google.com/design/spec/style/icons.html#icons-system-icons"/>
     /// </summary>
+    [Pictogram("MaterialDesign", "MaterialIcons-Regular", "https://raw.githubusercontent.com/google/material-design-icons/master/iconfont/MaterialIcons-Regular.ttf")]
     public class MaterialDesign : Pictogram
     {
         #region Singleton
@@ -41,22 +42,9 @@ namespace Xamarin.Forms.Pictograms
 
         #endregion Singleton
 
-        public static new string URL { get { return "https://raw.githubusercontent.com/google/material-design-icons/master/iconfont/MaterialIcons-Regular.ttf"; } }
-
         public MaterialDesign(bool @default) : this()
         {
         }
-
-        public const string Typeface = "MaterialIcons-Regular";
-
-#if PORTABLE
-
-        public override string GetFontFace()
-        {
-            return MaterialDesign.Typeface;
-        }
-
-#endif
 
         #region Statics
 

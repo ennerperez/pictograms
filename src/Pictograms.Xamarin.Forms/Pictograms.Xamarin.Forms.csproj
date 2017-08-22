@@ -35,6 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\pictograms\attributes\PictogramAttribute.cs">
+      <Link>Attributes\PictogramAttribute.cs</Link>
+    </Compile>
     <Compile Include="..\Pictograms\Pictogram.cs">
       <Link>Pictogram.cs</Link>
     </Compile>

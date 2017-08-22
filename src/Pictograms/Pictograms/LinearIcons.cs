@@ -1,8 +1,8 @@
 ﻿#if !PORTABLE
-
+using System.Drawing.Pictograms.Attributes;
 namespace System.Drawing.Pictograms
 #else
-
+using Xamarin.Forms.Pictograms.Attributes;
 namespace Xamarin.Forms.Pictograms
 #endif
 {
@@ -10,6 +10,7 @@ namespace Xamarin.Forms.Pictograms
     /// LinearIcons
     /// <see cref="https://linearicons.com/free"/>
     /// </summary>
+    [Pictogram("LinearIcons", "linearicons-free", "https://cdn.linearicons.com/free/1.0.0/Linearicons-Free-v1.0.0.zip")]
     public class LinearIcons : Pictogram
     {
         #region Singleton
@@ -41,22 +42,9 @@ namespace Xamarin.Forms.Pictograms
 
         #endregion Singleton
 
-        public static new string URL { get { return "https://cdn.linearicons.com/free/1.0.0/Linearicons-Free-v1.0.0.zip"; } }
-
         public LinearIcons(bool @default) : this()
         {
         }
-
-        public const string Typeface = "linearicons-free";
-
-#if PORTABLE
-
-        public override string GetFontFace()
-        {
-            return LinearIcons.Typeface;
-        }
-
-#endif
 
         #region Statics
 

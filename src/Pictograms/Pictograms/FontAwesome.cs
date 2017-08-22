@@ -1,8 +1,8 @@
 ﻿#if !PORTABLE
-
+using System.Drawing.Pictograms.Attributes;
 namespace System.Drawing.Pictograms
 #else
-
+using Xamarin.Forms.Pictograms.Attributes;
 namespace Xamarin.Forms.Pictograms
 #endif
 {
@@ -10,6 +10,7 @@ namespace Xamarin.Forms.Pictograms
     /// Font Awesome
     /// <see cref="http://fontawesome.io/"/>
     /// </summary>
+    [Pictogram("FontAwesone", "fontawesome-webfont", "http://fontawesome.io/assets/font-awesome-4.7.0.zip")]
     public class FontAwesome : Pictogram
     {
 
@@ -19,10 +20,8 @@ namespace Xamarin.Forms.Pictograms
         /// Initializes the <see cref="Icon" /> class by loading the font from resources upon first use.
         /// </summary>
 #if !PORTABLE
-
         private FontAwesome() : base(Properties.Resources.fontawesome_webfont)
 #else
-
         private FontAwesome() : base()
 #endif
         {
@@ -42,22 +41,9 @@ namespace Xamarin.Forms.Pictograms
 
         #endregion Singleton
 
-        public static new string URL { get { return "http://fontawesome.io/assets/font-awesome-4.7.0.zip"; } }
-
         public FontAwesome(bool @default) : this()
         {
         }
-
-        public const string Typeface = "fontawesome-webfont";
-
-#if PORTABLE
-
-        public override string GetFontFace()
-        {
-            return FontAwesome.Typeface;
-        }
-
-#endif
 
         #region Statics
 
@@ -67,7 +53,7 @@ namespace Xamarin.Forms.Pictograms
         {
             return FontAwesome.Instance.GetImage((int)type, size, brush);
         }
-
+        
         public static Image GetImage(IconType type, int size, Color color)
         {
             return FontAwesome.Instance.GetImage((int)type, size, color);

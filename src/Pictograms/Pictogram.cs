@@ -1,19 +1,14 @@
-﻿#if !PORTABLE
-
-using System.Drawing.Text;
-
-#endif
-
-using System;
+﻿using System;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
-
 #if !PORTABLE
-
+using System.Drawing.Text;
+using System.Drawing.Pictograms.Attributes;
 namespace System.Drawing
 #else
-
+using Xamarin.Forms.Pictograms.Attributes;
 namespace Xamarin.Forms
 #endif
 {
@@ -23,7 +18,67 @@ namespace Xamarin.Forms
         {
         }
 
-        public static T GetInstance<T>()
+        internal string name;
+        public string GetName()
+        {
+            if (string.IsNullOrEmpty(name))
+#if !PORTABLE
+                name = this.GetType().GetCustomAttributes(true).OfType<PictogramAttribute>().FirstOrDefault().Name;
+#else
+                name = this.GetType().GetTypeInfo().GetCustomAttributes(typeof(PictogramAttribute)).OfType<PictogramAttribute>().FirstOrDefault().Name;
+#endif
+            return name;
+        }
+        public static string GetName<T>() where T : Pictogram
+        {
+            return GetInstance<T>().GetName();
+        }
+        public static string GetName(Type T)
+        {
+            return GetInstance(T).GetName();
+        }
+
+        internal string url;
+        public string GetUrl()
+        {
+            if (string.IsNullOrEmpty(url))
+#if !PORTABLE
+                url = this.GetType().GetCustomAttributes(true).OfType<PictogramAttribute>().FirstOrDefault().Url;
+#else
+                url = this.GetType().GetTypeInfo().GetCustomAttributes(typeof(PictogramAttribute)).OfType<PictogramAttribute>().FirstOrDefault().Url;
+#endif
+            return url;
+        }
+        public static string GetUrl<T>() where T : Pictogram
+        {
+            return GetInstance<T>().GetUrl();
+        }
+        public static string GetUrl(Type T)
+        {
+            return GetInstance(T).GetUrl();
+        }
+
+        internal string typeface;
+        public string GetTypeface()
+        {
+            if (string.IsNullOrEmpty(typeface))
+#if !PORTABLE
+                typeface = this.GetType().GetCustomAttributes(true).OfType<PictogramAttribute>().FirstOrDefault().Typeface;
+#else
+                typeface = this.GetType().GetTypeInfo().GetCustomAttributes(typeof(PictogramAttribute)).OfType<PictogramAttribute>().FirstOrDefault().Typeface;
+#endif
+            return typeface;
+        }
+        public static string GetTypeface<T>() where T : Pictogram
+        {
+            return GetInstance<T>().GetTypeface();
+        }
+        public static string GetTypeface(Type T) 
+        {
+            return GetInstance(T).GetTypeface();
+        }
+
+        public static T GetInstance<T>() where T : Pictogram
         {
 #if !PORTABLE
             return (T)typeof(T).GetProperty("Instance", BindingFlags.Public | BindingFlags.Static).GetValue(null, null);
@@ -31,16 +86,47 @@ namespace Xamarin.Forms
             return (T)typeof(T).GetRuntimeProperty("Instance").GetValue(null);
 #endif
         }
+        public static Pictogram GetInstance(Type T)
+        {
+#if !PORTABLE
+            if (T.BaseType != typeof(Pictogram))
+                throw new InvalidCastException("Type must be a Pictogram based");
+            return (Pictogram)T.GetProperty("Instance", BindingFlags.Public | BindingFlags.Static).GetValue(null, null);
+#else
+            if (T.DeclaringType != typeof(Pictogram))
+                throw new InvalidCastException("Type must be a Pictogram based");
+            return (Pictogram)T.GetRuntimeProperty("Instance").GetValue(null);
+#endif
+        }
 
-        public static string URL { get; set; }
+        public static Type GetIconTypes<T>() where T : Pictogram
+        {
+#if !PORTABLE
+            return typeof(T).GetType().Assembly.GetType($"System.Drawing.Pictograms.{typeof(T).Name}+IconType");
+#else
+            return typeof(T).GetTypeInfo().Assembly.GetType($"System.Drawing.Pictograms.{typeof(T).Name}+IconType");
+#endif
+        }
+        public static Type GetIconTypes(Type T)
+        {
+#if !PORTABLE
+            if (T.BaseType != typeof(Pictogram))
+                throw new InvalidCastException("Type must be a Pictogram based");
+            return T.Assembly.GetType($"System.Drawing.Pictograms.{T.Name}+IconType");
+#else
+            if (T.DeclaringType != typeof(Pictogram))
+                throw new InvalidCastException("Type must be a Pictogram based");
+            return T.GetTypeInfo().Assembly.GetType($"Xamarin.Forms.{T.Name}+IconType");
+#endif
+        }
 
 #if !PORTABLE
 
         public static Action DownloadCompleted { get; private set; }
 
-        public static void Download<T>()
+        public static void Download<T>() where T : Pictogram
         {
-            if (string.IsNullOrEmpty(URL))
+            if (string.IsNullOrEmpty(GetInstance<T>().GetUrl()))
                 throw new InvalidOperationException("Can't download font without an valid URL.");
 
             var fontCacheFolder = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "fonts");
@@ -52,7 +138,7 @@ namespace Xamarin.Forms
             using (var wc = new System.Net.WebClient())
             {
                 wc.DownloadFileCompleted += wc_DownloadFileCompleted;
-                wc.DownloadFile(URL, fileName);
+                wc.DownloadFile(GetInstance<T>().GetUrl(), fileName);
             }
 
         }
@@ -148,9 +234,7 @@ namespace Xamarin.Forms
                 // Test the string with the new size
                 SizeF adjustedSizeNew = g.MeasureString(graphicString, testFont);
                 if (containerWidth > Convert.ToInt32(adjustedSizeNew.Width))
-                {
                     return testFont;
-                }
             }
 
             return GetFont(smallestOnFail ? minFontSize : maxFontSize);
@@ -205,15 +289,6 @@ namespace Xamarin.Forms
         {
             return char.ConvertFromUtf32((int)type);
         }
-
-#if PORTABLE
-
-        public virtual string GetFontFace()
-        {
-            return "";
-        }
-
-#endif
 
 #if !PORTABLE
 

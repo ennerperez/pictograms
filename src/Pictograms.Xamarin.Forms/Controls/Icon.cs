@@ -24,12 +24,12 @@
         }
 
         public Icon(Pictogram glyph)
-            : this(glyph.GetFontFace())
+            : this(glyph.GetTypeface())
         {
         }
 
         public Icon(Pictogram glyph, int type)
-            : this(glyph.GetFontFace(), type)
+            : this(glyph.GetTypeface(), type)
         {
         }
 

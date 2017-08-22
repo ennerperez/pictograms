@@ -30,6 +30,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Attributes\PictogramAttribute.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="Pictogram.cs" />
     <Compile Include="Pictograms\IonIcons.cs" />

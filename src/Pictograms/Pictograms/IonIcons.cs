@@ -1,8 +1,8 @@
 ﻿#if !PORTABLE
-
+using System.Drawing.Pictograms.Attributes;
 namespace System.Drawing.Pictograms
 #else
-
+using Xamarin.Forms.Pictograms.Attributes;
 namespace Xamarin.Forms.Pictograms
 #endif
 {
@@ -10,6 +10,7 @@ namespace Xamarin.Forms.Pictograms
     /// Ionic
     /// <see cref="http://ionicons.com/"/>
     /// </summary>
+    [Pictogram("IonIcons", "ionicons", "https://github.com/driftyco/ionicons/archive/v2.0.1.zip")]
     public class IonIcons : Pictogram
     {
 
@@ -42,14 +43,10 @@ namespace Xamarin.Forms.Pictograms
 
         #endregion Singleton
 
-        public static new string URL { get { return "https://github.com/driftyco/ionicons/archive/v2.0.1.zip"; } }
-
         public IonIcons(bool @default) : this()
         {
         }
-
-        public const string Typeface = "ionicons";
-
+        
 #if PORTABLE
 
         public override string GetFontFace()

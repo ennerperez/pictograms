@@ -22,12 +22,12 @@
         }
 
         public Button(Pictogram glyph)
-            : this(glyph.GetFontFace())
+            : this(glyph.GetTypeface())
         {
         }
 
         public Button(Pictogram glyph, int type)
-            : this(glyph.GetFontFace(), type)
+            : this(glyph.GetTypeface(), type)
         {
         }
 

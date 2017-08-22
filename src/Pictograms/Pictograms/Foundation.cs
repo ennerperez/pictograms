@@ -1,8 +1,8 @@
 ﻿#if !PORTABLE
-
+using System.Drawing.Pictograms.Attributes;
 namespace System.Drawing.Pictograms
 #else
-
+using Xamarin.Forms.Pictograms.Attributes;
 namespace Xamarin.Forms.Pictograms
 #endif
 {
@@ -10,6 +10,7 @@ namespace Xamarin.Forms.Pictograms
     /// Foundation Icons
     /// <see cref="http://zurb.com/playground/foundation-icon-fonts-3"/>
     /// </summary>
+    [Pictogram("Foundation", "foundation-icons", "http://zurb.com/playground/uploads/upload/upload/288/foundation-icons.zip")]
     public class Foundation : Pictogram
     {
         #region Singleton
@@ -41,22 +42,9 @@ namespace Xamarin.Forms.Pictograms
 
         #endregion Singleton
 
-        public static new string URL { get { return "http://zurb.com/playground/uploads/upload/upload/288/foundation-icons.zip"; } }
-
         public Foundation(bool @default) : this()
         {
         }
-
-        public const string Typeface = "foundation-icons";
-
-#if PORTABLE
-
-        public override string GetFontFace()
-        {
-            return Foundation.Typeface;
-        }
-
-#endif
 
         #region Statics
 

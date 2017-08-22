@@ -21,7 +21,7 @@ namespace Xamarin.Forms.Pictograms
             //
             // fontAwesomeIcon
             //
-            fontIcon = new Icon(Pictogram.GetFontFace())
+            fontIcon = new Icon(Pictogram.GetTypeface())
             {
                 FontSize = IconSize,
                 HorizontalTextAlignment = TextAlignment.Center,

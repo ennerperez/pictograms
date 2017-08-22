@@ -102,11 +102,11 @@ namespace System.Windows.Forms.Pictograms
             }
             else if (typeof(NotifyIcon).IsAssignableFrom(@this.GetType()))
             {
-                if (color == null)
-                    color = SystemColors.ControlText;
-
                 if (size == 0)
                     size = 16;
+
+                if (color == null)
+                    color = SystemColors.ControlText;
 
                 if (brush == null)
                     brush = new SolidBrush(color.Value);
@@ -118,11 +118,12 @@ namespace System.Windows.Forms.Pictograms
             }
             else if (typeof(ImageList).IsAssignableFrom(@this.GetType()))
             {
-                if (color == null)
-                    color = SystemColors.ControlText;
 
                 if (size == 0)
                     size = ((@this as ImageList).ImageSize.Width + (@this as ImageList).ImageSize.Height) / 2;
+
+                if (color == null)
+                    color = SystemColors.ControlText;
 
                 if (brush == null)
                     brush = new SolidBrush(color.Value);
@@ -160,11 +161,12 @@ namespace System.Windows.Forms.Pictograms
 
         public static void SetIcon(this ImageList @this, Pictogram pictogram, object type, int size = 0, Color? color = null, Brush brush = null)
         {
-            if (color == null)
-                color = SystemColors.ControlText;
 
             if (size == 0)
                 size = (@this.ImageSize.Width + @this.ImageSize.Height) / 2;
+
+            if (color == null)
+                color = SystemColors.ControlText;
 
             if (brush == null)
                 brush = new SolidBrush(color.Value);
