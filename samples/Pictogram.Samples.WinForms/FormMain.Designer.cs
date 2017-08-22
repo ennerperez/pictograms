@@ -45,6 +45,7 @@
             this.listViewItems = new System.Windows.Forms.ListView();
             this.labelInformation = new System.Windows.Forms.Label();
             this.textBoxValue = new System.Windows.Forms.TextBox();
+            this.openFileDialogCustom = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).BeginInit();
             this.panelLiveDemo.SuspendLayout();
             this.toolStripLiveDemo.SuspendLayout();
@@ -195,6 +196,12 @@
             this.textBoxValue.Size = new System.Drawing.Size(128, 20);
             this.textBoxValue.TabIndex = 4;
             // 
+            // openFileDialogCustom
+            // 
+            this.openFileDialogCustom.DefaultExt = "ttf";
+            this.openFileDialogCustom.Filter = "TrueType Font|*.ttf";
+            this.openFileDialogCustom.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialogCustom_FileOk);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -238,6 +245,7 @@
         public System.Windows.Forms.ListView listViewItems;
         private System.Windows.Forms.Label labelInformation;
         private System.Windows.Forms.TextBox textBoxValue;
+        private System.Windows.Forms.OpenFileDialog openFileDialogCustom;
     }
 }
 
