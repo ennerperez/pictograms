@@ -36,5 +36,8 @@
     <!--Xamarin.Android-->
     <file src="..\Pictograms.Xamarin.Android\bin\release\Xamarin.Android.Pictograms.*" target="lib\MonoAndroid10" />
 
+    <!--Xamarin.iOS-->
+    <!--<file src="..\Pictograms.Xamarin.iOS\bin\release\Xamarin.iOS.Pictograms.*" target="lib\MonoAndroid10" />-->
+
   </files>
 </package>
