@@ -73,7 +73,7 @@ namespace Xamarin.Forms
         {
             return GetInstance<T>().GetTypeface();
         }
-        public static string GetTypeface(Type T) 
+        public static string GetTypeface(Type T)
         {
             return GetInstance(T).GetTypeface();
         }
@@ -102,51 +102,52 @@ namespace Xamarin.Forms
         public static Type GetIconTypes<T>() where T : Pictogram
         {
 #if !PORTABLE
-            return typeof(T).GetType().Assembly.GetType($"System.Drawing.Pictograms.{typeof(T).Name}+IconType");
+            var iconType = typeof(T).GetType().Assembly.GetType($"{typeof(T).FullName}+IconType");
 #else
-            return typeof(T).GetTypeInfo().Assembly.GetType($"System.Drawing.Pictograms.{typeof(T).Name}+IconType");
+            var iconType = typeof(T).GetTypeInfo().Assembly.GetType($"{typeof(T).FullName}+IconType");
 #endif
+            return iconType;
         }
         public static Type GetIconTypes(Type T)
         {
 #if !PORTABLE
             if (T.BaseType != typeof(Pictogram))
                 throw new InvalidCastException("Type must be a Pictogram based");
-            return T.Assembly.GetType($"System.Drawing.Pictograms.{T.Name}+IconType");
+            var iconType = T.Assembly.GetType($"{T.FullName}+IconType");
 #else
             if (T.DeclaringType != typeof(Pictogram))
                 throw new InvalidCastException("Type must be a Pictogram based");
-            return T.GetTypeInfo().Assembly.GetType($"Xamarin.Forms.{T.Name}+IconType");
+            var iconType =  T.GetTypeInfo().Assembly.GetType($"{typeof(T).FullName}+IconType");
 #endif
+            return iconType;
         }
 
 #if !PORTABLE
 
-        public static Action DownloadCompleted { get; private set; }
-
         public static void Download<T>() where T : Pictogram
         {
-            if (string.IsNullOrEmpty(GetInstance<T>().GetUrl()))
+            var instance = GetInstance<T>();
+            if (instance == null)
+                throw new InvalidOperationException("Can't initialize font instance.");
+
+            var url = instance.GetUrl();
+
+            if (string.IsNullOrEmpty(url))
                 throw new InvalidOperationException("Can't download font without an valid URL.");
 
-            var fontCacheFolder = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "fonts");
-            if (!System.IO.Directory.Exists(fontCacheFolder))
-                System.IO.Directory.CreateDirectory(fontCacheFolder);
+            var fontCacheFolder = IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "fonts");
+            if (!IO.Directory.Exists(fontCacheFolder))
+                IO.Directory.CreateDirectory(fontCacheFolder);
 
-            var fileName = System.IO.Path.Combine(fontCacheFolder, typeof(T).Name);
+            var fileName = IO.Path.Combine(fontCacheFolder, $"{typeof(T).Name.ToLower()}.ttf");
 
-            using (var wc = new System.Net.WebClient())
-            {
-                wc.DownloadFileCompleted += wc_DownloadFileCompleted;
-                wc.DownloadFile(GetInstance<T>().GetUrl(), fileName);
-            }
+            if (!IO.File.Exists(fileName))
+                using (var wc = new Net.WebClient())
+                    wc.DownloadFile(url, fileName);
 
-        }
+            if (IO.File.Exists(fileName))
+                instance.InitializeFont(IO.File.ReadAllBytes(fileName));
 
-        private static void wc_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
-        {
-            if (DownloadCompleted != null)
-                DownloadCompleted.Invoke();
         }
 
         public Pictogram(byte[] font) : this()
