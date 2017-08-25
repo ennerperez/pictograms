@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Drawing.Pictograms;
 using System.Windows.Forms;
 using System.Windows.Forms.Pictograms;
+using System.Threading.Tasks;
 
 namespace Pictogram.Samples.WinForms
 {
@@ -19,42 +20,75 @@ namespace Pictogram.Samples.WinForms
         {
         }
 
-        private void FormMain_Shown(object sender, EventArgs e)
+        private async void FormMain_Shown(object sender, EventArgs e)
         {
+            await Task.Factory.StartNew(() =>
+            {
+                var fontsTypes = System.Reflection.Assembly.GetAssembly(typeof(System.Drawing.Pictogram)).GetTypes()
+                    .Where(t => t.BaseType == typeof(System.Drawing.Pictogram)).Select(t => System.Drawing.Pictogram.GetInstance(t));
 
-            var fontsTypes = System.Reflection.Assembly.GetAssembly(typeof(System.Drawing.Pictogram)).GetTypes()
-                .Where(t => t.BaseType == typeof(System.Drawing.Pictogram)).Select(t => System.Drawing.Pictogram.GetInstance(t));
+                fonts = fontsTypes.ToDictionary(k => k.GetName(), v => v);
 
-            fonts = fontsTypes.ToDictionary(k => k.GetName(), v => v);
+                comboBoxFont.Invoke(new Action(() =>
+                {
+                    var datasource = fonts.ToList();
+                    datasource.Insert(0, new KeyValuePair<string, System.Drawing.Pictogram>(string.Empty, null));
+                    datasource.Add(new KeyValuePair<string, System.Drawing.Pictogram>("Untitled", System.Drawing.Pictogram.GetInstance<Untitled>()));
+                    datasource.Add(new KeyValuePair<string, System.Drawing.Pictogram>("Nucleo", System.Drawing.Pictogram.GetInstance<Nucleo>()));
 
-            comboBoxFont.DisplayMember = "Key";
-            comboBoxFont.ValueMember = "Value";
-            comboBoxFont.DataSource = fonts.ToList();
+                    System.Drawing.Pictogram.Download<Nucleo>();
+
+                    comboBoxFont.DisplayMember = "Key";
+                    comboBoxFont.ValueMember = "Value";
+                    comboBoxFont.DataSource = datasource;
+                }));
+            });
         }
 
         private void comboBoxFont_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             instance = null;
             icons = null;
             clear();
 
-            var fontName = (comboBoxFont.SelectedValue as System.Drawing.Pictogram).GetName();
-            var TFont = (comboBoxFont.SelectedValue as System.Drawing.Pictogram).GetType();
-            var TIcons = System.Drawing.Pictogram.GetIconTypes(TFont);
-            instance = (System.Drawing.Pictogram)System.Drawing.Pictogram.GetInstance(TFont);
-            icons = Enum.GetNames(TIcons);
+            if (comboBoxFont.SelectedValue != null)
+            {
 
-            listViewItems.Items.Clear();
-            imageListIcons.Images.Clear();
+                var fontName = (comboBoxFont.SelectedValue as System.Drawing.Pictogram).GetName();
+                var TFont = (comboBoxFont.SelectedValue as System.Drawing.Pictogram).GetType();
+                instance = (System.Drawing.Pictogram)System.Drawing.Pictogram.GetInstance(TFont);
 
-            if (icons != null)
-                foreach (var item in icons)
+                listViewItems.Items.Clear();
+                imageListIcons.Images.Clear();
+
+                var TIcons = System.Drawing.Pictogram.GetIconTypes(TFont);
+                if (TIcons != null)
                 {
-                    object icon = Enum.Parse(TIcons, item, true);
-                    var img = instance.GetImage((int)icon, 48);
-                    imageListIcons.Images.Add(item, img);
-                    listViewItems.Items.Add(item, icons.IndexOf(item));
-                };
+                    icons = Enum.GetNames(TIcons);
+                    if (icons != null)
+                        foreach (var item in icons)
+                        {
+                            object icon = Enum.Parse(TIcons, item, true);
+                            var img = instance.GetImage((int)icon, 48);
+                            imageListIcons.Images.Add(item, img);
+                            listViewItems.Items.Add(item, icons.IndexOf(item));
+                        };
+                }
+                else
+                {
+                    for (int i = 0; i < 241; i++)
+                    {
+                        var img = instance.GetImage(i, 48);
+                        imageListIcons.Images.Add(i.ToString(), img);
+                        listViewItems.Items.Add(i.ToString(), i);
+                    }
+                }
+
+            }
+
+            Cursor = Cursors.Default;
+
         }
 
         private Dictionary<string, System.Drawing.Pictogram> fonts;
@@ -65,12 +99,15 @@ namespace Pictogram.Samples.WinForms
         {
             if (listViewItems.SelectedItems != null && listViewItems.SelectedItems.Count > 0)
             {
-
-                var TFont = (comboBoxFont.SelectedValue as System.Drawing.Pictogram).GetType();
-                var TIcons = System.Drawing.Pictogram.GetIconTypes(TFont);
-
                 var item = listViewItems.SelectedItems[0].Text;
-                object icon = Enum.Parse(TIcons, item, true);
+                var TFont = (comboBoxFont.SelectedValue as System.Drawing.Pictogram).GetType();
+
+                var TIcons = System.Drawing.Pictogram.GetIconTypes(TFont);
+                object icon = null;
+                if (TIcons != null)
+                    icon = Enum.Parse(TIcons, item, true);
+                else
+                    icon = int.Parse( listViewItems.SelectedItems[0].Text);
 
                 textBoxValue.Text = ((int)icon).ToString();
 

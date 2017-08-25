@@ -59,5 +59,15 @@ namespace Pictogram.Samples.WinForms.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Byte[].
+        /// </summary>
+        internal static byte[] Untitled {
+            get {
+                object obj = ResourceManager.GetObject("Untitled", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }
