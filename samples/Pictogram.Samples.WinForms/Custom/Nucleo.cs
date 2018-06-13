@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Pictogram.Samples.WinForms
 {
-    [Pictogram("nucleo", "nucleo-glyph", "https://github.com/mattcreager/herokai/blob/master/public/fonts/nucleo-glyph.ttf?raw=true")]
+    [Pictogram("nucleo", "nucleo-glyph", "http://github.com/mattcreager/herokai/blob/master/public/fonts/nucleo-glyph.ttf?raw=true")]
     public class Nucleo : System.Drawing.Pictogram
     {
         #region Singleton
@@ -15,6 +15,7 @@ namespace Pictogram.Samples.WinForms
         /// Initializes the <see cref="Icon" /> class by loading the font from resources upon first use.
         /// </summary>
 #if !PORTABLE
+
         private Nucleo() : base()
 #else
         private Nucleo() : base()
@@ -40,6 +41,11 @@ namespace Pictogram.Samples.WinForms
         {
         }
 
-
+        public class IconType : Tuple<int, int>
+        {
+            public IconType() : base(58880, 60284)
+            {
+            }
+        }
     }
 }

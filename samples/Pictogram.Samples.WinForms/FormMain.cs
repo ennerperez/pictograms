@@ -6,6 +6,8 @@ using System.Drawing.Pictograms;
 using System.Windows.Forms;
 using System.Windows.Forms.Pictograms;
 using System.Threading.Tasks;
+using System.Net;
+using System.IO;
 
 namespace Pictogram.Samples.WinForms
 {
@@ -36,8 +38,6 @@ namespace Pictogram.Samples.WinForms
                     datasource.Add(new KeyValuePair<string, System.Drawing.Pictogram>("Untitled", System.Drawing.Pictogram.GetInstance<Untitled>()));
                     datasource.Add(new KeyValuePair<string, System.Drawing.Pictogram>("Nucleo", System.Drawing.Pictogram.GetInstance<Nucleo>()));
 
-                    System.Drawing.Pictogram.Download<Nucleo>();
-
                     comboBoxFont.DisplayMember = "Key";
                     comboBoxFont.ValueMember = "Value";
                     comboBoxFont.DataSource = datasource;
@@ -45,7 +45,7 @@ namespace Pictogram.Samples.WinForms
             });
         }
 
-        private void comboBoxFont_SelectedIndexChanged(object sender, EventArgs e)
+        private async void comboBoxFont_SelectedIndexChanged(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
             instance = null;
@@ -54,41 +54,98 @@ namespace Pictogram.Samples.WinForms
 
             if (comboBoxFont.SelectedValue != null)
             {
-
                 var fontName = (comboBoxFont.SelectedValue as System.Drawing.Pictogram).GetName();
                 var TFont = (comboBoxFont.SelectedValue as System.Drawing.Pictogram).GetType();
                 instance = (System.Drawing.Pictogram)System.Drawing.Pictogram.GetInstance(TFont);
 
+                if (instance.FontFamily == null)
+                {
+                    var url = instance.GetUrl();
+
+                    var fontCacheFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "fonts");
+                    if (!Directory.Exists(fontCacheFolder))
+                        Directory.CreateDirectory(fontCacheFolder);
+
+                    var fileName = Path.Combine(fontCacheFolder, $"{instance.GetName().ToLower()}.ttf");
+
+                    if (File.Exists(fileName) && new FileInfo(fileName).Length == 0)
+                        File.Delete(fileName);
+
+                    if (!File.Exists(fileName))
+                    {
+                        using (var wc = new WebClient())
+                        {
+                            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+                            wc.DownloadFile(url, fileName);
+                        }
+                    }
+
+                    if (File.Exists(fileName))
+                        instance.InitializeFont(File.ReadAllBytes(fileName));
+                }
+
                 listViewItems.Items.Clear();
                 imageListIcons.Images.Clear();
 
+                Task task = null;
                 var TIcons = System.Drawing.Pictogram.GetIconTypes(TFont);
                 if (TIcons != null)
                 {
-                    icons = Enum.GetNames(TIcons);
-                    if (icons != null)
-                        foreach (var item in icons)
+                    if (TIcons.IsEnum)
+                    {
+                        icons = Enum.GetNames(TIcons);
+                        task = Task.Run(() =>
                         {
-                            object icon = Enum.Parse(TIcons, item, true);
-                            var img = instance.GetImage((int)icon, 48);
-                            imageListIcons.Images.Add(item, img);
-                            listViewItems.Items.Add(item, icons.IndexOf(item));
-                        };
+                            if (icons != null)
+                                foreach (var item in icons)
+                                {
+                                    object icon = Enum.Parse(TIcons, item, true);
+                                    var img = instance.GetImage((int)icon, 48);
+                                    listViewItems.Invoke((MethodInvoker)delegate
+                                    {
+                                        imageListIcons.Images.Add(item, img);
+                                        listViewItems.Items.Add(item, icons.IndexOf(item));
+                                    });
+                                };
+                        });
+                    }
+                    else if (TIcons.BaseType == typeof(Tuple<int, int>))
+                    {
+                        var tuple = (Tuple<int, int>)Activator.CreateInstance(TIcons);
+                        task = Task.Run(() =>
+                        {
+                            for (int i = tuple.Item1; i < tuple.Item2; i++)
+                            {
+                                var img = instance.GetImage(i, 48);
+                                listViewItems.Invoke((MethodInvoker)delegate
+                                {
+                                    imageListIcons.Images.Add(i.ToString(), img);
+                                    listViewItems.Items.Add(new ListViewItem(i.ToString()) { ImageKey = i.ToString() });
+                                });
+                            }
+                        });
+                    }
                 }
                 else
                 {
-                    for (int i = 0; i < 241; i++)
+                    task = Task.Run(() =>
                     {
-                        var img = instance.GetImage(i, 48);
-                        imageListIcons.Images.Add(i.ToString(), img);
-                        listViewItems.Items.Add(i.ToString(), i);
-                    }
+                        for (int i = 0; i < 241; i++)
+                        {
+                            var img = instance.GetImage(i, 48);
+                            listViewItems.Invoke((MethodInvoker)delegate
+                            {
+                                imageListIcons.Images.Add(i.ToString(), img);
+                                listViewItems.Items.Add(i.ToString(), i);
+                            });
+                        }
+                    });
                 }
-
+                if (task != null)
+                    await task;
             }
 
             Cursor = Cursors.Default;
-
         }
 
         private Dictionary<string, System.Drawing.Pictogram> fonts;
@@ -104,10 +161,10 @@ namespace Pictogram.Samples.WinForms
 
                 var TIcons = System.Drawing.Pictogram.GetIconTypes(TFont);
                 object icon = null;
-                if (TIcons != null)
+                if (TIcons != null && TIcons.IsEnum)
                     icon = Enum.Parse(TIcons, item, true);
                 else
-                    icon = int.Parse( listViewItems.SelectedItems[0].Text);
+                    icon = int.Parse(listViewItems.SelectedItems[0].Text);
 
                 textBoxValue.Text = ((int)icon).ToString();
 
@@ -123,6 +180,7 @@ namespace Pictogram.Samples.WinForms
             else
                 clear();
         }
+
         private void clear()
         {
             textBoxValue.Text = string.Empty;
