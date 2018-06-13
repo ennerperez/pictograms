@@ -19,14 +19,7 @@ See the [changelog](CHANGELOG.md) for changes.
 - [Material Design](http://www.google.com/design/spec/style/icons.html#icons-system-icons)
 
 ## Roadmap
-<<<<<<< HEAD
-- [ ] [Ionicons](http://ionicons.com/)
-- [ ] [IcoMoon](https://icomoon.io/)
-- [x] Windows Forms Extensions
-- [ ] Windows Forms Components
-=======
 - [ ] Downloadable Fonts
->>>>>>> develop
 
 ## Table of contents
 

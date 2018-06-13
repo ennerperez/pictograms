@@ -1,40 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
+﻿#if !PORTABLE
 
 using System.Drawing.Pictograms.Attributes;
 
 namespace System.Drawing.Pictograms
-<<<<<<< HEAD:Pictograms/Pictograms/MaterialDesign.cs
-=======
 #else
 using Xamarin.Forms.Pictograms.Attributes;
 namespace Xamarin.Forms.Pictograms
 #endif
->>>>>>> develop:src/Pictograms/Pictograms/MaterialDesign.cs
 {
-
     /// <summary>
     /// LinearIcons
     /// <see cref="http://www.google.com/design/spec/style/icons.html#icons-system-icons"/>
-<<<<<<< HEAD:Pictograms/Pictograms/MaterialDesign.cs
-    /// </summary>   
-=======
     /// </summary>
     [Pictogram("MaterialDesign", "MaterialIcons-Regular", "https://raw.githubusercontent.com/google/material-design-icons/master/iconfont/MaterialIcons-Regular.ttf")]
->>>>>>> develop:src/Pictograms/Pictograms/MaterialDesign.cs
     public class MaterialDesign : Pictogram
     {
-
         #region Singleton
 
         /// <summary>
         /// Initializes the <see cref="Icon" /> class by loading the font from resources upon first use.
         /// </summary>
-<<<<<<< HEAD:Pictograms/Pictograms/MaterialDesign.cs
-        private MaterialDesign() : base(Properties.Resources.MaterialIcons_Regular)
-=======
 #if !PORTABLE
 
         private MaterialDesign() : base(Properties.Resources.materialicons_regular)
@@ -42,9 +27,10 @@ namespace Xamarin.Forms.Pictograms
 
         private MaterialDesign() : base()
 #endif
->>>>>>> develop:src/Pictograms/Pictograms/MaterialDesign.cs
         {
         }
+
+        internal static MaterialDesign instance;
 
         public static MaterialDesign Instance
         {
@@ -56,7 +42,7 @@ namespace Xamarin.Forms.Pictograms
             }
         }
 
-        #endregion
+        #endregion Singleton
 
         public MaterialDesign(bool @default) : this()
         {
@@ -64,30 +50,40 @@ namespace Xamarin.Forms.Pictograms
 
         #region Statics
 
+#if !PORTABLE
+
         public static Image GetImage(IconType type, int size, Brush brush)
         {
             return MaterialDesign.Instance.GetImage((int)type, size, brush);
         }
+
         public static Image GetImage(IconType type, int size, Color color)
         {
             return MaterialDesign.Instance.GetImage((int)type, size, color);
         }
+
         public static Image GetImage(IconType type, int size)
         {
             return MaterialDesign.Instance.GetImage((int)type, size);
         }
+
+#endif
 
         public static string GetText(IconType type)
         {
             return char.ConvertFromUtf32((int)type);
         }
 
+#if !PORTABLE
+
         public static new Font GetFont(float size, GraphicsUnit units = GraphicsUnit.Point)
         {
             return new Font(MaterialDesign.Instance.fonts.Families[0], size, units);
         }
 
-        #endregion
+#endif
+
+        #endregion Statics
 
         /// <summary>
         /// Version 2.2.0
@@ -1027,6 +1023,5 @@ namespace Xamarin.Forms.Pictograms
             zoom_out = 0xe900,
             zoom_out_map = 0xe56b
         }
-
     }
 }

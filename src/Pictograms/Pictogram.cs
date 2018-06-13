@@ -1,17 +1,10 @@
-<<<<<<< HEAD:Pictograms/Pictogram.cs
-﻿using System.Drawing.Text;
-=======
 ﻿using System;
 using System.Linq;
 using System.Reflection;
->>>>>>> develop:src/Pictograms/Pictogram.cs
 using System.Runtime.InteropServices;
 using System.ComponentModel;
 using System.Net;
 
-<<<<<<< HEAD:Pictograms/Pictogram.cs
-namespace System.Drawing
-=======
 #if !PORTABLE
 
 using System.Drawing.Text;
@@ -24,21 +17,13 @@ using Xamarin.Forms.Pictograms.Attributes;
 
 namespace Xamarin.Forms
 #endif
->>>>>>> develop:src/Pictograms/Pictogram.cs
 {
     public class Pictogram : IDisposable
     {
-
-        internal static Pictogram instance;
-
-        public static T GetInstance<T>() where T: Pictogram
+        public Pictogram()
         {
-            return (T)instance;
         }
 
-<<<<<<< HEAD:Pictograms/Pictogram.cs
-        public Pictogram()
-=======
         internal string name;
 
         public string GetName()
@@ -109,12 +94,14 @@ namespace Xamarin.Forms
         }
 
         public static T GetInstance<T>() where T : Pictogram
->>>>>>> develop:src/Pictograms/Pictogram.cs
         {
+#if !PORTABLE
+            return (T)typeof(T).GetProperty("Instance", BindingFlags.Public | BindingFlags.Static).GetValue(null, null);
+#else
+            return (T)typeof(T).GetRuntimeProperty("Instance").GetValue(null);
+#endif
         }
 
-<<<<<<< HEAD:Pictograms/Pictogram.cs
-=======
         public static Pictogram GetInstance(Type T)
         {
 #if !PORTABLE
@@ -191,7 +178,6 @@ namespace Xamarin.Forms
                 instance.InitializeFont(IO.File.ReadAllBytes(fileName));
         }
 
->>>>>>> develop:src/Pictograms/Pictogram.cs
         public Pictogram(byte[] font) : this()
         {
             InitializeFont(font);
@@ -239,13 +225,11 @@ namespace Xamarin.Forms
                 uint dummy = 0;
                 fonts.AddMemoryFont(fontBuffer, fontData.Length);
                 NativeMethods.AddFontMemResourceEx((IntPtr)fontBuffer, (uint)fontData.Length, IntPtr.Zero, ref dummy);
-
             }
             catch (Exception ex)
             {
                 throw new FormatException("Invalid font data", ex);
             }
-
         }
 
         #region Methods
@@ -285,15 +269,9 @@ namespace Xamarin.Forms
             return GetFont(smallestOnFail ? minFontSize : maxFontSize);
         }
 
-<<<<<<< HEAD:Pictograms/Pictogram.cs
-        #endregion
-        
-        public Image GetImage(int type, int size, Brush brush)
-=======
         #endregion Methods
 
         public virtual Image GetImage(int type, int size, Brush brush)
->>>>>>> develop:src/Pictograms/Pictogram.cs
         {
             System.Drawing.Bitmap result = new System.Drawing.Bitmap(size, size);
             string IconChar = char.ConvertFromUtf32((int)type);
@@ -319,44 +297,39 @@ namespace Xamarin.Forms
 
                 // Draw string to screen.
                 graphics.DrawString(IconChar, iconFont, brush, new PointF(left, top));
-
             }
 
             return result;
         }
-        public Image GetImage(int type, int size, Color color)
+
+        public virtual Image GetImage(int type, int size, Color color)
         {
             return GetImage(type, size, new SolidBrush(color));
         }
-        public Image GetImage(int type, int size)
+
+        public virtual Image GetImage(int type, int size)
         {
             return GetImage(type, size, SystemColors.ControlText);
         }
 
-        public string GetText(int type)
+#endif
+
+        public virtual string GetText(int type)
         {
             return char.ConvertFromUtf32((int)type);
         }
 
-<<<<<<< HEAD:Pictograms/Pictogram.cs
-        public Font GetFont(float size, GraphicsUnit units = GraphicsUnit.Point)
-=======
 #if !PORTABLE
 
         public virtual Font GetFont(float size, GraphicsUnit units = GraphicsUnit.Point)
->>>>>>> develop:src/Pictograms/Pictogram.cs
         {
             return new Font(fonts.Families[0], size, units);
         }
 
-<<<<<<< HEAD:Pictograms/Pictogram.cs
-        #region IDisposable Support
-=======
 #endif
 
         #region IDisposable Support
 
->>>>>>> develop:src/Pictograms/Pictogram.cs
         private bool disposedValue = false; // Para detectar llamadas redundantes
 
         protected virtual void Dispose(bool disposing)
@@ -366,7 +339,9 @@ namespace Xamarin.Forms
                 if (disposing)
                 {
                     // TODO: elimine el estado administrado (objetos administrados).
+#if !PORTABLE
                     fonts.Dispose();
+#endif
                 }
 
                 // TODO: libere los recursos no administrados (objetos no administrados) y reemplace el siguiente finalizador.
@@ -390,12 +365,7 @@ namespace Xamarin.Forms
             // TODO: quite la marca de comentario de la siguiente línea si el finalizador se ha reemplazado antes.
             // GC.SuppressFinalize(this);
         }
-        #endregion
 
-
-<<<<<<< HEAD:Pictograms/Pictogram.cs
-=======
         #endregion IDisposable Support
->>>>>>> develop:src/Pictograms/Pictogram.cs
     }
 }

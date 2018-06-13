@@ -1,13 +1,3 @@
-<<<<<<< HEAD:Pictograms/Pictograms/FontAwesome.cs
-﻿using System;
-using System.Diagnostics;
-using System.Drawing;
-using System.Drawing.Text;
-using System.ComponentModel;
-using System.Runtime.InteropServices;
-
-namespace System.Drawing.Pictograms
-=======
 ﻿#if !PORTABLE
 using System.Drawing.Pictograms.Attributes;
 namespace System.Drawing.Pictograms
@@ -15,7 +5,6 @@ namespace System.Drawing.Pictograms
 using Xamarin.Forms.Pictograms.Attributes;
 namespace Xamarin.Forms.Pictograms
 #endif
->>>>>>> develop:src/Pictograms/Pictograms/FontAwesome.cs
 {
     /// <summary>
     /// Font Awesome
@@ -30,17 +19,15 @@ namespace Xamarin.Forms.Pictograms
         /// <summary>
         /// Initializes the <see cref="Icon" /> class by loading the font from resources upon first use.
         /// </summary>
-<<<<<<< HEAD:Pictograms/Pictograms/FontAwesome.cs
-        private FontAwesome() : base(Properties.Resources.fontawesome_webfont)
-=======
 #if !PORTABLE
         private FontAwesome() : base(Properties.Resources.fontawesome_webfont)
 #else
         private FontAwesome() : base()
 #endif
->>>>>>> develop:src/Pictograms/Pictograms/FontAwesome.cs
         {
         }
+
+        internal static FontAwesome instance;
 
         public static FontAwesome Instance
         {
@@ -52,7 +39,7 @@ namespace Xamarin.Forms.Pictograms
             }
         }
 
-        #endregion
+        #endregion Singleton
 
         public FontAwesome(bool @default) : this()
         {
@@ -60,72 +47,46 @@ namespace Xamarin.Forms.Pictograms
 
         #region Statics
 
+#if !PORTABLE
+
         public static Image GetImage(IconType type, int size, Brush brush)
         {
             return FontAwesome.Instance.GetImage((int)type, size, brush);
         }
-<<<<<<< HEAD:Pictograms/Pictograms/FontAwesome.cs
-=======
         
->>>>>>> develop:src/Pictograms/Pictograms/FontAwesome.cs
         public static Image GetImage(IconType type, int size, Color color)
         {
             return FontAwesome.Instance.GetImage((int)type, size, color);
         }
+
         public static Image GetImage(IconType type, int size)
         {
             return FontAwesome.Instance.GetImage((int)type, size);
         }
+
+#endif
 
         public static string GetText(IconType type)
         {
             return char.ConvertFromUtf32((int)type);
         }
 
+#if !PORTABLE
+
         public static new Font GetFont(float size, GraphicsUnit units = GraphicsUnit.Point)
         {
             return new Font(FontAwesome.Instance.fonts.Families[0], size, units);
         }
 
-        #endregion
+#endif
+
+        #endregion Statics
 
         /// <summary>
         /// Version 4.7.0
         /// </summary>
         public enum IconType : int
         {
-<<<<<<< HEAD:Pictograms/Pictograms/FontAwesome.cs
-            // 4.6.1 ->
-            gitlab = 0xf296,
-            wpbeginner = 0xf297,
-            wpforms = 0xf298,
-            envira = 0xf299,
-            universal_access = 0xf29a,
-            wheelchair_alt = 0xf29b,
-            question_circle_o = 0xf29c,
-            blind = 0xf29d,
-            audio_description = 0xf29e,
-            volume_control_phone = 0xf2a0,
-            braille = 0xf2a1,
-            assistive_listening_systems = 0xf2a2,
-            asl_interpreting = 0xf2a3,
-            american_sign_language_interpreting = asl_interpreting,
-            deafness = 0xf2a4,
-            hard_of_hearing = deafness,
-            deaf = deafness,
-            glide = 0xf2a5,
-            glide_g = 0xf2a6,
-            signing = 0xf2a7,
-            sign_language = signing,
-            low_vision = 0xf2a8,
-            viadeo = 0xf2a9,
-            viadeo_square = 0xf2aa,
-            snapchat = 0xf2ab,
-            snapchat_ghost = 0xf2ac,
-            snapchat_square = 0xf2ad,
-            // 4.6.1 <-
-=======
->>>>>>> develop:src/Pictograms/Pictograms/FontAwesome.cs
             glass = 0xf000,
             music = 0xf001,
             search = 0xf002,
@@ -802,6 +763,5 @@ namespace Xamarin.Forms.Pictograms
             wpexplorer = 0xf2de,
             meetup = 0xf2e0,
         }
-
     }
 }

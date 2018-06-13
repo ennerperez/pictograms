@@ -1,11 +1,3 @@
-<<<<<<< HEAD:Pictograms/Pictograms/LinearIcons.cs
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Text;
-
-namespace System.Drawing.Pictograms
-=======
 ﻿#if !PORTABLE
 using System.Drawing.Pictograms.Attributes;
 namespace System.Drawing.Pictograms
@@ -13,29 +5,30 @@ namespace System.Drawing.Pictograms
 using Xamarin.Forms.Pictograms.Attributes;
 namespace Xamarin.Forms.Pictograms
 #endif
->>>>>>> develop:src/Pictograms/Pictograms/LinearIcons.cs
 {
-
     /// <summary>
     /// LinearIcons
     /// <see cref="https://linearicons.com/free"/>
-<<<<<<< HEAD:Pictograms/Pictograms/LinearIcons.cs
-    /// </summary>   
-=======
     /// </summary>
     [Pictogram("LinearIcons", "linearicons-free", "https://cdn.linearicons.com/free/1.0.0/Linearicons-Free-v1.0.0.zip")]
->>>>>>> develop:src/Pictograms/Pictograms/LinearIcons.cs
     public class LinearIcons : Pictogram
     {
-
         #region Singleton
 
         /// <summary>
         /// Initializes the <see cref="Icon" /> class by loading the font from resources upon first use.
         /// </summary>
+#if !PORTABLE
+
         private LinearIcons() : base(Properties.Resources.linearicons_free)
+#else
+
+        private LinearIcons() : base()
+#endif
         {
         }
+
+        internal static LinearIcons instance;
 
         public static LinearIcons Instance
         {
@@ -47,7 +40,7 @@ namespace Xamarin.Forms.Pictograms
             }
         }
 
-        #endregion
+        #endregion Singleton
 
         public LinearIcons(bool @default) : this()
         {
@@ -55,30 +48,40 @@ namespace Xamarin.Forms.Pictograms
 
         #region Statics
 
+#if !PORTABLE
+
         public static Image GetImage(IconType type, int size, Brush brush)
         {
             return LinearIcons.Instance.GetImage((int)type, size, brush);
         }
+
         public static Image GetImage(IconType type, int size, Color color)
         {
             return LinearIcons.Instance.GetImage((int)type, size, color);
         }
+
         public static Image GetImage(IconType type, int size)
         {
             return LinearIcons.Instance.GetImage((int)type, size);
         }
+
+#endif
 
         public static string GetText(IconType type)
         {
             return char.ConvertFromUtf32((int)type);
         }
 
+#if !PORTABLE
+
         public static new Font GetFont(float size, GraphicsUnit units = GraphicsUnit.Point)
         {
             return new Font(LinearIcons.Instance.fonts.Families[0], size, units);
         }
 
-        #endregion
+#endif
+
+        #endregion Statics
 
         /// <summary>
         /// Version 1.0.0
@@ -256,6 +259,5 @@ namespace Xamarin.Forms.Pictograms
             pointer_down = 0xe8a8,
             pointer_left = 0xe8a9,
         }
-
     }
 }
