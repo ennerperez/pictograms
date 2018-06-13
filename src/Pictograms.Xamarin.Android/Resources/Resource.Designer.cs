@@ -2175,8 +2175,26 @@ namespace Xamarin.Android.Pictograms
 			// aapt resource value: 0x7f020053
 			public static int avd_hide_password = 2130837587;
 			
+			// aapt resource value: 0x7f020109
+			public static int avd_hide_password_1 = 2130837769;
+			
+			// aapt resource value: 0x7f02010a
+			public static int avd_hide_password_2 = 2130837770;
+			
+			// aapt resource value: 0x7f02010b
+			public static int avd_hide_password_3 = 2130837771;
+			
 			// aapt resource value: 0x7f020054
 			public static int avd_show_password = 2130837588;
+			
+			// aapt resource value: 0x7f02010c
+			public static int avd_show_password_1 = 2130837772;
+			
+			// aapt resource value: 0x7f02010d
+			public static int avd_show_password_2 = 2130837773;
+			
+			// aapt resource value: 0x7f02010e
+			public static int avd_show_password_3 = 2130837774;
 			
 			// aapt resource value: 0x7f020055
 			public static int design_bottom_navigation_item_background = 2130837589;
