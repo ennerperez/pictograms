@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [1.2.20] - [UNRELEASED]
+## [1.2.20] - [2018-06-13]
 ### Added
 - FontAwesome 4.0.7
 - IonIcons 2.0.1
@@ -16,11 +16,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ### Changed
 - Unified version
 
-## [1.0.15] - [2016-05-28]
+## [1.1.15] - [2016-05-28]
 ### Fixed
 - Generics extensions
 
-## [1.0.14] - [2016-04-26]
+## [1.1.14] - [2016-04-26]
 ### Changed
 - NETFX40 Base migrated
 
@@ -29,6 +29,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Added
 - Windows Forms Extensions
+
+## [1.0.13] - [YANKED]
 
 ## [1.0.12] - [2016-04-22]
 ### Changed
