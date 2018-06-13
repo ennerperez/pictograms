@@ -3,12 +3,18 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
+using System.Net;
+
 #if !PORTABLE
+
 using System.Drawing.Text;
 using System.Drawing.Pictograms.Attributes;
+
 namespace System.Drawing
 #else
+
 using Xamarin.Forms.Pictograms.Attributes;
+
 namespace Xamarin.Forms
 #endif
 {
@@ -19,6 +25,7 @@ namespace Xamarin.Forms
         }
 
         internal string name;
+
         public string GetName()
         {
             if (string.IsNullOrEmpty(name))
@@ -29,16 +36,19 @@ namespace Xamarin.Forms
 #endif
             return name;
         }
+
         public static string GetName<T>() where T : Pictogram
         {
             return GetInstance<T>().GetName();
         }
+
         public static string GetName(Type T)
         {
             return GetInstance(T).GetName();
         }
 
         internal string url;
+
         public string GetUrl()
         {
             if (string.IsNullOrEmpty(url))
@@ -49,16 +59,19 @@ namespace Xamarin.Forms
 #endif
             return url;
         }
+
         public static string GetUrl<T>() where T : Pictogram
         {
             return GetInstance<T>().GetUrl();
         }
+
         public static string GetUrl(Type T)
         {
             return GetInstance(T).GetUrl();
         }
 
         internal string typeface;
+
         public string GetTypeface()
         {
             if (string.IsNullOrEmpty(typeface))
@@ -69,10 +82,12 @@ namespace Xamarin.Forms
 #endif
             return typeface;
         }
+
         public static string GetTypeface<T>() where T : Pictogram
         {
             return GetInstance<T>().GetTypeface();
         }
+
         public static string GetTypeface(Type T)
         {
             return GetInstance(T).GetTypeface();
@@ -86,6 +101,7 @@ namespace Xamarin.Forms
             return (T)typeof(T).GetRuntimeProperty("Instance").GetValue(null);
 #endif
         }
+
         public static Pictogram GetInstance(Type T)
         {
 #if !PORTABLE
@@ -108,6 +124,7 @@ namespace Xamarin.Forms
 #endif
             return iconType;
         }
+
         public static Type GetIconTypes(Type T)
         {
 #if !PORTABLE
@@ -117,7 +134,7 @@ namespace Xamarin.Forms
 #else
             if (T.DeclaringType != typeof(Pictogram))
                 throw new InvalidCastException("Type must be a Pictogram based");
-            var iconType =  T.GetTypeInfo().Assembly.GetType($"{typeof(T).FullName}+IconType");
+            var iconType = T.GetTypeInfo().Assembly.GetType($"{T.GetType().FullName}+IconType");
 #endif
             return iconType;
         }
@@ -141,13 +158,24 @@ namespace Xamarin.Forms
 
             var fileName = IO.Path.Combine(fontCacheFolder, $"{typeof(T).Name.ToLower()}.ttf");
 
+            if (IO.File.Exists(fileName) && new IO.FileInfo(fileName).Length == 0)
+                IO.File.Delete(fileName);
+
             if (!IO.File.Exists(fileName))
-                using (var wc = new Net.WebClient())
-                    wc.DownloadFile(url, fileName);
+            {
+                try
+                {
+                    using (var wc = new WebClient())
+                        wc.DownloadFile(url, fileName);
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
+            }
 
             if (IO.File.Exists(fileName))
                 instance.InitializeFont(IO.File.ReadAllBytes(fileName));
-
         }
 
         public Pictogram(byte[] font) : this()
@@ -172,7 +200,7 @@ namespace Xamarin.Forms
         {
             get
             {
-                return fonts.Families[0];
+                return fonts.Families != null && fonts.Families.Any() ? fonts.Families[0] : null;
             }
             private set
             {
@@ -187,7 +215,7 @@ namespace Xamarin.Forms
         /// <summary>
         /// Loads the icon font from the resources.
         /// </summary>
-        internal void InitializeFont(byte[] fontData)
+        public void InitializeFont(byte[] fontData)
         {
             try
             {

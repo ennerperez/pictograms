@@ -1,5 +1,7 @@
 ﻿#if !PORTABLE
+
 using System.Drawing.Pictograms.Attributes;
+
 namespace System.Drawing.Pictograms
 #else
 using Xamarin.Forms.Pictograms.Attributes;
