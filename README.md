@@ -18,9 +18,6 @@ See the [changelog](CHANGELOG.md) for changes.
 - [LinearIcons](https://linearicons.com/free)
 - [Material Design](http://www.google.com/design/spec/style/icons.html#icons-system-icons)
 
-## Roadmap
-- [ ] Downloadable Fonts
-
 ## Table of contents
 
 * [Implementing](#implementing)
