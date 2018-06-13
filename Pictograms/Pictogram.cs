@@ -1,7 +1,30 @@
+<<<<<<< HEAD:Pictograms/Pictogram.cs
 ﻿using System.Drawing.Text;
+=======
+﻿using System;
+using System.Linq;
+using System.Reflection;
+>>>>>>> develop:src/Pictograms/Pictogram.cs
 using System.Runtime.InteropServices;
+using System.ComponentModel;
+using System.Net;
+
+<<<<<<< HEAD:Pictograms/Pictogram.cs
+namespace System.Drawing
+=======
+#if !PORTABLE
+
+using System.Drawing.Text;
+using System.Drawing.Pictograms.Attributes;
 
 namespace System.Drawing
+#else
+
+using Xamarin.Forms.Pictograms.Attributes;
+
+namespace Xamarin.Forms
+#endif
+>>>>>>> develop:src/Pictograms/Pictogram.cs
 {
     public class Pictogram : IDisposable
     {
@@ -13,10 +36,162 @@ namespace System.Drawing
             return (T)instance;
         }
 
+<<<<<<< HEAD:Pictograms/Pictogram.cs
         public Pictogram()
+=======
+        internal string name;
+
+        public string GetName()
+        {
+            if (string.IsNullOrEmpty(name))
+#if !PORTABLE
+                name = this.GetType().GetCustomAttributes(true).OfType<PictogramAttribute>().FirstOrDefault().Name;
+#else
+                name = this.GetType().GetTypeInfo().GetCustomAttributes(typeof(PictogramAttribute)).OfType<PictogramAttribute>().FirstOrDefault().Name;
+#endif
+            return name;
+        }
+
+        public static string GetName<T>() where T : Pictogram
+        {
+            return GetInstance<T>().GetName();
+        }
+
+        public static string GetName(Type T)
+        {
+            return GetInstance(T).GetName();
+        }
+
+        internal string url;
+
+        public string GetUrl()
+        {
+            if (string.IsNullOrEmpty(url))
+#if !PORTABLE
+                url = this.GetType().GetCustomAttributes(true).OfType<PictogramAttribute>().FirstOrDefault().Url;
+#else
+                url = this.GetType().GetTypeInfo().GetCustomAttributes(typeof(PictogramAttribute)).OfType<PictogramAttribute>().FirstOrDefault().Url;
+#endif
+            return url;
+        }
+
+        public static string GetUrl<T>() where T : Pictogram
+        {
+            return GetInstance<T>().GetUrl();
+        }
+
+        public static string GetUrl(Type T)
+        {
+            return GetInstance(T).GetUrl();
+        }
+
+        internal string typeface;
+
+        public string GetTypeface()
+        {
+            if (string.IsNullOrEmpty(typeface))
+#if !PORTABLE
+                typeface = this.GetType().GetCustomAttributes(true).OfType<PictogramAttribute>().FirstOrDefault().Typeface;
+#else
+                typeface = this.GetType().GetTypeInfo().GetCustomAttributes(typeof(PictogramAttribute)).OfType<PictogramAttribute>().FirstOrDefault().Typeface;
+#endif
+            return typeface;
+        }
+
+        public static string GetTypeface<T>() where T : Pictogram
+        {
+            return GetInstance<T>().GetTypeface();
+        }
+
+        public static string GetTypeface(Type T)
+        {
+            return GetInstance(T).GetTypeface();
+        }
+
+        public static T GetInstance<T>() where T : Pictogram
+>>>>>>> develop:src/Pictograms/Pictogram.cs
         {
         }
 
+<<<<<<< HEAD:Pictograms/Pictogram.cs
+=======
+        public static Pictogram GetInstance(Type T)
+        {
+#if !PORTABLE
+            if (T.BaseType != typeof(Pictogram))
+                throw new InvalidCastException("Type must be a Pictogram based");
+            return (Pictogram)T.GetProperty("Instance", BindingFlags.Public | BindingFlags.Static).GetValue(null, null);
+#else
+            if (T.DeclaringType != typeof(Pictogram))
+                throw new InvalidCastException("Type must be a Pictogram based");
+            return (Pictogram)T.GetRuntimeProperty("Instance").GetValue(null);
+#endif
+        }
+
+        public static Type GetIconTypes<T>() where T : Pictogram
+        {
+#if !PORTABLE
+            var iconType = typeof(T).GetType().Assembly.GetType($"{typeof(T).FullName}+IconType");
+#else
+            var iconType = typeof(T).GetTypeInfo().Assembly.GetType($"{typeof(T).FullName}+IconType");
+#endif
+            return iconType;
+        }
+
+        public static Type GetIconTypes(Type T)
+        {
+#if !PORTABLE
+            if (T.BaseType != typeof(Pictogram))
+                throw new InvalidCastException("Type must be a Pictogram based");
+            var iconType = T.Assembly.GetType($"{T.FullName}+IconType");
+#else
+            if (T.DeclaringType != typeof(Pictogram))
+                throw new InvalidCastException("Type must be a Pictogram based");
+            var iconType = T.GetTypeInfo().Assembly.GetType($"{T.GetType().FullName}+IconType");
+#endif
+            return iconType;
+        }
+
+#if !PORTABLE
+
+        public static void Download<T>() where T : Pictogram
+        {
+            var instance = GetInstance<T>();
+            if (instance == null)
+                throw new InvalidOperationException("Can't initialize font instance.");
+
+            var url = instance.GetUrl();
+
+            if (string.IsNullOrEmpty(url))
+                throw new InvalidOperationException("Can't download font without an valid URL.");
+
+            var fontCacheFolder = IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "fonts");
+            if (!IO.Directory.Exists(fontCacheFolder))
+                IO.Directory.CreateDirectory(fontCacheFolder);
+
+            var fileName = IO.Path.Combine(fontCacheFolder, $"{typeof(T).Name.ToLower()}.ttf");
+
+            if (IO.File.Exists(fileName) && new IO.FileInfo(fileName).Length == 0)
+                IO.File.Delete(fileName);
+
+            if (!IO.File.Exists(fileName))
+            {
+                try
+                {
+                    using (var wc = new WebClient())
+                        wc.DownloadFile(url, fileName);
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                }
+            }
+
+            if (IO.File.Exists(fileName))
+                instance.InitializeFont(IO.File.ReadAllBytes(fileName));
+        }
+
+>>>>>>> develop:src/Pictograms/Pictogram.cs
         public Pictogram(byte[] font) : this()
         {
             InitializeFont(font);
@@ -39,7 +214,7 @@ namespace System.Drawing
         {
             get
             {
-                return fonts.Families[0];
+                return fonts.Families != null && fonts.Families.Any() ? fonts.Families[0] : null;
             }
             private set
             {
@@ -54,7 +229,7 @@ namespace System.Drawing
         /// <summary>
         /// Loads the icon font from the resources.
         /// </summary>
-        internal void InitializeFont(byte[] fontData)
+        public void InitializeFont(byte[] fontData)
         {
             try
             {
@@ -104,17 +279,21 @@ namespace System.Drawing
                 // Test the string with the new size
                 SizeF adjustedSizeNew = g.MeasureString(graphicString, testFont);
                 if (containerWidth > Convert.ToInt32(adjustedSizeNew.Width))
-                {
                     return testFont;
-                }
             }
 
             return GetFont(smallestOnFail ? minFontSize : maxFontSize);
         }
 
+<<<<<<< HEAD:Pictograms/Pictogram.cs
         #endregion
         
         public Image GetImage(int type, int size, Brush brush)
+=======
+        #endregion Methods
+
+        public virtual Image GetImage(int type, int size, Brush brush)
+>>>>>>> develop:src/Pictograms/Pictogram.cs
         {
             System.Drawing.Bitmap result = new System.Drawing.Bitmap(size, size);
             string IconChar = char.ConvertFromUtf32((int)type);
@@ -159,12 +338,25 @@ namespace System.Drawing
             return char.ConvertFromUtf32((int)type);
         }
 
+<<<<<<< HEAD:Pictograms/Pictogram.cs
         public Font GetFont(float size, GraphicsUnit units = GraphicsUnit.Point)
+=======
+#if !PORTABLE
+
+        public virtual Font GetFont(float size, GraphicsUnit units = GraphicsUnit.Point)
+>>>>>>> develop:src/Pictograms/Pictogram.cs
         {
             return new Font(fonts.Families[0], size, units);
         }
 
+<<<<<<< HEAD:Pictograms/Pictogram.cs
         #region IDisposable Support
+=======
+#endif
+
+        #region IDisposable Support
+
+>>>>>>> develop:src/Pictograms/Pictogram.cs
         private bool disposedValue = false; // Para detectar llamadas redundantes
 
         protected virtual void Dispose(bool disposing)
@@ -201,5 +393,9 @@ namespace System.Drawing
         #endregion
 
 
+<<<<<<< HEAD:Pictograms/Pictogram.cs
+=======
+        #endregion IDisposable Support
+>>>>>>> develop:src/Pictograms/Pictogram.cs
     }
 }

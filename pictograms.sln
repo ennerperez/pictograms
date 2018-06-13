@@ -1,7 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+<<<<<<< HEAD:pictograms.sln
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
+=======
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.14
+>>>>>>> develop:src/Pictograms.sln
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".docs", ".docs", "{CE3C4058-F9DA-4C61-AFCE-DDEEC8BD5DCB}"
 	ProjectSection(SolutionItems) = preProject
@@ -18,8 +23,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".files", ".files", "{5D1381
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{FE0EED20-DED7-414B-AA1F-80AF7AF35419}"
 	ProjectSection(SolutionItems) = preProject
+<<<<<<< HEAD:pictograms.sln
 		.nuget\NuGet.config = .nuget\NuGet.config
 		.nuget\NuGet.targets = .nuget\NuGet.targets
+=======
+		..\.gitattributes = ..\.gitattributes
+		..\.gitignore = ..\.gitignore
+		..\build.cake = ..\build.cake
+		..\build.ps1 = ..\build.ps1
+		..\CHANGELOG.md = ..\CHANGELOG.md
+		..\install-android-sdk.ps1 = ..\install-android-sdk.ps1
+		..\LICENSE = ..\LICENSE
+		..\README.md = ..\README.md
+>>>>>>> develop:src/Pictograms.sln
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pictograms.Forms", "Pictograms.Forms\Pictograms.Forms.csproj", "{45872AA9-7722-49B4-864D-B03F11AB5B3F}"
@@ -43,5 +59,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {774CCAAD-E5EF-4987-BC9B-1D87E83EF7B0}
 	EndGlobalSection
 EndGlobal

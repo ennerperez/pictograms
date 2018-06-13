@@ -2,6 +2,23 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+<<<<<<< HEAD
+=======
+## [1.2.20] - [UNRELEASED]
+### Added
+- FontAwesome 4.0.7
+- IonIcons 2.0.1
+- Downloadable fonts
+- Xamarin Forms Implementation
+
+### Fixed
+- GetInstance() bug
+- Singleton bug
+
+### Changed
+- Unified version
+
+>>>>>>> develop
 ## [1.0.15] - [2016-05-28]
 ### Fixed
 - Generics extensions

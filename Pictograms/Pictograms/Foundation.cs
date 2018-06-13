@@ -1,15 +1,26 @@
+<<<<<<< HEAD:Pictograms/Pictograms/Foundation.cs
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 
 namespace System.Drawing.Pictograms
+=======
+﻿#if !PORTABLE
+using System.Drawing.Pictograms.Attributes;
+namespace System.Drawing.Pictograms
+#else
+using Xamarin.Forms.Pictograms.Attributes;
+namespace Xamarin.Forms.Pictograms
+#endif
+>>>>>>> develop:src/Pictograms/Pictograms/Foundation.cs
 {
 
     /// <summary>
     /// Foundation Icons
     /// <see cref="http://zurb.com/playground/foundation-icon-fonts-3"/>
     /// </summary>
+    [Pictogram("Foundation", "foundation-icons", "http://zurb.com/playground/uploads/upload/upload/288/foundation-icons.zip")]
     public class Foundation : Pictogram
     {
 

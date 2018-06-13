@@ -1,4 +1,4 @@
-![logo](https://raw.githubusercontent.com/ennerperez/pictograms/master/.editoricon.png)
+![logo](src/.editoricon.png)
 
 # Pictograms
 
@@ -14,14 +14,19 @@ See the [changelog](CHANGELOG.md) for changes.
 ## Featuring
 - [FontAwesome](http://fortawesome.github.io/Font-Awesome/)
 - [Foundation](http://foundation.zurb.com/)
+- [IonIcons](http://ionicons.com/)
 - [LinearIcons](https://linearicons.com/free)
 - [Material Design](http://www.google.com/design/spec/style/icons.html#icons-system-icons)
 
 ## Roadmap
+<<<<<<< HEAD
 - [ ] [Ionicons](http://ionicons.com/)
 - [ ] [IcoMoon](https://icomoon.io/)
 - [x] Windows Forms Extensions
 - [ ] Windows Forms Components
+=======
+- [ ] Downloadable Fonts
+>>>>>>> develop
 
 ## Table of contents
 

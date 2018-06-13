@@ -235,4 +235,33 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+<<<<<<< HEAD
 /.editoricon.ai
+=======
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# CodeRush
+.cr/
+
+# Python Tools for Visual Studio (PTVS)
+__pycache__/
+*.pyc
+
+# Cake - Uncomment if you are using it
+tools/**
+!tools/packages.config
+
+# Telerik's JustMock configuration file
+*.jmconfig
+
+# BizTalk build output
+*.btp.cs
+*.btm.cs
+*.odx.cs
+*.xsd.cs
+
+# End of https://www.gitignore.io/api/visualstudio
+>>>>>>> develop

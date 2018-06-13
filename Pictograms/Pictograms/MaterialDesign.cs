@@ -3,13 +3,27 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 
+using System.Drawing.Pictograms.Attributes;
+
 namespace System.Drawing.Pictograms
+<<<<<<< HEAD:Pictograms/Pictograms/MaterialDesign.cs
+=======
+#else
+using Xamarin.Forms.Pictograms.Attributes;
+namespace Xamarin.Forms.Pictograms
+#endif
+>>>>>>> develop:src/Pictograms/Pictograms/MaterialDesign.cs
 {
 
     /// <summary>
     /// LinearIcons
     /// <see cref="http://www.google.com/design/spec/style/icons.html#icons-system-icons"/>
+<<<<<<< HEAD:Pictograms/Pictograms/MaterialDesign.cs
     /// </summary>   
+=======
+    /// </summary>
+    [Pictogram("MaterialDesign", "MaterialIcons-Regular", "https://raw.githubusercontent.com/google/material-design-icons/master/iconfont/MaterialIcons-Regular.ttf")]
+>>>>>>> develop:src/Pictograms/Pictograms/MaterialDesign.cs
     public class MaterialDesign : Pictogram
     {
 
@@ -18,7 +32,17 @@ namespace System.Drawing.Pictograms
         /// <summary>
         /// Initializes the <see cref="Icon" /> class by loading the font from resources upon first use.
         /// </summary>
+<<<<<<< HEAD:Pictograms/Pictograms/MaterialDesign.cs
         private MaterialDesign() : base(Properties.Resources.MaterialIcons_Regular)
+=======
+#if !PORTABLE
+
+        private MaterialDesign() : base(Properties.Resources.materialicons_regular)
+#else
+
+        private MaterialDesign() : base()
+#endif
+>>>>>>> develop:src/Pictograms/Pictograms/MaterialDesign.cs
         {
         }
 

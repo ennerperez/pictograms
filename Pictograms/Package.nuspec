@@ -8,7 +8,7 @@
     <owners>$author$</owners>
     <licenseUrl>https://raw.githubusercontent.com/ennerperez/pictograms/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/ennerperez/pictograms</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/ennerperez/pictograms/master/.editoricon.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/ennerperez/pictograms/master/src/.editoricon.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Introducing fonts based pictograms for .NET solutions</description>
     <summary>$description$</summary>
@@ -18,5 +18,7 @@
     <tags>Pictograms Fonts Icons Design</tags>
     <dependencies />
   </metadata>
-  <files />
+  <files>
+    <file src="..\Pictograms\bin\release\System.Drawing.Pictograms.dll" target="lib\net40\System.Drawing.Pictograms.dll" />
+  </files>
 </package>

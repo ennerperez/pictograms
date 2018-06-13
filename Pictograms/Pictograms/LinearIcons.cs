@@ -1,15 +1,30 @@
+<<<<<<< HEAD:Pictograms/Pictograms/LinearIcons.cs
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 
 namespace System.Drawing.Pictograms
+=======
+﻿#if !PORTABLE
+using System.Drawing.Pictograms.Attributes;
+namespace System.Drawing.Pictograms
+#else
+using Xamarin.Forms.Pictograms.Attributes;
+namespace Xamarin.Forms.Pictograms
+#endif
+>>>>>>> develop:src/Pictograms/Pictograms/LinearIcons.cs
 {
 
     /// <summary>
     /// LinearIcons
     /// <see cref="https://linearicons.com/free"/>
+<<<<<<< HEAD:Pictograms/Pictograms/LinearIcons.cs
     /// </summary>   
+=======
+    /// </summary>
+    [Pictogram("LinearIcons", "linearicons-free", "https://cdn.linearicons.com/free/1.0.0/Linearicons-Free-v1.0.0.zip")]
+>>>>>>> develop:src/Pictograms/Pictograms/LinearIcons.cs
     public class LinearIcons : Pictogram
     {
 
@@ -239,7 +254,7 @@ namespace System.Drawing.Pictograms
             pointer_up = 0xe8a6,
             pointer_right = 0xe8a7,
             pointer_down = 0xe8a8,
-            pointer_left = 0xe8a9
+            pointer_left = 0xe8a9,
         }
 
     }
