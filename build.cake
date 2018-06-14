@@ -93,7 +93,7 @@ Task("Build-NuGet-Packages")
                 {
                     OutputDirectory = outputDirectory,
                     IncludeReferencedProjects = false,
-                    Id = assemblyInfo.Title.Replace(" ", "."),
+                    //Id = assemblyInfo.Title.Replace(" ", "."),
                     Title = assemblyInfo.Title,
                     Version = version,
                     Authors = new[] { assemblyInfoCommon.Company },
