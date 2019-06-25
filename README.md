@@ -15,7 +15,7 @@ See the [changelog](CHANGELOG.md) for changes.
 - [FontAwesome](http://fortawesome.github.io/Font-Awesome/)
 - [Foundation](http://foundation.zurb.com/)
 - [IonIcons](http://ionicons.com/)
-- [LinearIcons](https://linearicons.com/free)
+- [LinearIcons](http://cms.devoffice.com/repack/packs/linearicons/)
 - [Material Design](http://www.google.com/design/spec/style/icons.html#icons-system-icons)
 
 ## Table of contents

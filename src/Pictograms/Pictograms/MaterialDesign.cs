@@ -12,7 +12,7 @@ namespace Xamarin.Forms.Pictograms
     /// LinearIcons
     /// <see cref="http://www.google.com/design/spec/style/icons.html#icons-system-icons"/>
     /// </summary>
-    [Pictogram("MaterialDesign", "MaterialIcons-Regular", "https://raw.githubusercontent.com/google/material-design-icons/master/iconfont/MaterialIcons-Regular.ttf")]
+    [Pictogram("MaterialDesign", "MaterialIcons-Regular", "https://github.com/google/material-design-icons/releases/download/3.0.1/material-design-icons-3.0.1.zip")]
     public class MaterialDesign : Pictogram
     {
         #region Singleton
@@ -22,7 +22,7 @@ namespace Xamarin.Forms.Pictograms
         /// </summary>
 #if !PORTABLE
 
-        private MaterialDesign() : base(Properties.Resources.materialicons_regular)
+        private MaterialDesign() : base(Properties.Resources.MaterialIcons_Regular)
 #else
 
         private MaterialDesign() : base()
@@ -86,7 +86,7 @@ namespace Xamarin.Forms.Pictograms
         #endregion Statics
 
         /// <summary>
-        /// Version 2.2.0
+        /// Version 3.0.1
         /// </summary>
         public enum IconType : int
         {
@@ -1021,7 +1021,7 @@ namespace Xamarin.Forms.Pictograms
             youtube_searched_for = 0xe8fa,
             zoom_in = 0xe8ff,
             zoom_out = 0xe900,
-            zoom_out_map = 0xe56b
+            zoom_out_map = 0xe56b,
         }
     }
 }

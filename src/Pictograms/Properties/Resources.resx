@@ -118,19 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Linearicons" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\fonts\linearicons\linearicons.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="fontawesome_webfont" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Fonts\fontawesome-webfont.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\fonts\fontawesome\fontawesome-webfont.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="foundation_icons" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Fonts\foundation-icons.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="linearicons_free" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Fonts\linearicons-free.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="materialicons_regular" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Fonts\MaterialIcons-Regular.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\fonts\foundation\foundation-icons.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="ionicons" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\fonts\ionicons.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\fonts\ionicons\ionicons.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="MaterialIcons_Regular" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\fonts\materialicons\materialicons-regular.ttf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
