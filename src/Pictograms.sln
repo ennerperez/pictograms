@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26430.14
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pictograms.Forms", "Pictograms.Forms\Pictograms.Forms.csproj", "{45872AA9-7722-49B4-864D-B03F11AB5B3F}"
 EndProject
@@ -22,6 +22,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pictograms.Xamarin.Forms", "Pictograms.Xamarin.Forms\Pictograms.Xamarin.Forms.csproj", "{67F9D3A8-F71E-4428-913F-C37AE82CDB24}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pictograms.Xamarin.Android", "Pictograms.Xamarin.Android\Pictograms.Xamarin.Android.csproj", "{AA2C43D4-2AF3-4161-AEDC-20E8B1341ED6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".files", ".files", "{A92168E6-C817-4CCB-B641-0FED7016FA69}"
+	ProjectSection(SolutionItems) = preProject
+		Pictograms\Properties\AssemblyInfo.Common.cs = Pictograms\Properties\AssemblyInfo.Common.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +53,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A92168E6-C817-4CCB-B641-0FED7016FA69} = {C4B5622B-4027-4A3B-B021-EED813055736}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {774CCAAD-E5EF-4987-BC9B-1D87E83EF7B0}
