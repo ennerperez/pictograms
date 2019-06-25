@@ -105,6 +105,7 @@ namespace Pictogram.Samples.WinForms
                                     {
                                         imageListIcons.Images.Add(item, img);
                                         listViewItems.Items.Add(item, icons.IndexOf(item));
+                                        labelCounter.Text = string.Format(labelCounter.Tag.ToString(), listViewItems.Items.Count);
                                     });
                                 };
                         });
@@ -121,6 +122,7 @@ namespace Pictogram.Samples.WinForms
                                 {
                                     imageListIcons.Images.Add(i.ToString(), img);
                                     listViewItems.Items.Add(new ListViewItem(i.ToString()) { ImageKey = i.ToString() });
+                                    labelCounter.Text = string.Format(labelCounter.Tag.ToString(), listViewItems.Items.Count);
                                 });
                             }
                         });
@@ -137,6 +139,7 @@ namespace Pictogram.Samples.WinForms
                             {
                                 imageListIcons.Images.Add(i.ToString(), img);
                                 listViewItems.Items.Add(i.ToString(), i);
+                                labelCounter.Text = string.Format(labelCounter.Tag.ToString(), listViewItems.Items.Count);
                             });
                         }
                     });

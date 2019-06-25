@@ -46,6 +46,7 @@
             this.labelInformation = new System.Windows.Forms.Label();
             this.textBoxValue = new System.Windows.Forms.TextBox();
             this.openFileDialogCustom = new System.Windows.Forms.OpenFileDialog();
+            this.labelCounter = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPreview)).BeginInit();
             this.panelLiveDemo.SuspendLayout();
             this.toolStripLiveDemo.SuspendLayout();
@@ -105,14 +106,15 @@
             // 
             // panelLiveDemo
             // 
-            this.panelLiveDemo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelLiveDemo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelLiveDemo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelLiveDemo.Controls.Add(this.buttonLiveDemo1);
             this.panelLiveDemo.Controls.Add(this.toolStripLiveDemo);
             this.panelLiveDemo.Controls.Add(this.buttonLiveDemo2);
             this.panelLiveDemo.Location = new System.Drawing.Point(410, 185);
             this.panelLiveDemo.Name = "panelLiveDemo";
-            this.panelLiveDemo.Size = new System.Drawing.Size(128, 128);
+            this.panelLiveDemo.Size = new System.Drawing.Size(128, 177);
             this.panelLiveDemo.TabIndex = 15;
             // 
             // toolStripLiveDemo
@@ -169,10 +171,11 @@
             this.listViewItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.listViewItems.HideSelection = false;
             this.listViewItems.LargeImageList = this.imageListIcons;
             this.listViewItems.Location = new System.Drawing.Point(15, 52);
             this.listViewItems.Name = "listViewItems";
-            this.listViewItems.Size = new System.Drawing.Size(389, 261);
+            this.listViewItems.Size = new System.Drawing.Size(389, 310);
             this.listViewItems.TabIndex = 2;
             this.listViewItems.UseCompatibleStateImageBehavior = false;
             this.listViewItems.SelectedIndexChanged += new System.EventHandler(this.listViewItems_SelectedIndexChanged);
@@ -202,17 +205,29 @@
             this.openFileDialogCustom.Filter = "TrueType Font|*.ttf";
             this.openFileDialogCustom.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialogCustom_FileOk);
             // 
+            // labelCounter
+            // 
+            this.labelCounter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.labelCounter.AutoSize = true;
+            this.labelCounter.Location = new System.Drawing.Point(12, 365);
+            this.labelCounter.Name = "labelCounter";
+            this.labelCounter.Size = new System.Drawing.Size(70, 13);
+            this.labelCounter.TabIndex = 0;
+            this.labelCounter.Tag = "Total items: {0}";
+            this.labelCounter.Text = "Total items: 0";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(550, 328);
+            this.ClientSize = new System.Drawing.Size(550, 387);
             this.Controls.Add(this.textBoxValue);
             this.Controls.Add(this.listViewItems);
             this.Controls.Add(this.panelLiveDemo);
             this.Controls.Add(this.pictureBoxPreview);
             this.Controls.Add(this.comboBoxFont);
             this.Controls.Add(this.labelInformation);
+            this.Controls.Add(this.labelCounter);
             this.Controls.Add(this.labelFont);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -246,6 +261,7 @@
         private System.Windows.Forms.Label labelInformation;
         private System.Windows.Forms.TextBox textBoxValue;
         private System.Windows.Forms.OpenFileDialog openFileDialogCustom;
+        private System.Windows.Forms.Label labelCounter;
     }
 }
 
