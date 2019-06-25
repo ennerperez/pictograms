@@ -4,7 +4,9 @@ using System.Drawing.Pictograms.Attributes;
 
 namespace System.Drawing.Pictograms
 #else
+
 using Xamarin.Forms.Pictograms.Attributes;
+
 namespace Xamarin.Forms.Pictograms
 #endif
 {
@@ -47,15 +49,6 @@ namespace Xamarin.Forms.Pictograms
         public IonIcons(bool @default) : this()
         {
         }
-
-#if PORTABLE
-
-        public override string GetFontFace()
-        {
-            return IonIcons.Typeface;
-        }
-
-#endif
 
         #region Statics
 
