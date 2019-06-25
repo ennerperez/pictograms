@@ -47,6 +47,9 @@
     <Compile Include="..\Pictograms\Pictograms\Foundation.cs">
       <Link>Pictograms\Foundation.cs</Link>
     </Compile>
+    <Compile Include="..\Pictograms\Pictograms\IonIcons.cs">
+      <Link>Pictograms\IonIcons.cs</Link>
+    </Compile>
     <Compile Include="..\Pictograms\Pictograms\LinearIcons.cs">
       <Link>Pictograms\LinearIcons.cs</Link>
     </Compile>

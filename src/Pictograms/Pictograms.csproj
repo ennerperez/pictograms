@@ -48,11 +48,26 @@
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Fonts\fontawesome-webfont.ttf" />
-    <None Include="Fonts\foundation-icons.ttf" />
-    <None Include="Fonts\ionicons.ttf" />
-    <None Include="Fonts\linearicons-free.ttf" />
-    <None Include="Fonts\materialicons-regular.ttf" />
+    <None Include="Fonts\FontAwesome\fontawesome-webfont.eot" />
+    <None Include="Fonts\FontAwesome\fontawesome-webfont.ttf" />
+    <None Include="Fonts\FontAwesome\fontawesome-webfont.woff" />
+    <None Include="Fonts\FontAwesome\fontawesome-webfont.woff2" />
+    <None Include="Fonts\FontAwesome\FontAwesome.otf" />
+    <None Include="Fonts\Foundation\foundation-icons.eot" />
+    <None Include="Fonts\Foundation\foundation-icons.ttf" />
+    <None Include="Fonts\Foundation\foundation-icons.woff" />
+    <None Include="Fonts\IonIcons\ionicons.eot" />
+    <None Include="Fonts\IonIcons\ionicons.ttf" />
+    <None Include="Fonts\IonIcons\ionicons.woff" />
+    <None Include="Fonts\IonIcons\ionicons.woff2" />
+    <None Include="Fonts\Linearicons\Linearicons.eot" />
+    <None Include="Fonts\Linearicons\Linearicons.ttf" />
+    <None Include="Fonts\Linearicons\Linearicons.woff" />
+    <None Include="Fonts\MaterialIcons\MaterialIcons-Regular.eot" />
+    <None Include="Fonts\MaterialIcons\MaterialIcons-Regular.ijmap" />
+    <None Include="Fonts\MaterialIcons\MaterialIcons-Regular.ttf" />
+    <None Include="Fonts\MaterialIcons\MaterialIcons-Regular.woff" />
+    <None Include="Fonts\MaterialIcons\MaterialIcons-Regular.woff2" />
     <None Include="Package.nuspec">
       <SubType>Designer</SubType>
     </None>
@@ -63,7 +78,13 @@
     <Reference Include="System.Drawing" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Fonts\FontAwesome\fontawesome-webfont.svg" />
+    <Content Include="Fonts\Foundation\foundation-icons.svg" />
+    <Content Include="Fonts\IonIcons\ionicons.svg" />
+    <Content Include="Fonts\Linearicons\Linearicons.svg" />
+    <Content Include="Fonts\MaterialIcons\MaterialIcons-Regular.svg" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
