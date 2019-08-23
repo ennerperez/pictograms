@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.3.22] - [2019-06-26]
+### Fixed
+- Activator GC Bug
+
+### Added
+- Simplified WinForms Extensions
+
+## [1.3.21] - [2019-06-25]
+### Added
+- IonIcons for Xamarin
+
+### Changed
+- Icons Updates/Refresh
+
 ## [1.2.20] - [2018-06-13]
 ### Added
 - FontAwesome 4.0.7

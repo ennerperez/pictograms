@@ -8,7 +8,7 @@ namespace Xamarin.Forms.Pictograms
 
         public ViewCell()
         {
-            Pictogram = Activator.CreateInstance<T>();
+            Pictogram = Pictogram.GetInstance<T>();
             InitializeComponent();
         }
 
@@ -403,7 +403,7 @@ namespace Xamarin.Forms.Pictograms
         public ChevronViewCell()
             : base()
         {
-            ChevronPictogram = Activator.CreateInstance<TC>();
+            ChevronPictogram = Pictogram.GetInstance<TC>();
             InitializeComponent();
         }
 
