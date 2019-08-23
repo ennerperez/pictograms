@@ -1,4 +1,4 @@
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Drawing;
 
 namespace System.Windows.Forms.Pictograms
@@ -176,5 +176,51 @@ namespace System.Windows.Forms.Pictograms
 
             @this.Images.Add(icon);
         }
+
+        #region Simplified
+
+        public static void SetImage(this Control @this, object type, int size = 0, Color? color = null, Brush brush = null)
+        {
+            var declaringType = type.GetType().DeclaringType;
+            var instance = Pictogram.GetInstance(declaringType);
+            @this.SetImage(instance, type, size, color, brush);
+        }
+
+        public static void SetText(this Control @this, object type, float size = 0)
+        {
+            var declaringType = type.GetType().DeclaringType;
+            var instance = Pictogram.GetInstance(declaringType);
+            @this.SetText(instance, type, size);
+        }
+
+        public static void SetImage(this Component @this, object type, int size = 0, Color? color = null, Brush brush = null)
+        {
+            var declaringType = type.GetType().DeclaringType;
+            var instance = Pictogram.GetInstance(declaringType);
+            @this.SetImage(instance, type, size, color, brush);
+        }
+
+        public static void SetText(this Component @this, object type, float size = 0)
+        {
+            var declaringType = type.GetType().DeclaringType;
+            var instance = Pictogram.GetInstance(declaringType);
+            @this.SetText(instance, type, size);
+        }
+
+        public static void SetIcon(this NotifyIcon @this, object type, int size = 0, Color? color = null, Brush brush = null)
+        {
+            var declaringType = type.GetType().DeclaringType;
+            var instance = Pictogram.GetInstance(declaringType);
+            @this.SetIcon(instance, type, size, color, brush);
+        }
+
+        public static void SetIcon(this ImageList @this, object type, int size = 0, Color? color = null, Brush brush = null)
+        {
+            var declaringType = type.GetType().DeclaringType;
+            var instance = Pictogram.GetInstance(declaringType);
+            @this.SetIcon(instance, type, size, color, brush);
+        }
+
+        #endregion Simplified
     }
 }
