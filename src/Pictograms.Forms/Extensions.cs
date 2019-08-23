@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.Drawing;
 
 namespace System.Windows.Forms.Pictograms
@@ -9,37 +9,37 @@ namespace System.Windows.Forms.Pictograms
 
         public static void SetImage<T>(this Control @this, object type, int size = 0, Color? color = null, Brush brush = null) where T : Pictogram
         {
-            T instance = (T)Activator.CreateInstance(typeof(T), true);
+            T instance = Pictogram.GetInstance<T>();
             SetImage(@this, instance, type, size, color, brush);
         }
 
         public static void SetText<T>(this Control @this, object type, float size = 0) where T : Pictogram
         {
-            T instance = (T)Activator.CreateInstance(typeof(T), true);
+            T instance = Pictogram.GetInstance<T>();
             SetText(@this, instance, type, size);
         }
 
         public static void SetImage<T>(this Component @this, object type, int size = 0, Color? color = null, Brush brush = null) where T : Pictogram
         {
-            T instance = (T)Activator.CreateInstance(typeof(T), true);
+            T instance = Pictogram.GetInstance<T>();
             SetImage(@this, instance, type, size, color, brush);
         }
 
         public static void SetText<T>(this Component @this, object type, float size = 0) where T : Pictogram
         {
-            T instance = (T)Activator.CreateInstance(typeof(T), true);
+            T instance = Pictogram.GetInstance<T>();
             SetText(@this, instance, type, size);
         }
 
         public static void SetIcon<T>(this NotifyIcon @this, object type, int size = 0, Color? color = null, Brush brush = null) where T : Pictogram
         {
-            T instance = (T)Activator.CreateInstance(typeof(T), true);
+            T instance = Pictogram.GetInstance<T>();
             SetIcon(@this, instance, type, size, color, brush);
         }
 
         public static void SetIcon<T>(this ImageList @this, object type, int size = 0, Color? color = null, Brush brush = null) where T : Pictogram
         {
-            T instance = (T)Activator.CreateInstance(typeof(T), true);
+            T instance = Pictogram.GetInstance<T>();
             SetIcon(@this, instance, type, size, color, brush);
         }
 
@@ -118,7 +118,6 @@ namespace System.Windows.Forms.Pictograms
             }
             else if (typeof(ImageList).IsAssignableFrom(@this.GetType()))
             {
-
                 if (size == 0)
                     size = ((@this as ImageList).ImageSize.Width + (@this as ImageList).ImageSize.Height) / 2;
 
@@ -161,7 +160,6 @@ namespace System.Windows.Forms.Pictograms
 
         public static void SetIcon(this ImageList @this, Pictogram pictogram, object type, int size = 0, Color? color = null, Brush brush = null)
         {
-
             if (size == 0)
                 size = (@this.ImageSize.Width + @this.ImageSize.Height) / 2;
 

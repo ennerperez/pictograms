@@ -12,7 +12,7 @@ namespace Xamarin.Forms.Pictograms
 
         public Tile()
         {
-            glyph = Activator.CreateInstance<T>();
+            glyph = Pictogram.GetInstance<T>();
             InitializeComponent();
         }
 

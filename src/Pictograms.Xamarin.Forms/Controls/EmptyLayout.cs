@@ -8,7 +8,7 @@ namespace Xamarin.Forms.Pictograms
 
         public EmptyLayout()
         {
-            Pictogram = Activator.CreateInstance<T>();
+            Pictogram = Pictogram.GetInstance<T>();
             InitializeComponent();
         }
 
