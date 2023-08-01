@@ -2,6 +2,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+
+## [1.3.23] - [2023-07-01]
+### Changed
+- Framework Update
+
 ## [1.3.22] - [2019-06-26]
 ### Fixed
 - Activator GC Bug
