@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Drawing;
 using System.Drawing.Pictograms.Attributes;
-using System.Linq;
-using System.Text;
 
 namespace Pictogram.Samples.WinForms
 {
@@ -16,22 +14,22 @@ namespace Pictogram.Samples.WinForms
         /// </summary>
 #if !PORTABLE
 
-        private Nucleo() : base()
+        private Nucleo()
 #else
-        private Nucleo() : base()
+        private Nucleo()
 #endif
         {
         }
 
-        internal static Nucleo instance;
+        private static Nucleo _instance;
 
         public static Nucleo Instance
         {
             get
             {
-                if (instance == null)
-                    instance = new Nucleo();
-                return (Nucleo)instance;
+                if (_instance == null)
+                    _instance = new Nucleo();
+                return _instance;
             }
         }
 

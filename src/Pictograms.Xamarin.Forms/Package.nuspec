@@ -20,10 +20,10 @@
     <tags>Pictograms Fonts Icons Design</tags>
     <dependencies>
       <group targetFramework="monoandroid70">
-        <dependency id="Xamarin.Forms" version="2.3" />
+        <dependency id="Xamarin.Forms" version="5.0.0.2578" />
       </group>
       <group targetFramework="xamarinios10">
-        <dependency id="Xamarin.Forms" version="2.3" />
+        <dependency id="Xamarin.Forms" version="5.0.0.2578" />
       </group>
     </dependencies>
   </metadata>

@@ -20,9 +20,9 @@ namespace Xamarin.Forms.Pictograms
 
         private void InitializeComponent()
         {
-            this.HasShadow = false;
-            this.BackgroundColor = Color.Accent;
-            this.Padding = new Thickness(3);
+            HasShadow = false;
+            BackgroundColor = Color.Accent;
+            Padding = new Thickness(3);
 
             //
             // glyphIcon
@@ -74,8 +74,8 @@ namespace Xamarin.Forms.Pictograms
             // absoluteLayout
             //
             absoluteLayout = new AbsoluteLayout();
-            absoluteLayout.SetBinding(AbsoluteLayout.WidthRequestProperty, "Width");
-            absoluteLayout.SetBinding(AbsoluteLayout.HeightRequestProperty, "Height");
+            absoluteLayout.SetBinding(WidthRequestProperty, "Width");
+            absoluteLayout.SetBinding(HeightRequestProperty, "Height");
 
             absoluteLayout.Children.Add(absoluteLayoutIcon);
             absoluteLayout.Children.Add(labelTitle);
@@ -87,20 +87,20 @@ namespace Xamarin.Forms.Pictograms
             //
             // tapGestureRecognizer
             //
-            TapGestureRecognizer tapGestureRecognizer = new TapGestureRecognizer();
+            var tapGestureRecognizer = new TapGestureRecognizer();
             tapGestureRecognizer.Tapped += OnTapped;
             absoluteLayout.GestureRecognizers.Add(tapGestureRecognizer);
 
             //
             // contentView
             //
-            ContentView contentView = new ContentView()
+            var contentView = new ContentView()
             {
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 Content = absoluteLayout
             };
-            this.Content = contentView;
+            Content = contentView;
         }
 
         private AbsoluteLayout absoluteLayout;
@@ -113,11 +113,11 @@ namespace Xamarin.Forms.Pictograms
 
         #region Properties
 
-        public Double FontSize
+        public double FontSize
         {
             get
             {
-                return (Double)GetValue(Tile.FontSizeProperty);
+                return (double)GetValue(Tile.FontSizeProperty);
             }
             set
             {
@@ -130,8 +130,8 @@ namespace Xamarin.Forms.Pictograms
 
         private static void OnFontSizeChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            (bindable as Tile).labelTitle.FontSize = (double)newValue;
-            (bindable as Tile).labelDetail.FontSize = (double)newValue + ((double)newValue / 2);
+            ((Tile)bindable).labelTitle.FontSize = (double)newValue;
+            ((Tile)bindable).labelDetail.FontSize = (double)newValue + ((double)newValue / 2);
         }
 
         public Color TextColor
@@ -151,11 +151,11 @@ namespace Xamarin.Forms.Pictograms
 
         private static void OnTextColorChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            if ((bindable as Tile).labelTitle != null)
+            if ((bindable as Tile)?.labelTitle != null)
                 (bindable as Tile).labelTitle.TextColor = (Color)newValue;
-            if ((bindable as Tile).labelDetail != null)
+            if ((bindable as Tile)?.labelDetail != null)
                 (bindable as Tile).labelDetail.TextColor = (Color)newValue;
-            if ((bindable as Tile).glyphIcon != null)
+            if ((bindable as Tile)?.glyphIcon != null)
                 (bindable as Tile).glyphIcon.TextColor = (Color)newValue;
         }
 

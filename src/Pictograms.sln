@@ -7,26 +7,35 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pictograms.Forms", "Pictogr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pictograms", "Pictograms\Pictograms.csproj", "{11FC6C23-77B2-44DD-B9C8-39E30E1A1A1A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C4B5622B-4027-4A3B-B021-EED813055736}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".files", ".files", "{C4B5622B-4027-4A3B-B021-EED813055736}"
 	ProjectSection(SolutionItems) = preProject
 		..\.gitattributes = ..\.gitattributes
 		..\.gitignore = ..\.gitignore
-		..\build.cake = ..\build.cake
-		..\build.ps1 = ..\build.ps1
 		..\CHANGELOG.md = ..\CHANGELOG.md
 		..\install-android-sdk.ps1 = ..\install-android-sdk.ps1
 		..\LICENSE = ..\LICENSE
 		..\README.md = ..\README.md
+		Pictograms\Properties\AssemblyInfo.Common.cs = Pictograms\Properties\AssemblyInfo.Common.cs
+		..\build.cmd = ..\build.cmd
+		..\build.ps1 = ..\build.ps1
+		..\build.sh = ..\build.sh
+		global.json = global.json
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pictograms.Xamarin.Forms", "Pictograms.Xamarin.Forms\Pictograms.Xamarin.Forms.csproj", "{67F9D3A8-F71E-4428-913F-C37AE82CDB24}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pictograms.Xamarin.Android", "Pictograms.Xamarin.Android\Pictograms.Xamarin.Android.csproj", "{AA2C43D4-2AF3-4161-AEDC-20E8B1341ED6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".files", ".files", "{A92168E6-C817-4CCB-B641-0FED7016FA69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "..\.build\_build.csproj", "{7A348EA4-6092-4E52-9648-96FB5ADE6791}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".build", ".build", "{7831CF39-013A-41B8-B8D1-5CD4E954D0FA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".config", ".config", "{A14DE2FD-AD9C-4BF3-8BAA-B84EE3B3C7EF}"
 	ProjectSection(SolutionItems) = preProject
-		Pictograms\Properties\AssemblyInfo.Common.cs = Pictograms\Properties\AssemblyInfo.Common.cs
+		..\.config\dotnet-tools.json = ..\.config\dotnet-tools.json
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4893FA09-FAF3-4605-819A-42BEF5B2A322}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,6 +43,8 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A348EA4-6092-4E52-9648-96FB5ADE6791}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A348EA4-6092-4E52-9648-96FB5ADE6791}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45872AA9-7722-49B4-864D-B03F11AB5B3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{45872AA9-7722-49B4-864D-B03F11AB5B3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45872AA9-7722-49B4-864D-B03F11AB5B3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -55,7 +66,11 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{A92168E6-C817-4CCB-B641-0FED7016FA69} = {C4B5622B-4027-4A3B-B021-EED813055736}
+		{7A348EA4-6092-4E52-9648-96FB5ADE6791} = {7831CF39-013A-41B8-B8D1-5CD4E954D0FA}
+		{11FC6C23-77B2-44DD-B9C8-39E30E1A1A1A} = {4893FA09-FAF3-4605-819A-42BEF5B2A322}
+		{45872AA9-7722-49B4-864D-B03F11AB5B3F} = {4893FA09-FAF3-4605-819A-42BEF5B2A322}
+		{AA2C43D4-2AF3-4161-AEDC-20E8B1341ED6} = {4893FA09-FAF3-4605-819A-42BEF5B2A322}
+		{67F9D3A8-F71E-4428-913F-C37AE82CDB24} = {4893FA09-FAF3-4605-819A-42BEF5B2A322}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {774CCAAD-E5EF-4987-BC9B-1D87E83EF7B0}

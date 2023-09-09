@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-#if !PORTABLE
+﻿#if !PORTABLE
 namespace System.Drawing.Pictograms.Attributes
 #else
+using System;
 namespace Xamarin.Forms.Pictograms.Attributes
 #endif
 {
@@ -23,9 +19,9 @@ namespace Xamarin.Forms.Pictograms.Attributes
 
         public PictogramAttribute(string name, string typeface, string url = "")
         {
-            this.Name = name;
-            this.Typeface = typeface;
-            this.Url = url;
+            Name = name;
+            Typeface = typeface;
+            Url = url;
         }
     }
 }

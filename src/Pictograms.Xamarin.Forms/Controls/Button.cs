@@ -18,7 +18,7 @@
         public Button(string fontface, int type)
             : this(fontface)
         {
-            Text = Pictogram.GetText(type);
+            Text = pictogram.GetText(type);
         }
 
         public Button(Pictogram glyph)
@@ -57,6 +57,6 @@
             }
         }
 
-        public Pictogram Pictogram;
+        public Pictogram pictogram;
     }
 }

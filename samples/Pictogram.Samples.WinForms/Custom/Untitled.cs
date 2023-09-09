@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Drawing;
 using System.Drawing.Pictograms.Attributes;
-using System.Linq;
-using System.Text;
 
 namespace Pictogram.Samples.WinForms
 {
@@ -17,20 +14,20 @@ namespace Pictogram.Samples.WinForms
 #if !PORTABLE
         private Untitled() : base(Properties.Resources.Untitled)
 #else
-        private Untitled() : base()
+        private Untitled()
 #endif
         {
         }
 
-        internal static Untitled instance;
+        private static Untitled _instance;
 
         public static Untitled Instance
         {
             get
             {
-                if (instance == null)
-                    instance = new Untitled();
-                return (Untitled)instance;
+                if (_instance == null)
+                    _instance = new Untitled();
+                return _instance;
             }
         }
 

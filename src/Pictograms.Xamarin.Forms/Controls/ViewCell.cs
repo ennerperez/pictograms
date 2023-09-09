@@ -8,7 +8,7 @@ namespace Xamarin.Forms.Pictograms
 
         public ViewCell()
         {
-            Pictogram = Pictogram.GetInstance<T>();
+            pictogram = Pictogram.GetInstance<T>();
             InitializeComponent();
         }
 
@@ -23,20 +23,20 @@ namespace Xamarin.Forms.Pictograms
             //
             // styleText
             //
-            Style styleText = new Style(typeof(Label));
+            var styleText = new Style(typeof(Label));
             styleText.Setters.Add(Label.TextColorProperty, TextColor);
-            styleText.Setters.Add(Label.HorizontalOptionsProperty, LayoutOptions.FillAndExpand);
-            styleText.Setters.Add(Label.VerticalOptionsProperty, LayoutOptions.CenterAndExpand);
+            styleText.Setters.Add(View.HorizontalOptionsProperty, LayoutOptions.FillAndExpand);
+            styleText.Setters.Add(View.VerticalOptionsProperty, LayoutOptions.CenterAndExpand);
             styleText.Setters.Add(Label.FontAttributesProperty, FontAttributes.None);
             styleText.Setters.Add(Label.FontSizeProperty, Helpers.Common.GetNamedSize(NamedSize.Medium));
 
             //
             // styleDetail
             //
-            Style styleDetail = new Style(typeof(Label));
+            var styleDetail = new Style(typeof(Label));
             styleDetail.Setters.Add(Label.TextColorProperty, DetailColor);
-            styleDetail.Setters.Add(Label.HorizontalOptionsProperty, LayoutOptions.FillAndExpand);
-            styleDetail.Setters.Add(Label.VerticalOptionsProperty, LayoutOptions.StartAndExpand);
+            styleDetail.Setters.Add(View.HorizontalOptionsProperty, LayoutOptions.FillAndExpand);
+            styleDetail.Setters.Add(View.VerticalOptionsProperty, LayoutOptions.StartAndExpand);
             styleDetail.Setters.Add(Label.FontSizeProperty, Helpers.Common.GetNamedSize(NamedSize.Small));
 
             #endregion Styles
@@ -44,7 +44,7 @@ namespace Xamarin.Forms.Pictograms
             //
             // fontIcon
             //
-            fontIcon = new Icon(Pictogram.GetTypeface())
+            fontIcon = new Icon(pictogram.GetTypeface())
             {
                 FontSize = Helpers.Common.GetNamedSize(NamedSize.Default) * 2,
                 HorizontalOptions = LayoutOptions.Start,
@@ -94,7 +94,7 @@ namespace Xamarin.Forms.Pictograms
             //
             // StackContent
             //
-            StackLayout stackContent = new StackLayout()
+            var stackContent = new StackLayout()
             {
                 Padding = new Thickness(10, 0),
                 Spacing = 20,
@@ -103,8 +103,8 @@ namespace Xamarin.Forms.Pictograms
             stackContent.Children.Add(fontIcon);
             stackContent.Children.Add(stackVertical);
 
-            this.View = stackContent;
-            this.View.BackgroundColor = BackgroundColor;
+            View = stackContent;
+            View.BackgroundColor = BackgroundColor;
         }
 
         private StackLayout stackVertical;
@@ -122,11 +122,11 @@ namespace Xamarin.Forms.Pictograms
         {
             get
             {
-                return (string)GetValue(ViewCell<T>.FontFamilyProperty);
+                return (string)GetValue(FontFamilyProperty);
             }
             set
             {
-                SetValue(ViewCell<T>.FontFamilyProperty, value);
+                SetValue(FontFamilyProperty, value);
             }
         }
 
@@ -135,9 +135,9 @@ namespace Xamarin.Forms.Pictograms
 
         private static void OnFontFamilyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            if ((bindable as ViewCell<T>).labelTitle != null)
+            if ((bindable as ViewCell<T>)?.labelTitle != null)
                 (bindable as ViewCell<T>).labelTitle.FontFamily = (string)newValue;
-            if ((bindable as ViewCell<T>).labelDetail != null)
+            if ((bindable as ViewCell<T>)?.labelDetail != null)
                 (bindable as ViewCell<T>).labelDetail.FontFamily = (string)newValue;
         }
 
@@ -151,23 +151,23 @@ namespace Xamarin.Forms.Pictograms
         {
             get
             {
-                return (string)GetValue(ViewCell<T>.FontFaceProperty);
+                return (string)GetValue(FontFaceProperty);
             }
             set
             {
-                SetValue(ViewCell<T>.FontFaceProperty, value);
+                SetValue(FontFaceProperty, value);
             }
         }
 
-        public Double FontSize
+        public double FontSize
         {
             get
             {
-                return (Double)GetValue(ViewCell<T>.FontSizeProperty);
+                return (double)GetValue(FontSizeProperty);
             }
             set
             {
-                SetValue(ViewCell<T>.FontSizeProperty, value);
+                SetValue(FontSizeProperty, value);
             }
         }
 
@@ -175,11 +175,11 @@ namespace Xamarin.Forms.Pictograms
         {
             get
             {
-                return (string)GetValue(ViewCell<T>.TextProperty);
+                return (string)GetValue(TextProperty);
             }
             set
             {
-                SetValue(ViewCell<T>.TextProperty, value);
+                SetValue(TextProperty, value);
             }
         }
 
@@ -187,11 +187,11 @@ namespace Xamarin.Forms.Pictograms
         {
             get
             {
-                return (string)GetValue(ViewCell<T>.DetailProperty);
+                return (string)GetValue(DetailProperty);
             }
             set
             {
-                SetValue(ViewCell<T>.DetailProperty, value);
+                SetValue(DetailProperty, value);
             }
         }
 
@@ -199,11 +199,11 @@ namespace Xamarin.Forms.Pictograms
         {
             get
             {
-                return (string)GetValue(ViewCell<T>.IconProperty);
+                return (string)GetValue(IconProperty);
             }
             set
             {
-                SetValue(ViewCell<T>.IconProperty, value);
+                SetValue(IconProperty, value);
             }
         }
 
@@ -211,11 +211,11 @@ namespace Xamarin.Forms.Pictograms
         {
             get
             {
-                return (Color)GetValue(ViewCell<T>.BackgroundColorProperty);
+                return (Color)GetValue(BackgroundColorProperty);
             }
             set
             {
-                SetValue(ViewCell<T>.BackgroundColorProperty, value);
+                SetValue(BackgroundColorProperty, value);
             }
         }
 
@@ -223,11 +223,11 @@ namespace Xamarin.Forms.Pictograms
         {
             get
             {
-                return (Color)GetValue(ViewCell<T>.TextColorProperty);
+                return (Color)GetValue(TextColorProperty);
             }
             set
             {
-                SetValue(ViewCell<T>.TextColorProperty, value);
+                SetValue(TextColorProperty, value);
             }
         }
 
@@ -235,11 +235,11 @@ namespace Xamarin.Forms.Pictograms
         {
             get
             {
-                return (Color)GetValue(ViewCell<T>.IconColorProperty);
+                return (Color)GetValue(IconColorProperty);
             }
             set
             {
-                SetValue(ViewCell<T>.IconColorProperty, value);
+                SetValue(IconColorProperty, value);
             }
         }
 
@@ -247,11 +247,11 @@ namespace Xamarin.Forms.Pictograms
         {
             get
             {
-                return (Color)GetValue(ViewCell<T>.DetailColorProperty);
+                return (Color)GetValue(DetailColorProperty);
             }
             set
             {
-                SetValue(ViewCell<T>.DetailColorProperty, value);
+                SetValue(DetailColorProperty, value);
             }
         }
 
@@ -285,14 +285,14 @@ namespace Xamarin.Forms.Pictograms
         private static void OnFontFaceChanged(BindableObject bindable, object oldValue, object newValue)
         {
             if (!string.IsNullOrEmpty((string)newValue))
-                (bindable as ViewCell<T>).labelTitle.FontFamily = (string)newValue;
+                ((ViewCell<T>)bindable).labelTitle.FontFamily = (string)newValue;
             else
-                (bindable as ViewCell<T>).labelTitle.FontFamily = "";
+                ((ViewCell<T>)bindable).labelTitle.FontFamily = "";
         }
 
         private static void OnFontSizeChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            (bindable as ViewCell<T>).labelTitle.FontSize = (double)newValue;
+            ((ViewCell<T>)bindable).labelTitle.FontSize = (double)newValue;
         }
 
         private static void OnTextChanged(BindableObject bindable, object oldValue, object newValue)
@@ -300,9 +300,9 @@ namespace Xamarin.Forms.Pictograms
             try
             {
                 if (!string.IsNullOrEmpty((string)newValue))
-                    (bindable as ViewCell<T>).labelTitle.Text = (string)newValue;
+                    ((ViewCell<T>)bindable).labelTitle.Text = (string)newValue;
                 else
-                    (bindable as ViewCell<T>).labelTitle.Text = "";
+                    ((ViewCell<T>)bindable).labelTitle.Text = "";
             }
             catch (Exception ex)
             {
@@ -313,14 +313,14 @@ namespace Xamarin.Forms.Pictograms
         private static void OnDetailChanged(BindableObject bindable, object oldValue, object newValue)
         {
             if (!string.IsNullOrEmpty((string)newValue))
-                (bindable as ViewCell<T>).labelDetail.Text = (string)newValue;
+                ((ViewCell<T>)bindable).labelDetail.Text = (string)newValue;
             else
-                (bindable as ViewCell<T>).labelDetail.Text = "";
+                ((ViewCell<T>)bindable).labelDetail.Text = "";
 
-            (bindable as ViewCell<T>).UpdateUI();
+            (bindable as ViewCell<T>)?.UpdateUi();
         }
 
-        private void UpdateUI()
+        private void UpdateUi()
         {
             if (!string.IsNullOrEmpty(labelDetail.Text))
             {
@@ -336,15 +336,15 @@ namespace Xamarin.Forms.Pictograms
 
         private static void OnIconChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            if (!String.IsNullOrEmpty((string)newValue))
-                (bindable as ViewCell<T>).fontIcon.Text = (string)newValue;
+            if (!string.IsNullOrEmpty((string)newValue))
+                ((ViewCell<T>)bindable).fontIcon.Text = (string)newValue;
             else
-                (bindable as ViewCell<T>).fontIcon.Text = null;
+                ((ViewCell<T>)bindable).fontIcon.Text = null;
         }
 
         private static void OnBackgroundColorChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            if ((bindable as ViewCell<T>).View != null)
+            if ((bindable as ViewCell<T>)?.View != null)
             {
                 if (newValue != null)
                     (bindable as ViewCell<T>).View.BackgroundColor = (Color)newValue;
@@ -356,43 +356,39 @@ namespace Xamarin.Forms.Pictograms
         private static void OnTextColorChanged(BindableObject bindable, object oldValue, object newValue)
         {
             if (newValue != null)
-                (bindable as ViewCell<T>).labelTitle.TextColor = (Color)newValue;
+                ((ViewCell<T>)bindable).labelTitle.TextColor = (Color)newValue;
             else
-                (bindable as ViewCell<T>).labelTitle.TextColor = Color.Default;
+                ((ViewCell<T>)bindable).labelTitle.TextColor = Color.Default;
         }
 
         private static void OnIconColorChanged(BindableObject bindable, object oldValue, object newValue)
         {
             if (newValue != null)
-                (bindable as ViewCell<T>).fontIcon.TextColor = (Color)newValue;
+                ((ViewCell<T>)bindable).fontIcon.TextColor = (Color)newValue;
             else
-                (bindable as ViewCell<T>).fontIcon.TextColor = Color.Default;
+                ((ViewCell<T>)bindable).fontIcon.TextColor = Color.Default;
         }
 
         private static void OnDetailColorChanged(BindableObject bindable, object oldValue, object newValue)
         {
             if (newValue != null)
-                (bindable as ViewCell<T>).labelDetail.TextColor = (Color)newValue;
+                ((ViewCell<T>)bindable).labelDetail.TextColor = (Color)newValue;
             else
-                (bindable as ViewCell<T>).labelDetail.TextColor = Color.Default;
+                ((ViewCell<T>)bindable).labelDetail.TextColor = Color.Default;
         }
 
         #endregion Properties
 
-        public Pictogram Pictogram;
+        public Pictogram pictogram;
     }
 
     public class ViewCell : ViewCell<FontAwesome>
     {
-        public ViewCell()
-            : base()
-        {
-        }
 
         protected override void OnTapped()
         {
             base.OnTapped();
-            (Parent as ListView).SelectedItem = null;
+            ((ListView)Parent).SelectedItem = null;
         }
     }
 
@@ -403,7 +399,7 @@ namespace Xamarin.Forms.Pictograms
         public ChevronViewCell()
             : base()
         {
-            ChevronPictogram = Pictogram.GetInstance<TC>();
+            chevronPictogram = Pictogram.GetInstance<TC>();
             InitializeComponent();
         }
 
@@ -415,11 +411,11 @@ namespace Xamarin.Forms.Pictograms
         {
             get
             {
-                return (string)GetValue(ChevronViewCell<T, TC>.ChevronFontFaceProperty);
+                return (string)GetValue(ChevronFontFaceProperty);
             }
             set
             {
-                SetValue(ChevronViewCell<T, TC>.ChevronFontFaceProperty, value);
+                SetValue(ChevronFontFaceProperty, value);
             }
         }
 
@@ -431,30 +427,30 @@ namespace Xamarin.Forms.Pictograms
 
         private static void OnChevronFontFaceChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            if (!String.IsNullOrEmpty((string)newValue))
-                (bindable as ChevronViewCell<T, TC>).chevron.FontFamily = (string)newValue;
+            if (!string.IsNullOrEmpty((string)newValue))
+                ((ChevronViewCell<T, TC>)bindable).chevron.FontFamily = (string)newValue;
             else
-                (bindable as ChevronViewCell<T, TC>).chevron.FontFamily = null;
+                ((ChevronViewCell<T, TC>)bindable).chevron.FontFamily = null;
         }
 
         public Color ChevronColor
         {
             get
             {
-                return (Color)GetValue(ChevronViewCell<T, TC>.ChevronColorProperty);
+                return (Color)GetValue(ChevronColorProperty);
             }
             set
             {
-                SetValue(ChevronViewCell<T, TC>.ChevronColorProperty, value);
+                SetValue(ChevronColorProperty, value);
             }
         }
 
         private static void OnChevronColorChanged(BindableObject bindable, object oldValue, object newValue)
         {
             if (newValue != null)
-                (bindable as ChevronViewCell<T, TC>).chevron.TextColor = (Color)newValue;
+                ((ChevronViewCell<T, TC>)bindable).chevron.TextColor = (Color)newValue;
             else
-                (bindable as ChevronViewCell<T, TC>).chevron.TextColor = Color.Transparent;
+                ((ChevronViewCell<T, TC>)bindable).chevron.TextColor = Color.Transparent;
         }
 
         #endregion Properties
@@ -464,7 +460,7 @@ namespace Xamarin.Forms.Pictograms
         private void InitializeComponent()
         {
             // chevron
-            chevron = new Icon(ChevronPictogram.GetTypeface(), ChevronStyle)
+            chevron = new Icon(chevronPictogram.GetTypeface(), ChevronStyle)
             {
                 TextColor = ChevronColor,
                 HorizontalTextAlignment = TextAlignment.End,
@@ -475,7 +471,7 @@ namespace Xamarin.Forms.Pictograms
             };
 
             // content
-            StackLayout content = (StackLayout)View;
+            var content = (StackLayout)View;
             content.Children.Add(chevron);
         }
 
@@ -487,7 +483,7 @@ namespace Xamarin.Forms.Pictograms
 
         private Icon chevron;
 
-        public Pictogram ChevronPictogram = FontAwesome.Instance;
+        public Pictogram chevronPictogram = FontAwesome.Instance;
     }
 
     public class ChevronViewCell<T> : ChevronViewCell<T, FontAwesome> where T : Pictogram
@@ -501,9 +497,5 @@ namespace Xamarin.Forms.Pictograms
 
     public class ChevronViewCell : ChevronViewCell<FontAwesome, FontAwesome>
     {
-        public ChevronViewCell()
-            : base()
-        {
-        }
     }
 }

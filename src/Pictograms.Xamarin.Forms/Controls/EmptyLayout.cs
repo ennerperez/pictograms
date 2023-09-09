@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Xamarin.Forms.Pictograms
+﻿namespace Xamarin.Forms.Pictograms
 {
     public class EmptyLayout<T> : AbsoluteLayout where T : Pictogram
     {
@@ -8,7 +6,7 @@ namespace Xamarin.Forms.Pictograms
 
         public EmptyLayout()
         {
-            Pictogram = Pictogram.GetInstance<T>();
+            pictogram = Pictogram.GetInstance<T>();
             InitializeComponent();
         }
 
@@ -21,7 +19,7 @@ namespace Xamarin.Forms.Pictograms
             //
             // fontAwesomeIcon
             //
-            fontIcon = new Icon(Pictogram.GetTypeface())
+            fontIcon = new Icon(pictogram.GetTypeface())
             {
                 FontSize = IconSize,
                 HorizontalTextAlignment = TextAlignment.Center,
@@ -38,16 +36,16 @@ namespace Xamarin.Forms.Pictograms
                 HorizontalTextAlignment = TextAlignment.Center,
                 FontAttributes = FontAttributes.Bold
             };
-            StackLayout StackContent = new StackLayout()
+            var stackContent = new StackLayout()
             {
                 Spacing = 0,
                 VerticalOptions = LayoutOptions.Center,
                 HorizontalOptions = LayoutOptions.Center
             };
-            StackContent.Children.Add(fontIcon);
-            StackContent.Children.Add(labelMessage);
+            stackContent.Children.Add(fontIcon);
+            stackContent.Children.Add(labelMessage);
 
-            this.Children.Add(StackContent, new Rectangle(0, 0, 1, 1), AbsoluteLayoutFlags.SizeProportional);
+            Children.Add(stackContent, new Rectangle(0, 0, 1, 1), AbsoluteLayoutFlags.SizeProportional);
         }
 
         private Label labelMessage;
@@ -63,20 +61,20 @@ namespace Xamarin.Forms.Pictograms
         {
             get
             {
-                return (string)GetValue(EmptyLayout<T>.FontFamilyProperty);
+                return (string)GetValue(FontFamilyProperty);
             }
             set
             {
-                SetValue(EmptyLayout<T>.FontFamilyProperty, value);
+                SetValue(FontFamilyProperty, value);
             }
         }
 
         public static readonly BindableProperty FontFamilyProperty =
-            BindableProperty.Create("FontFamily", typeof(string), typeof(EmptyLayout<T>), null, propertyChanged: OnFontFamilyChanged);
+            BindableProperty.Create("FontFamily", typeof(string), typeof(EmptyLayout<T>), propertyChanged: OnFontFamilyChanged);
 
         private static void OnFontFamilyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            if ((bindable as EmptyLayout<T>).labelMessage != null)
+            if ((bindable as EmptyLayout<T>)?.labelMessage != null)
             {
                 (bindable as EmptyLayout<T>).labelMessage.FontFamily = (string)newValue;
             }
@@ -88,51 +86,51 @@ namespace Xamarin.Forms.Pictograms
         {
             get
             {
-                return (string)GetValue(EmptyLayout<T>.MessageProperty);
+                return (string)GetValue(MessageProperty);
             }
             set
             {
-                SetValue(EmptyLayout<T>.MessageProperty, value);
+                SetValue(MessageProperty, value);
             }
         }
 
         public static readonly BindableProperty MessageProperty =
-            BindableProperty.Create("Message", typeof(string), typeof(EmptyLayout<T>), null, propertyChanged: OnMessageChanged);
+            BindableProperty.Create("Message", typeof(string), typeof(EmptyLayout<T>), propertyChanged: OnMessageChanged);
 
         private static void OnMessageChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            (bindable as EmptyLayout<T>).labelMessage.Text = (string)newValue;
+            ((EmptyLayout<T>)bindable).labelMessage.Text = (string)newValue;
         }
 
         public string Icon
         {
             get
             {
-                return (string)GetValue(EmptyLayout<T>.IconProperty);
+                return (string)GetValue(IconProperty);
             }
             set
             {
-                SetValue(EmptyLayout<T>.IconProperty, value);
+                SetValue(IconProperty, value);
             }
         }
 
         public static readonly BindableProperty IconProperty =
-            BindableProperty.Create("Icon", typeof(string), typeof(EmptyLayout<T>), null, propertyChanged: OnIconChanged);
+            BindableProperty.Create("Icon", typeof(string), typeof(EmptyLayout<T>), propertyChanged: OnIconChanged);
 
         private static void OnIconChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            (bindable as EmptyLayout<T>).fontIcon.Text = (string)newValue;
+            ((EmptyLayout<T>)bindable).fontIcon.Text = (string)newValue;
         }
 
         public double IconSize
         {
             get
             {
-                return (double)GetValue(EmptyLayout<T>.IconSizeProperty);
+                return (double)GetValue(IconSizeProperty);
             }
             set
             {
-                SetValue(EmptyLayout<T>.IconSizeProperty, value);
+                SetValue(IconSizeProperty, value);
             }
         }
 
@@ -141,18 +139,18 @@ namespace Xamarin.Forms.Pictograms
 
         private static void OnIconSizeChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            (bindable as EmptyLayout<T>).fontIcon.FontSize = (double)newValue;
+            ((EmptyLayout<T>)bindable).fontIcon.FontSize = (double)newValue;
         }
 
         public Color IconColor
         {
             get
             {
-                return (Color)GetValue(EmptyLayout<T>.IconColorProperty);
+                return (Color)GetValue(IconColorProperty);
             }
             set
             {
-                SetValue(EmptyLayout<T>.IconColorProperty, value);
+                SetValue(IconColorProperty, value);
             }
         }
 
@@ -163,20 +161,16 @@ namespace Xamarin.Forms.Pictograms
         {
             var e = new { NewValue = (Color)newValue };
             var color = new Color(e.NewValue.R, e.NewValue.G, e.NewValue.B, 0.5);
-            (bindable as EmptyLayout<T>).fontIcon.TextColor = color;
-            (bindable as EmptyLayout<T>).labelMessage.TextColor = color;
+            ((EmptyLayout<T>)bindable).fontIcon.TextColor = color;
+            ((EmptyLayout<T>)bindable).labelMessage.TextColor = color;
         }
 
         #endregion Properties
 
-        public Pictogram Pictogram;
+        public Pictogram pictogram;
     }
 
     public class PictogramEmptyLayout : EmptyLayout<FontAwesome>
     {
-        public PictogramEmptyLayout()
-            : base()
-        {
-        }
     }
 }

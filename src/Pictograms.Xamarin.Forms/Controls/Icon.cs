@@ -7,8 +7,8 @@
         public Icon()
         {
             AutoSize = true;
-            this.HorizontalTextAlignment = TextAlignment.Center;
-            this.VerticalTextAlignment = TextAlignment.Center;
+            HorizontalTextAlignment = TextAlignment.Center;
+            VerticalTextAlignment = TextAlignment.Center;
         }
 
         public Icon(string fontface)
@@ -20,7 +20,7 @@
         public Icon(string fontface, int type)
             : this(fontface)
         {
-            Text = Pictogram.GetText(type);
+            Text = pictogram.GetText(type);
         }
 
         public Icon(Pictogram glyph)
@@ -60,6 +60,6 @@
             }
         }
 
-        public Pictogram Pictogram;
+        public Pictogram pictogram;
     }
 }

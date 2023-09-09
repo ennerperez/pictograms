@@ -1,8 +1,7 @@
-﻿using System;
+﻿
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.ComponentModel;
 using System.Net;
 
 #if !PORTABLE
@@ -12,7 +11,7 @@ using System.Drawing.Pictograms.Attributes;
 
 namespace System.Drawing
 #else
-
+using System;
 using Xamarin.Forms.Pictograms.Attributes;
 
 namespace Xamarin.Forms
@@ -30,9 +29,9 @@ namespace Xamarin.Forms
         {
             if (string.IsNullOrEmpty(name))
 #if !PORTABLE
-                name = this.GetType().GetCustomAttributes(true).OfType<PictogramAttribute>().FirstOrDefault().Name;
+                name = GetType().GetCustomAttributes(true).OfType<PictogramAttribute>().FirstOrDefault().Name;
 #else
-                name = this.GetType().GetTypeInfo().GetCustomAttributes(typeof(PictogramAttribute)).OfType<PictogramAttribute>().FirstOrDefault().Name;
+                name = GetType().GetTypeInfo().GetCustomAttributes(typeof(PictogramAttribute)).OfType<PictogramAttribute>().FirstOrDefault().Name;
 #endif
             return name;
         }
@@ -53,9 +52,9 @@ namespace Xamarin.Forms
         {
             if (string.IsNullOrEmpty(url))
 #if !PORTABLE
-                url = this.GetType().GetCustomAttributes(true).OfType<PictogramAttribute>().FirstOrDefault().Url;
+                url = GetType().GetCustomAttributes(true).OfType<PictogramAttribute>().FirstOrDefault().Url;
 #else
-                url = this.GetType().GetTypeInfo().GetCustomAttributes(typeof(PictogramAttribute)).OfType<PictogramAttribute>().FirstOrDefault().Url;
+                url = GetType().GetTypeInfo().GetCustomAttributes(typeof(PictogramAttribute)).OfType<PictogramAttribute>().FirstOrDefault().Url;
 #endif
             return url;
         }
@@ -76,9 +75,9 @@ namespace Xamarin.Forms
         {
             if (string.IsNullOrEmpty(typeface))
 #if !PORTABLE
-                typeface = this.GetType().GetCustomAttributes(true).OfType<PictogramAttribute>().FirstOrDefault().Typeface;
+                typeface = GetType().GetCustomAttributes(true).OfType<PictogramAttribute>().FirstOrDefault().Typeface;
 #else
-                typeface = this.GetType().GetTypeInfo().GetCustomAttributes(typeof(PictogramAttribute)).OfType<PictogramAttribute>().FirstOrDefault().Typeface;
+                typeface = GetType().GetTypeInfo().GetCustomAttributes(typeof(PictogramAttribute)).OfType<PictogramAttribute>().FirstOrDefault().Typeface;
 #endif
             return typeface;
         }
@@ -118,7 +117,7 @@ namespace Xamarin.Forms
         public static Type GetIconTypes<T>() where T : Pictogram
         {
 #if !PORTABLE
-            var iconType = typeof(T).GetType().Assembly.GetType($"{typeof(T).FullName}+IconType");
+            var iconType = typeof(T).Assembly.GetType($"{typeof(T).FullName}+IconType");
 #else
             var iconType = typeof(T).GetTypeInfo().Assembly.GetType($"{typeof(T).FullName}+IconType");
 #endif
@@ -134,7 +133,7 @@ namespace Xamarin.Forms
 #else
             if (T.DeclaringType != typeof(Pictogram))
                 throw new InvalidCastException("Type must be a Pictogram based");
-            var iconType = T.GetTypeInfo().Assembly.GetType($"{T.GetType().FullName}+IconType");
+            var iconType = T.GetTypeInfo().Assembly.GetType($"{T.FullName}+IconType");
 #endif
             return iconType;
         }
@@ -170,7 +169,7 @@ namespace Xamarin.Forms
                 }
                 catch (Exception ex)
                 {
-                    System.Diagnostics.Debug.WriteLine(ex.Message);
+                    Diagnostics.Debug.WriteLine(ex.Message);
                 }
             }
 
@@ -202,9 +201,6 @@ namespace Xamarin.Forms
             {
                 return fonts.Families != null && fonts.Families.Any() ? fonts.Families[0] : null;
             }
-            private set
-            {
-            }
         }
 
         /// <summary>
@@ -219,12 +215,12 @@ namespace Xamarin.Forms
         {
             try
             {
-                IntPtr fontBuffer = Marshal.AllocCoTaskMem(fontData.Length);
+                var fontBuffer = Marshal.AllocCoTaskMem(fontData.Length);
                 Marshal.Copy(fontData, 0, fontBuffer, fontData.Length);
 
                 uint dummy = 0;
                 fonts.AddMemoryFont(fontBuffer, fontData.Length);
-                NativeMethods.AddFontMemResourceEx((IntPtr)fontBuffer, (uint)fontData.Length, IntPtr.Zero, ref dummy);
+                NativeMethods.AddFontMemResourceEx(fontBuffer, (uint)fontData.Length, IntPtr.Zero, ref dummy);
             }
             catch (Exception ex)
             {
@@ -238,11 +234,12 @@ namespace Xamarin.Forms
         /// Sets a new font with correct size for the allocated space.
         /// </summary>
         /// <param name="g">The g.</param>
-        private void SetFontSize(Graphics g, string IconChar)
+        /// <param name="iconChar"></param>
+        private void SetFontSize(Graphics g, string iconChar)
         {
-            var Width = (int)g.VisibleClipBounds.Width;
-            var Height = (int)g.VisibleClipBounds.Height;
-            iconFont = GetAdjustedFont(g, IconChar, Width, Height, 4, true);
+            var width = (int)g.VisibleClipBounds.Width;
+            var height = (int)g.VisibleClipBounds.Height;
+            iconFont = GetAdjustedFont(g, iconChar, width, height, 4, true);
         }
 
         /// <summary>
@@ -259,9 +256,9 @@ namespace Xamarin.Forms
         {
             for (double adjustedSize = maxFontSize; adjustedSize >= minFontSize; adjustedSize = adjustedSize - 0.5)
             {
-                Font testFont = GetFont((float)adjustedSize);
+                var testFont = GetFont((float)adjustedSize);
                 // Test the string with the new size
-                SizeF adjustedSizeNew = g.MeasureString(graphicString, testFont);
+                var adjustedSizeNew = g.MeasureString(graphicString, testFont);
                 if (containerWidth > Convert.ToInt32(adjustedSizeNew.Width))
                     return testFont;
             }
@@ -273,30 +270,30 @@ namespace Xamarin.Forms
 
         public virtual Image GetImage(int type, int size, Brush brush)
         {
-            System.Drawing.Bitmap result = new System.Drawing.Bitmap(size, size);
-            string IconChar = char.ConvertFromUtf32((int)type);
+            var result = new Bitmap(size, size);
+            var iconChar = char.ConvertFromUtf32(type);
 
-            using (System.Drawing.Graphics graphics = System.Drawing.Graphics.FromImage(result))
+            using (var graphics = Graphics.FromImage(result))
             {
                 // Set best quality
-                graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAliasGridFit;
-                graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBilinear;
-                graphics.PixelOffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.HighQuality;
-                graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                graphics.TextRenderingHint = TextRenderingHint.AntiAliasGridFit;
+                graphics.InterpolationMode = Drawing2D.InterpolationMode.HighQualityBilinear;
+                graphics.PixelOffsetMode = Drawing2D.PixelOffsetMode.HighQuality;
+                graphics.SmoothingMode = Drawing2D.SmoothingMode.HighQuality;
 
-                SetFontSize(graphics, IconChar);
+                SetFontSize(graphics, iconChar);
 
                 // Measure string so that we can center the icon.
-                SizeF stringSize = graphics.MeasureString(IconChar, iconFont, size);
-                float w = stringSize.Width;
-                float h = stringSize.Height;
+                var stringSize = graphics.MeasureString(iconChar, iconFont, size);
+                var w = stringSize.Width;
+                var h = stringSize.Height;
 
                 // center icon
-                float left = (size - w) / 2;
-                float top = (size - h) / 2;
+                var left = (size - w) / 2;
+                var top = (size - h) / 2;
 
                 // Draw string to screen.
-                graphics.DrawString(IconChar, iconFont, brush, new PointF(left, top));
+                graphics.DrawString(iconChar, iconFont, brush, new PointF(left, top));
             }
 
             return result;
@@ -316,7 +313,7 @@ namespace Xamarin.Forms
 
         public virtual string GetText(int type)
         {
-            return char.ConvertFromUtf32((int)type);
+            return char.ConvertFromUtf32(type);
         }
 
 #if !PORTABLE

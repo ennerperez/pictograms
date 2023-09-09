@@ -11,12 +11,12 @@ namespace Xamarin.Forms.Pictograms
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return ValueConverter<T>.Convert(value);
+            return Convert(value);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return ValueConverter<T>.ConvertBack(value);
+            return ConvertBack(value);
         }
 
         public static object Convert(object value)

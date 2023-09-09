@@ -21,6 +21,6 @@
     <dependencies />
   </metadata>
   <files>
-    <file src="..\Pictograms\bin\release\System.Drawing.Pictograms.dll" target="lib\net40\System.Drawing.Pictograms.dll" />
+    <file src="..\Pictograms\bin\Release\netstandard2.1\System.Drawing.Pictograms.dll" target="lib\netstandard21\System.Drawing.Pictograms.dll" />
   </files>
 </package>

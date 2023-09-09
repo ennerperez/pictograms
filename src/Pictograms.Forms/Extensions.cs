@@ -59,13 +59,13 @@ namespace System.Windows.Forms.Pictograms
             var image = pictogram.GetImage((int)type, size, brush);
 
             if (typeof(ButtonBase).IsAssignableFrom(@this.GetType()))
-                (@this as ButtonBase).Image = image;
+                ((ButtonBase)@this).Image = image;
             if (typeof(PictureBox).IsAssignableFrom(@this.GetType()))
-                (@this as PictureBox).Image = image;
+                ((PictureBox)@this).Image = image;
             if (typeof(Panel).IsAssignableFrom(@this.GetType()))
-                (@this as Panel).BackgroundImage = image;
+                ((Panel)@this).BackgroundImage = image;
             if (typeof(GroupBox).IsAssignableFrom(@this.GetType()))
-                (@this as GroupBox).BackgroundImage = image;
+                ((GroupBox)@this).BackgroundImage = image;
         }
 
         public static void SetText(this Control @this, Pictogram pictogram, object type, float size = 0)
@@ -88,17 +88,17 @@ namespace System.Windows.Forms.Pictograms
             if (typeof(ToolStripItem).IsAssignableFrom(@this.GetType()))
             {
                 if (size == 0)
-                    size = ((@this as ToolStripItem).Width + (@this as ToolStripItem).Height) / 2;
+                    size = (((ToolStripItem)@this).Width + (@this as ToolStripItem).Height) / 2;
 
                 if (color == null)
-                    color = (@this as ToolStripItem).ForeColor;
+                    color = (@this as ToolStripItem)?.ForeColor;
 
-                if (brush == null)
-                    brush = new SolidBrush(color.Value);
+                if (brush == null && color != null)
+                        brush = new SolidBrush(color.Value);
 
                 var image = pictogram.GetImage((int)type, size, brush);
 
-                (@this as ToolStripItem).Image = image;
+                ((ToolStripItem)@this).Image = image;
             }
             else if (typeof(NotifyIcon).IsAssignableFrom(@this.GetType()))
             {
@@ -114,12 +114,12 @@ namespace System.Windows.Forms.Pictograms
                 var image = pictogram.GetImage((int)type, size, brush);
                 var hIcon = new Bitmap(image).GetHicon();
 
-                (@this as NotifyIcon).Icon = Icon.FromHandle(hIcon);
+                ((NotifyIcon)@this).Icon = Icon.FromHandle(hIcon);
             }
             else if (typeof(ImageList).IsAssignableFrom(@this.GetType()))
             {
                 if (size == 0)
-                    size = ((@this as ImageList).ImageSize.Width + (@this as ImageList).ImageSize.Height) / 2;
+                    size = (((ImageList)@this).ImageSize.Width + (@this as ImageList).ImageSize.Height) / 2;
 
                 if (color == null)
                     color = SystemColors.ControlText;
@@ -129,7 +129,7 @@ namespace System.Windows.Forms.Pictograms
 
                 var image = pictogram.GetImage((int)type, size, brush);
 
-                (@this as ImageList).Images.Add(image);
+                (@this as ImageList)?.Images.Add(image);
             }
         }
 
@@ -138,15 +138,15 @@ namespace System.Windows.Forms.Pictograms
             if (typeof(ToolStripItem).IsAssignableFrom(@this.GetType()))
             {
                 if (size == 0)
-                    size = (@this as ToolStripItem).Font.Size;
+                    size = ((ToolStripItem)@this).Font.Size;
 
                 var text = pictogram.GetText((int)type);
 
-                if ((@this as ToolStripItem).Text == (@this as ToolStripItem).ToolTipText)
-                    (@this as ToolStripItem).ToolTipText = (@this as ToolStripItem).Text;
+                if ((@this as ToolStripItem)?.Text == (@this as ToolStripItem)?.ToolTipText)
+                    ((ToolStripItem)@this).ToolTipText = (@this as ToolStripItem)?.Text;
 
-                (@this as ToolStripItem).Text = text;
-                (@this as ToolStripItem).Font = new Font(pictogram.FontFamily, size, (@this as ToolStripItem).Font.Style, (@this as ToolStripItem).Font.Unit);
+                ((ToolStripItem)@this).Text = text;
+                ((ToolStripItem)@this).Font = new Font(pictogram.FontFamily, size, ((ToolStripItem)@this).Font.Style, ((ToolStripItem)@this).Font.Unit);
             }
         }
 
